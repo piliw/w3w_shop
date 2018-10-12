@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,11 +105,43 @@
                   <a lay-href="home/console.html">控制台</a>
                 </dd>
                 <dd data-name="console">
-                  <a lay-href="home/homepage1.html">主页一</a>
+                  <a lay-href="/ahome">主页一</a>
                 </dd>
               </dl>
             </li>
-
+              
+              <li data-name="user" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="产品管理" lay-direction="2">
+                <i class="layui-icon layui-icon-component"></i>
+                <cite>产品管理</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="/category">分类管理</a>
+                </dd>
+                <dd>
+                  <a lay-href="user/administrators/list.html">商品管理</a>
+                </dd>
+                <dd>
+                  <a lay-href="user/administrators/role.html">角色管理</a>
+                </dd>
+              </dl>
+            </li>
+          
+               <li data-name="user" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="用户" lay-direction="2">
+                <i class="layui-icon layui-icon-user"></i>
+                <cite>订单管理</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="/order">订单详情</a>
+                </dd>
+                <dd>
+                  <a lay-href="user/administrators/role.html">商品详情</a>
+                </dd>
+              </dl>
+            </li>
         
             <li data-name="user" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
@@ -126,22 +160,6 @@
                 </dd>
               </dl>
             </li>
-
-               <li data-name="user" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="用户" lay-direction="2">
-                <i class="layui-icon layui-icon-user"></i>
-                <cite>订单管理</cite>
-              </a>
-              <dl class="layui-nav-child">
-                <dd>
-                  <a lay-href="/order">订单详情</a>
-                </dd>
-                <dd>
-                  <a lay-href="user/administrators/role.html">商品详情</a>
-                </dd>
-              </dl>
-            </li>
-
             <li data-name="set" class="layui-nav-item">
               <a href="javascript:;" lay-tips="设置" lay-direction="2">
                 <i class="layui-icon layui-icon-set"></i>
@@ -191,8 +209,6 @@
           </ul>
         </div>
       </div>
-      
-      
       <!-- 主体内容 -->
       <div class="layui-body" id="LAY_app_body">
         <div class="layadmin-tabsbody-item layui-show">
