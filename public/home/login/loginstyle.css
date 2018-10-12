@@ -1,0 +1,213 @@
+/*初始化网页*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li, pre, fieldset, lengend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{
+	list-style-type: none;
+}
+/*去除a链接的下划线字体颜色*/
+a{
+	text-decoration: none;
+}
+/*左右浮动公共样式*/
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.header-box{
+	/*background: red;*/
+	width: 1130px;
+	height: 98px;
+	margin: 0px auto;
+}
+.mi-logo{
+	width: 200px;
+	height: 98px;
+	background: url(./images/mistore_logo.png) no-repeat;
+}
+/*设置登陆界面的背景图片*/
+.body-box{
+	height: 588px;
+	/*background: pink;*/
+}
+.mi-link{
+	/*width: 100px;*/
+	height: 525px;
+	background: url(./images/a1fd285418b654.jpg) no-repeat -600px 0px;
+}
+.login-container{
+	width: 1130px;
+	height: 588px;
+	/*background: yellow;*/
+	margin: 0px auto;
+}
+/*设置登陆界面*/
+.login-box{
+	height: 565px;
+	width: 410px;
+	background: #FFFFFF;
+	float: right;
+	margin-top: 30px;
+}
+.nav-tabs{
+	width: 410px;
+	height: 82px;
+	/*background: pink;*/
+}
+.navtabs-link{
+	width: 204px;
+	height: 27px;
+	float: left;
+	text-align: center;
+	margin-top: 23px;
+	font-size: 25px;
+}
+/*垂直直线*/
+.leftline{
+	border-left:1px solid #E0E0E0;
+}
+/*账号密码登陆*/
+.login-input{
+	width: 348px;
+	height: 226px;
+	margin: 0px auto;
+	/*background: yellow;*/
+}
+.user-name{
+	width: 346px;
+	height: 46px;
+	border:1px solid #E0E0E0;
+}
+.user-name input{
+	width: 326px;
+	height: 44px;
+	/*border-color: #E0E0E0;*/
+	border: 0px;
+	outline:none;
+	margin: 0px 10px;
+}
+.ps-name{
+	margin-top: 10px;
+}
+.login-submit{
+	width: 348px;
+	height: 46px;
+	background: #EF5B00;
+	color: #FFFFFF;
+	border:0px;
+	font-size: 15px;
+	margin-top: 20px;
+}
+.phone-paner{
+	width: 348px;
+	height: 19px;
+	/*background: pink;*/
+	margin-top: 8px;
+	font-size:15px;
+}
+.phone-paner-one a{
+	color: #EF5B00;
+}
+.other-registe a{
+	/*display: block;*/
+	margin-left: 65px;
+	color: #999999;
+}
+.forget-pass,.forget-pass a{
+	color: #999999;
+}
+.forget-pass a:hover,.other-registe a:hover{
+	color: #EF5B00;
+}
+/*设置其它登陆方式上的直线*/
+.other-paner{
+	width: 348px;
+	height: 29px;
+	margin: 120px auto 0px;
+}
+.other-paner-set{
+	border-top: 1px solid #BBBBC9;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:0px;
+	color: #BBBBC9;
+}
+/*设置其它登陆方式的图标*/
+.pic-box{
+	width: 348px;
+	height: 36px;
+	margin: 0px auto;
+	/*background: orange;*/
+	margin-top: 10px;
+}
+.pic-box>a{
+	display: block;
+	width: 60px;
+	height: 30px;
+	/*background: pink;*/
+	float: left;
+}
+/*设置图标和鼠标悬浮时的样式*/
+.pic-box>.qqpic{
+	background: url(./images/qqblack.png) no-repeat  center;
+	margin-left: 50px;	
+}
+.pic-box>.qqpic:hover{
+	background: url(./images/qqblue.png) no-repeat  center;	
+}
+.pic-box>.weibopic{
+	background: url(./images/weiboblack.png) no-repeat  center;
+}
+.pic-box>.weibopic:hover{
+	background: url(./images/weibored.png) no-repeat  center;
+}
+.pic-box>.alipaypic{
+	background: url(./images/alipayblack.png) no-repeat  center;
+}
+.pic-box>.alipaypic:hover{
+	background: url(./images/alipayblue.png) no-repeat  center;
+}
+.pic-box>.weixinpic{
+	background: url(./images/weixinblack.png) no-repeat  center;
+}
+.pic-box>.weixinpic:hover{
+	background: url(./images/weixingreen.png) no-repeat  center;
+}
+/*设置底部部分*/
+.lang-select-list{
+	width: 854px;
+	height: 19px;
+	/*background: red;*/
+	margin: 50px auto 0px;
+}
+.lang-select-list ul{
+	margin-left: 281px;
+}
+.lang-select-list li{
+	/*width: 48px;*/
+	height: 19px;
+	/*background: yellow;*/
+	float: left;
+	font-size: 15px;
+	padding: 0px 15px;
+}
+.lang-select-list li a{
+	color: #989898;
+}
+/*设置文字中出现的直线*/
+.left-xian{
+	border-left: 1px solid #989898;
+}
+/*网页最底部*/
+.intro-bottom{
+	width: 100%;
+	height: 44px;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 15px;
+	color: #9D9D9D;
+}
