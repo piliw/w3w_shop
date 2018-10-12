@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +16,30 @@ Route::resource('/','Home\IndexController');
 // });
 //后台主页
 Route::resource('/admin','Admin\IndexController');
+// 后台 我的桌面
+Route::get("/welcome","Admin\IndexController@welcome");
+
+// 后台订单模块
+Route::group([],function(){
+	Route::resource("/order","Admin\OrderController");
+});
+Route::group([],function(){
+	//分类管理
+	Route::resource('/category','Admin\CateController');
+	//加载添加分类模板
+	Route::get('/categoryadd','Admin\CateController@cateAdd');
+	//获取分类信息
+	Route::post('/getcates','Admin\CateController@getCates');
+	Route::get('/getcate','Admin\CateController@getCate');
+	Route::get('/getcateall','Admin\CateController@getCateAll');
+	Route::get('/cateone','Admin\CateController@cateOne');
+	// 分类修改
+	Route::post('/cateupdate','Admin\CateController@cateUpdate');
+	//分类删除
+	Route::get('/catedelete','Admin\CateController@delete');
+
+});
+
 // 后台轮播图管理
 Route::resource('/lunbotu','Admin\LunbotuController');
 // 后台轮播图Ajax删除
