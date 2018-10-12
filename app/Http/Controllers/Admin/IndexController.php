@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        //
+        //加载主页
         return view('Admin.index');
     }
 
