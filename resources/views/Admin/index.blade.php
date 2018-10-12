@@ -10,7 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="stylesheet" href="./layuiadmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="./layuiadmin/style/admin.css" media="all">
-  
   <script>
   /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
   </script>
@@ -74,7 +73,7 @@
               <dd><a lay-href="set/user/info.html">基本资料</a></dd>
               <dd><a lay-href="set/user/password.html">修改密码</a></dd>
               <hr>
-              <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+              <dd style="text-align: center;"><a href="/login">退出</a></dd>
             </dl>
           </li>
           
@@ -180,17 +179,17 @@
             <li data-name="user" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
                 <i class="layui-icon layui-icon-user"></i>
-                <cite>用户</cite>
+                <cite>用户管理</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd>
-                  <a lay-href="user/user/list.html">网站用户</a>
+                  <a lay-href="/views/user/user/list.html">前台网站用户</a>
                 </dd>
                 <dd>
-                  <a lay-href="user/administrators/list.html">后台管理员</a>
+                  <a lay-href="/adminuser">后台管理员</a>
                 </dd>
                 <dd>
-                  <a lay-href="user/administrators/role.html">角色管理</a>
+                  <a lay-href="/views/user/administrators/role.html">角色管理</a>
                 </dd>
               </dl>
             </li>

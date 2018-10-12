@@ -24,7 +24,7 @@
         </ul>
         <a href="#" class="dy5">购物车</a>
         <ul class="dy4">
-            <li><a href="#">登录<br/>登录</a></li>
+            <li><a href="/homelogin">登录<br/>登录</a></li>
             <li><a href="#">注册<br/>注册</a></li>
         </ul>
         <div class="dy6">
@@ -293,7 +293,7 @@
                             </a>    
                             <a href="#" style=" width:100%; height:20px; line-height:20px; font-size:12px; color:#666; text-align:left; text-indent:10px" class="dianpud">乐乐旗舰店</a>
                         </li>
-            <li>
+                  <li>
                             <a href="#">
                                 <b>
                                     <img src="img/chose.png"/>
@@ -304,7 +304,7 @@
                             </a>    
                             <a href="#" style=" width:100%; height:20px; line-height:20px; font-size:12px; color:#666; text-align:left; text-indent:10px" class="dianpud">乐乐旗舰店</a>
                         </li>
-            <li>
+                  <li>
                             <a href="#">
                                 <b>
                                     <img src="img/chose.png"/>
