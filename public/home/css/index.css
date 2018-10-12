@@ -29,7 +29,7 @@
 .shousuo{ color:#b0b0b0; font-size:12px}
 .shousuo:hover{ color:#fff}
 /*全部商品分类*/
-.qbspfl{ width:1226px; height:40px; border-bottom:2px solid #111; margin:0 auto; overflow:hidden; margin-top:20px}
+.qbspfl{ width:1226px; height:40px; margin:0 auto; overflow:hidden; margin-top:20px}
 .djfl{ float:left; text-align: center; line-height:40px; font-size:16px; color:#FFF; background:#111; height:40px; width:234px; cursor:pointer}
 .morelist{ float:left; height:40px}
 .morelist a{ display:block; padding-left:30px; padding-right:15px; color:#111; float:left; line-height:40px; font-size:16px}

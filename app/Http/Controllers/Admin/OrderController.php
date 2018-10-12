@@ -1,46 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// 导入模型类
-use App\Models\Lunbotu;
-use App\Models\Abs;
 use DB;
-class IndexController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getCatesBypid($pid){
-        // 获取分类表
-        $res = DB::table('cate')->where('pid','=',$pid)->get();
-        // 遍历数据
-        foreach($res as $key=>$value){
-            // 获取当前分类信息子类信息
-            $value->dev=self::getCatesBypid($value->id);
-            $data[]=$value;
-        }
-        
-        return $res;
-    }
-
-    public function index(Request $request)
+    public function index()
     {
-        // 广告数据
-        $abs = Abs::where('status','=',0)->get();
-        // 插入轮播图图片路径数据
-        $pic = Lunbotu::where('status','=',0)->get();
-        // dd($data);
-        // 获取分类数据
-        // $cate = DB::table('cate')->get();
-        $cate = self::getCatesBypid(0);
-        // dd($cate);
-         //加载前台首页  
-        return view('Home.index',['pic'=>$pic,'cate'=>$cate,'abs'=>$abs]);   
+        //后台订单模块
+        $user=DB::table('order')->get();
+        // 未付款状态为0的
+        $usera=DB::table('order')->where('status','=',0)->get();
+        // 已付款状态为1的
+        $userb=DB::table('order')->where('status','=',1)->get();
+        // 待收货状态为2的
+        $userc=DB::table('order')->where('status','=',2)->get();
+        // 已收货状态为3的
+        $userd=DB::table('order')->where('status','=',3)->get();
+        // dd($userd);
+        return view("Admin.Order.order",["user"=>$user,'usera'=>$usera,'userb'=>$userb,'userc'=>$userc,'userd'=>$userd]);
     }
 
     /**
@@ -72,7 +57,8 @@ class IndexController extends Controller
      */
     public function show($id)
     {
-        //
+        //订单详情
+        return view("/Admin.Order.order_info");
     }
 
     /**

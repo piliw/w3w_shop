@@ -4,10 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// 数据库操作
-use DB;
-// 引入hash加密类
-use Hash;
 
 class IndexController extends Controller
 {
@@ -16,11 +12,17 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        //后台主页
-        return view('Admin.index1');
+        //加载主页
+        return view('Admin.index');
+    }
 
+    // 我的桌面
+    public function welcome()
+    {
+        // 我的桌面
+        return view("Admin.welcome");
     }
     /**
      * Show the form for creating a new resource.
@@ -29,7 +31,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-
+        return view('Admin.welcome');
     }
 
     /**
