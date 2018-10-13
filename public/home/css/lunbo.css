@@ -184,6 +184,7 @@ html table {
    display:none
   }
   #big_banner_wrap #banner_menu_wrap {
+    padding:20px 0;
     width: 234px;
     height: 100%;
     float: left;
@@ -191,7 +192,7 @@ html table {
     background: rgba(0, 0, 0, 0.8);
     z-index: 600; }
     #big_banner_wrap #banner_menu_wrap .active {
-      margin-top: 20px; }
+ }
     #big_banner_wrap #banner_menu_wrap li {
       width: 100%;
       height: 42px;
