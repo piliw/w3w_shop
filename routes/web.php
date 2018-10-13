@@ -54,13 +54,10 @@ Route::resource('/adminabs','Admin\AbsController');
 Route::get('/absdel','Admin\AbsController@absdel');
 
 // ----------------后台控制器-------------------------
-
 // 后台登录操作
 Route::resource('/login','Admin\LoginController');
-
 // 登录中间件路由组
 Route::group(['middleware'=>'login'],function(){
-
 // 后台首页
 Route::resource('/admin','Admin\IndexController');
 // 后台用户列表
@@ -73,11 +70,8 @@ Route::get('/del','Admin\AdminUserController@del');
 Route::get('/status','Admin\AdminUserController@status');
 // 后台修改密码时,旧密码验证
 Route::get('/pass','Admin\AdminUserController@pass');
-
 });
-
 // ----------------前台控制器-------------------------
-
 // 前台登录操作
 Route::resource('/homelogin','Home\LoginController');
 // 前台登录成功操作
