@@ -19,10 +19,11 @@ class LoginController extends Controller
     public function index(Request $request)
     {   
         // 删除登录session
-        $a = $request->session()->pull('username');
-        $a = $request->session()->pull('id');
+        $request->session()->pull('username');
+        $request->session()->pull('id');
+        $request->session()->pull('nodelist');
         // $data = $request->session()->all();
-        // dd($a);die;
+        // dd($data);die;
         // 加载模板
         return redirect("/login/create");
     }
@@ -59,7 +60,31 @@ class LoginController extends Controller
                 //把用户信息写入到session
                 session(['id'=>$data->id]);
                 session(['username'=>$data->username]);
+                // 获取当前登录用户权限信息
+                $list = DB::select("select n.name,n.mname,n.aname from user_role as ur,node_role as nr,node as n where ur.rid=nr.rid and nr.rid=n.id and uid ={$data->id}");
+                
+                // 初始化权限
+                // 让所有的管理员具有公共的权限
+                // 后台首页
+                $nodelist['IndexController'][]='index';
+                foreach($list as $v){
+                    $nodelist[$v->mname][]=$v->aname;
+                    if($v->aname=='create'){
+                        $nodelist[$v->mname][]='store';
+                    }
+                    if($v->aname=='edit'){
+                        $nodelist[$v->mname][]='update';
+                    }
+                }
+                // echo '<pre>';
+                // var_dump($nodelist);die;
+                // 3把所有权限信息存储在session
+                session(['nodelist'=>$nodelist]);
+                
+                
+                // 跳转后台首页
                 return redirect('/admin');
+
             }else{
                 // 跳转并把错误信息储存
                 return back()->with('message', '用户名或者密码不正确!');

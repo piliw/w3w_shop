@@ -23,8 +23,7 @@ class IndexController extends Controller
             // 获取当前分类信息子类信息
             $value->dev=self::getCatesBypid($value->id);
             $data[]=$value;
-        }
-        
+        } 
         return $res;
     }
 
