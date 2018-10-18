@@ -183,7 +183,7 @@
               </a>
               <dl class="layui-nav-child">
                 <dd>
-                  <a lay-href="/views/user/user/list.html">前台网站用户</a>
+                  <a lay-href="/homeuser">前台网站用户</a>
                 </dd>
                 <dd>
                   <a lay-href="/adminuser">后台管理员</a>

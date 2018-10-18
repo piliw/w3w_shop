@@ -28,7 +28,7 @@
           @endif
 
       <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
-        <form action="/login" method="post">
+        <form action="/login" method="post" id="form">
         <div class="layui-form-item">
           <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
           <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="用户名" class="layui-input" required>
@@ -41,11 +41,12 @@
           <div class="layui-row">
             <div class="layui-col-xs7">
               <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
-              <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="图形验证码" class="layui-input">
+              <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="图形验证码" class="layui-input fcode">
+              <span id="span"></span>
             </div>
             <div class="layui-col-xs5">
               <div style="margin-left: 10px;">
-                <img src="{{captcha_src('inverse')}}" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode" id="captcha">
+                <img src="/fcode" onclick="this.src=this.src+'?a=1'" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode">
               </div>
             </div>
           </div>
@@ -84,6 +85,33 @@
 
   <script src="/jquery-1.7.2.min.js"></script>  
   <script>
+  // 验证码验证事件
+  // alert($);
+  var bool = false;
+  $('.fcode').blur(function(){
+    v = $(this).val();
+    // alert(v);
+    $.get('/fcodes',{v:v},function(data){
+      // alert(data);
+      if(data != 1){
+        $('#span').css('fontSize','15px').css('color','red').html('验证码错误!');
+      }else{
+        $('#span').html('');
+        bool = true;
+      }
+    });
+  });
+  // 提交按钮单击事件
+  $('#submit').click(function(){
+    if($('.fcode').val() == ''){
+      alert('请填写验证码');
+      bool = false;
+    }
+  })
+  // 表单提交事件
+  $('#form').click(function(){
+    return bool;
+  });
   </script>
 </body>
 </html>

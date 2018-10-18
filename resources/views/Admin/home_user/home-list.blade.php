@@ -25,40 +25,43 @@
 <script type="text/javascript" src="/static/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>管理员列表</title>
+<title>前台用户列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 前台用户管理 <span class="c-gray en">&gt;</span> 前台用户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-	<form action="/adminuser" method="get">
+	<form action="/homeuser" method="get">
 	<div class="text-c"> 
 		<!-- 日期范围： -->
 		<!-- <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
 		-
 		<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;"> -->
-		登录名:
-		<input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称" id="sname" name="sname" value="{{$request['sname'] or ''}}">
-		<button type="submit" class="btn btn-success" id="ssubmit" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
+		账号:
+		<input type="text" class="input-text" style="width:250px" placeholder="输入账号" id="sname" name="sname" value="{{$request['sname'] or ''}}">
+		<button type="submit" class="btn btn-success" id="ssubmit" name=""><i class="Hui-iconfont">&#xe665;</i> 账号</button>
 	</div>
 	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 	 <span class="l">
 <!-- 	 	<a href="javascript:void(0)" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
-	 	 <a href="javascript:;" onclick="admin_add('添加管理员','adminuser/create','800','500')" class="btn btn-primary radius" data-target="#mymodel" data-toggle="modal"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a></span>
+
 	 	  <span class="r">共有数据：<strong>{{$count}}</strong> 条</span> 
 	 </div>
 	<table class="table table-border table-bordered table-bg" id="table">
 		<thead>
 			<tr>
-				<th scope="col" colspan="9">管理员列表</th>
+				<th scope="col" colspan="9">前台用户列表</th>
 			</tr>
 			<tr class="text-c">
 				<th>ID</th>
-				<th>登录名</th>
+				<th>账号</th>
 				<th>密码</th>
 				<th>等级</th>
 				<th>状态</th>
+				<th>地域</th>
 				<th>加入时间</th>
+				<th>邮箱</th>
+				<th>token</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -66,19 +69,19 @@
 		@foreach($data as $v)
 			<tr class="text-c">
 				<td>{{$v->id}}</td>
-				<td>{{$v->username}}</td>
+				<td>{{$v->phone}}</td>
 				<td>{{$v->password}}</td>
 				<td>{{$v->level}}</td>
-				<td>{{$v->status}}</td>
+				<td id="stat">{{$v->status}}</td>
+				<td>{{$v->area}}</td>
 				<td>{{$v->addtime}}</td>
+				<td>{{$v->email}}</td>
+				<td>{{$v->token}}</td>
 				<td class="td-manage">
-
-				<a title="修改管理员等级" href="javascript:;" onclick="admin_edit('修改管理员等级','/adminuser/{{$v->id}}','1','300','300')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe630;</i></a> 
-
+				<a style="text-decoration:none" href="javascript:;" onclick="admin_add('用户详情','homeuser/{{$v->id}}','800','500')" title="用户详情"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+				<a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="改变等级"><span class="glyphicon glyphicon-star level" aria-hidden="true"></span></a>
 				<a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="改变状态"><i class="Hui-iconfont status">&#xe631;</i></a>
-
-				 <a title="修改密码" href="javascript:;" onclick="admin_edit('修改密码','/adminuser/{{$v->id}}/edit','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
-			
+		
 				<a title="删除" href="javascript:;" class="ml-5 del" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
 			</tr>
@@ -108,10 +111,12 @@
 	w		弹出层宽度（缺省调默认值）
 	h		弹出层高度（缺省调默认值）
 */
-/*管理员-增加*/
+// 弹框
 function admin_add(title,url,w,h){
 	layer_show(title,url,w,h);
 }
+
+
 // 管理员-ajax删除
 $('.del').click(function(){
 	id = $(this).parents('tr').find('td').html();
@@ -119,7 +124,7 @@ $('.del').click(function(){
 	s = $(this).parents('tr');
 	c = confirm('确定删除吗?');
 	if(c){
-		$.get('/del',{id:id},function(data){
+		$.get('/homedel',{id:id},function(data){
 			// alert(data);
 			if(data==1){
 				// alert('删除成功');
@@ -164,13 +169,26 @@ function admin_edit(title,url,id,w,h){
 $('.status').click(function(){
 	id = $(this).parents('tr').find('td').html();
 	// alert(id);
-	$.get('/status',{id:id},function(data){
+	$.get('/homestatus',{id:id},function(data){
 		// alert(data);
 		if(data == 0){
 			// 跳转
-			location.href="/adminuser";
+			location.href="/homeuser";
 		}else{
-			location.href="/adminuser";
+			location.href="/homeuser";
+		}
+	});
+});
+
+// ajax改变用户等级
+$('.level').click(function(){
+	id = $(this).parents('tr').find('td').html();
+	$.get('/vip',{id:id},function(data){
+		if(data == 0){
+			// 跳转
+			location.href="/homeuser";
+		}else{
+			location.href="/homeuser";
 		}
 	});
 });

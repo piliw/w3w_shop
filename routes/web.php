@@ -56,12 +56,18 @@ Route::get('/absdel','Admin\AbsController@absdel');
 // ----------------后台控制器-------------------------
 // 后台登录操作
 Route::resource('/login','Admin\LoginController');
+// 验证码
+Route::get('/fcode','Admin\LoginController@fcode');
+// ajax验证码验证是否正确
+Route::get('/fcodes','Admin\LoginController@fcodes');
 // 登录中间件路由组
 Route::group(['middleware'=>'login'],function(){
 // 后台首页
 Route::resource('/admin','Admin\IndexController');
 // 后台用户列表
 Route::resource('/adminuser','Admin\AdminUserController');
+// 修改管理员等级操作
+Route::post('/level','Admin\AdminUserController@level');
 // ajax用户名验证
 Route::get('/name','Admin\AdminUserController@name');
 // 后台用户删除
@@ -70,10 +76,38 @@ Route::get('/del','Admin\AdminUserController@del');
 Route::get('/status','Admin\AdminUserController@status');
 // 后台修改密码时,旧密码验证
 Route::get('/pass','Admin\AdminUserController@pass');
+
+// 后台的前台用户列表
+Route::resource('/homeuser','Admin\HomeUsersController');
+// 后台的前台用户删除
+Route::get('/homedel','Admin\HomeUsersController@homedel');
+// 后台的前台用户列表是否禁用操作
+Route::get('/homestatus','Admin\HomeUsersController@homestatus');
+// ajax改变用户等级
+Route::get('/vip','Admin\HomeUsersController@vip');
 });
 // ----------------前台控制器-------------------------
 // 前台登录操作
 Route::resource('/homelogin','Home\LoginController');
 // 前台登录成功操作
 Route::post('/dologin1','Home\LoginController@dologin1');
+// 找回密码
+Route::get('/forget','Home\LoginController@forget');
+// 重置密码界面
+Route::post('/doforget','Home\LoginController@doforget');
+// 邮箱点击后的重置密码操作
+Route::get('/reset','Home\LoginController@reset');
+// 重置密码操作
+Route::post('/doreset','Home\LoginController@doreset');
+// 前台注册用户
+Route::resource('/zhuce','Home\HomeUsersController');
+// 邮箱激活状态
+Route::get('/jihuo','Home\HomeUsersController@jihuo');
+// ajax账户验证
+Route::get('/phone','Home\HomeUsersController@phone');
+// 自定义短信接口调用
+Route::get('/demo','Home\HomeUsersController@demo');
+// ajax短信校验
+Route::get('/code','Home\HomeUsersController@code');
+
 
