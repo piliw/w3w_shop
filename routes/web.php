@@ -83,3 +83,16 @@ Route::resource('/homelogin','Home\LoginController');
 // 前台登录成功操作
 Route::post('/dologin1','Home\LoginController@dologin1');
 
+// 商品管理
+Route::group([],function(){
+	// 商品列表
+	Route::resource('/goodsinfo','Admin\Goods\GoodsController');
+	//ajax获取所有商品信息
+	Route::get('/getgoods','Admin\Goods\GoodsController@getGoods');
+	Route::post('/goodsupload','Admin\Goods\GoodsController@upload');
+	// 商品删除
+	Route::get('goodsdel','Admin\Goods\GoodsController@goodsDel');
+});
+
+// Home商品详情
+Route::resource('/homegoods','Home\Goods\HomeGoodsController');

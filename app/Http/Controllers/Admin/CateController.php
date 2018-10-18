@@ -175,7 +175,8 @@ class CateController extends Controller
             $info=DB::table('cate')->where('id','=',$id)->first();
             echo json_encode($info);
     }
-
+    
+    //修改分类
     public function cateUpdate(Request $request){
         $id=$request->input('id');
         $data=$request->except('id','_token');
