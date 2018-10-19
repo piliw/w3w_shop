@@ -117,7 +117,7 @@ class AdminUserController extends Controller
             return redirect('/adminuser/'.$id);
         }
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *

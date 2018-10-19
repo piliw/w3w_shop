@@ -1,45 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// 导入模型类
-use App\Models\Lunbotu;
-use App\Models\Abs;
-use DB;
-class IndexController extends Controller
+use App\Models\Notece;
+class NoteceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public static function getCatesBypid($pid){
-        // 获取分类表
-        $res = DB::table('cate')->where('pid','=',$pid)->get();
-        // 遍历数据
-        foreach($res as $key=>$value){
-            // 获取当前分类信息子类信息
-            $value->dev=self::getCatesBypid($value->id);
-            $data[]=$value;
-        } 
-        return $res;
-    }
-
     public function index(Request $request)
     {
-        // 广告数据
-        $abs = Abs::where('status','=',0)->get();
-        // 插入轮播图图片路径数据
-        $pic = Lunbotu::where('status','=',0)->get();
-        // dd($data);
-        // 获取分类数据
-        // $cate = DB::table('cate')->get();
-        $cate = self::getCatesBypid(0);
-        // dd($cate);
-            //加载前台首页 
-            return view('Home.index',['pic'=>$pic,'cate'=>$cate,'abs'=>$abs]);
+        // 获取数据
+        $data=Notece::get();
+        //加载公告模板
+        return view('Admin.notece.list',['data'=>$data]);
     }
 
     /**
@@ -49,7 +27,8 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        //加载添加公告模板
+        return view('Admin.notece.add');
     }
 
     /**
@@ -60,7 +39,14 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        // 获取输数据
+        $data =$request->except('_token');
+        if(Notece::create($data)){
+            echo'添加公告成功';
+        }else{
+            return redirect('/notece/create');
+        }
     }
 
     /**
@@ -82,7 +68,8 @@ class IndexController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Notece::where('id','=',$id)->first();
+        return view('Admin.notece.edit',['data'=>$data]);
     }
 
     /**
@@ -94,7 +81,17 @@ class IndexController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $data = $request->except(['_token','_method']);
+        // 判断是否改变为下架状态
+        if($data['status']==1){
+            $data['ntime']=date('Y-m-d H:i:s');
+        }
+        if(Notece::where('id','=',$id)->update($data)){
+            echo'修改成功';
+        }else{
+            echo'修改失败';
+        }
     }
 
     /**
@@ -106,5 +103,16 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function notecedel(Request $request)
+    {
+        $id = $request->input('id');
+        // echo $id;
+        if(Notece::where('id','=',$id)->delete()){
+  
+            echo 1;
+        }else{
+            echo 2;
+        }
     }
 }

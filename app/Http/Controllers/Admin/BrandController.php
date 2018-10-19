@@ -151,7 +151,12 @@ class BrandController extends Controller
     {
         $id = $request->input('id');
         // echo $id;
+        $path=Brand::where('id','=',$id)->first();
+        // 获取图片路径
+        $paths=$path['logo'];
         if(Brand::where('id','=',$id)->delete()){
+            // 删除图片
+            unlink($paths);
             echo 1;
         }else{
             echo 2;

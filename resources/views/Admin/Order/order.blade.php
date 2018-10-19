@@ -501,8 +501,22 @@
 				<!-- 主体内容 -->
 				<div class="modal-body">
 					<div style="width:1000px;height:370px">
-						
-						</div>
+						<form action="">
+							<div class="input-group has-success" >
+								<span class="input-group-addon">@</span> 
+								<input type="text" class="form-control">
+							</div>
+							<div class="input-group has-error">
+									<input type="text" class="form-control">
+									<span class="input-group-addon">.00</span>
+							</div>
+							<div class="input-group has-warning">
+									<span class="input-group-addon">$</span>
+									<input type="text" class="form-control">
+									<span class="input-group-addon">.00</span>
+							</div>
+							<input type="submit" value="提交" class="btn btn-success">
+						</form>
 					</div>
 				</div>
 				
