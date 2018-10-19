@@ -32,10 +32,16 @@
 								<input type="password" name="password" value="" placeholder="密码" id="pass">
 								<p style="margin-left:10px;padding-top:5px;"></p>
 							</div>
+							
+							<!-- 在js用session -->
+							<!-- 实例:   @if(session('success'))
+      								<script>alert('{{session('success')}}')</script>
+   									  @endif -->
 
 							<!-- 错误信息显示 -->
 		          @if(Session::has('error'))
-		            <div class="alert alert-info" style="color:red;font-size:15px;margin-left:90px;margin-top:30px" script>{{Session::get('error')}}</div> 
+		            <!-- <div class="alert alert-info" style="color:red;font-size:15px;margin-left:90px;margin-top:30px" script>{{Session::get('error')}}</div>  -->
+		            <script>alert("{{Session::get('error')}}")</script>
 		          @endif
 
 							<input class="login-submit" type="submit" value="登陆" style="margin-top:30px">
@@ -43,9 +49,9 @@
 						<!-- 其它登陆方式/注册 -->
 						<div class="phone-paner">
 							<span class="phone-paner-one"><a href="">手机短信登录/注册</a></span>
-							<span class="other-registe"><a href="">立即注册</a></span>
+							<span class="other-registe"><a href="/zhuce/create">立即注册</a></span>
 							<span class="forget-pass">|</span>
-							<span class="forget-pass"><a href="">忘记密码？</a></span>
+							<span class="forget-pass"><a href="/forget">忘记密码？</a></span>
 							<!-- 其它登录方式 -->
 						</div>
 					</div>

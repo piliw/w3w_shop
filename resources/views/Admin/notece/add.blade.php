@@ -138,5 +138,7 @@ var ue = UE.getEditor('editor');
 // 	if(content==''){
 // 		return false;
 // 	}
+
+});
 </script>
 </html>
