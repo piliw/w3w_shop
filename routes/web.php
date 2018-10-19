@@ -52,6 +52,14 @@ Route::get('/branddel','Admin\BrandController@branddel');
 Route::resource('/adminabs','Admin\AbsController');
 // 后台广告Ajax删除
 Route::get('/absdel','Admin\AbsController@absdel');
+// 后台公告管理模块
+Route::resource('/notece','Admin\NoteceController');
+// 后台公告Ajax删除
+Route::get('/notecedel','Admin\NoteceController@notecedel');
+// 后台评价管理模块
+Route::resource('/appraise','Admin\AppraiseController');
+// 后台评价Ajax评价删除
+Route::get('/appraisedel','Admin\AppraiseController@appraisedel');
 
 // ----------------后台控制器-------------------------
 // 后台登录操作
@@ -109,7 +117,7 @@ Route::get('/phone','Home\HomeUsersController@phone');
 Route::get('/demo','Home\HomeUsersController@demo');
 // ajax短信校验
 Route::get('/code','Home\HomeUsersController@code');
-
+// ---------------欧灿杰路由结束-------------------------------------
 
 // 商品管理
 Route::group([],function(){
