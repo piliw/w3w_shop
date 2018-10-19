@@ -18,51 +18,46 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]--> 
-  <title>用户管理</title> 
+  <style>
+  </style>
+  <title>品牌管理</title> 
   <link rel="stylesheet" href="http://localhost/H-ui.admin/lib/layer/2.4/skin/layer.css" id="layui_layer_skinlayercss" style="" />
   <link href="static/lib/My97DatePicker/4.8/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
  </head> 
  <body> 
-  <nav class="breadcrumb">
-   <i class="Hui-iconfont"></i> 首页 
-   <span class="c-gray en">&gt;</span> 轮播图管理
-   <span class="c-gray en">&gt;</span> 轮播图列表 
-   <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont"></i></a>
-  </nav> 
+
   <div class="page-container"> 
-   
    <div class="cl pd-5 bg-1 bk-gray mt-20"> 
-    <span class="l"><a href="javascript:;" onclick="member_add('添加一个轮播图','/lunbotu/create','','510')" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 添加一个轮播图</a></span> 
+    <span class="l"><a href="javascript:;" onclick="member_add('添加广告','/notece/create','','510')" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 添加广告</a></span> 
    </div> 
    <div class="mt-20"> 
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
      <table class="table table-border table-bordered table-hover table-bg table-sort dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"> 
       <thead> 
        <tr class="text-c" role="row">
-        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 40px;" aria-label="ID: 升序排列" width="40">ID</th>
-        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;" aria-label="图片名: 升序排列" width="100">图片名(点击可查看)</th>
-        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 140px;" aria-label="图片路径: 升序排列" width="140">图片路径</th>
-        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="Url跳转路径: 升序排列" width="80">Url跳转路径</th>
-       
-       <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="加入时间: 升序排列" width="80">加入时间</th>  
-        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;" aria-label="地址: 升序排列" width="80">修改时间</th>
+        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 20px;" aria-label="ID: 升序排列" width="20">ID</th>
+        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 40px;" aria-label="图片名: 升序排列" width="40">公告名</th>
+        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 40px;" aria-label="添加时间: 升序排列" width="40">跳转URL</th>
+        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 180px;" aria-label="添加时间: 升序排列" width="180">公告内容</th>
         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 40px;" aria-label="状态" width="40">状态</th>
-        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 80px;" aria-label="操作" width="80">操作</th>
+        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 40px;" aria-label="操作" width="40">操作</th>
        </tr> 
       </thead> 
       <tbody> 
       @foreach($data as $v)
        <tr class="text-c odd" role="row"> 
         <td>{{$v->id}}</td> 
-        <td><u style="cursor:pointer" class="text-primary" onclick="member_show('pic','/lunbotu/{{$v->id}}','10001','500','380')">{{$v->pic}}</u></td> 
-        <td>{{$v->path}}</td> 
-        <td>{{$v->url}}</td> 
-        <td>{{$v->created_at}}</td> 
-        <td>{{$v->updated_at}}</td> 
-        <td class="td-status"><span class="label label-success radius">{{$v->status}}</span></td> 
+        <td>{{$v->name}}</td> 
+        <td>{{$v->url}}</td>
+        <td>{!!$v->content!!}</td>
+        @if($v->status=='上架')
+        <td class="td-status"><span class="label label-success radius">{{$v->status}}</span></td>
+        @else
+        <td class="td-status"><span class="label label-danger radius">{{$v->status}}</span></td>
+        @endif
         <td class="td-manage">
          <!--  <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用"><i class="Hui-iconfont"></i></a>  -->
-          <a title="编辑" href="javascript:;" onclick="member_edit('编辑','/lunbotu/{{$v->id}}/edit','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a> 
+          <a title="编辑" href="javascript:;" onclick="member_edit('编辑','/notece/{{$v->id}}/edit','4','','510')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a> 
           <a title="删除" href="javascript:void(0);" class="ml-5 del" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
         </td> 
        </tr>
@@ -90,7 +85,7 @@ $(function(){
     "bStateSave": true,//状态保存
     "aoColumnDefs": [
       //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-      {"orderable":false,"aTargets":[0,7]}// 制定列不参与排序
+      {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
     ]
   });
   
@@ -120,13 +115,9 @@ $('.del').click(function(){
   // alert(id);
   tr = $(this).parents('tr');
   // alert(tr);
-  // pic = $(this).parents('tr').find('td:nth(2)').html();
-  // alert(pic);
   tips = confirm('确定删除吗');
-
   if(tips){
-    // alert(pic.clear());
-    $.get('/lunbotudel',{id:id},function(data){
+    $.get('/notecedel',{id:id},function(data){
       // alert(data);
       if(data==1){
         tr.remove();
