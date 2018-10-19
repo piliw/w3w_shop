@@ -163,7 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        // ÑéÖ¤ÂëÅäÖÃ
+        // éªŒè¯ç é…ç½®
         // Mews\Captcha\CaptchaServiceProvider::class,
 
 

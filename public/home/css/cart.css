@@ -1,0 +1,97 @@
+/*购物车头部*/
+.cart-head{
+	width: 1226px;
+	height: 74px;
+	margin:0px auto;
+	/*background: yellow;*/
+}
+.cart-mi-logo{
+	width: 48px;
+	height: 48px;
+	background: url(/home/img/milogo.png) no-repeat;
+	margin-top: 26px;
+	float: left;
+}
+.cart-mi-logo:hover{
+	background:#F56600 url(/home/img/mi-home.png) no-repeat;
+}
+.my-cart{
+	height: 48px;
+	float: left;
+	margin-left: 50px;
+	font-weight: normal;
+	font-size: 27px;
+	margin-top: 26px;
+	color: #424242;
+}
+.cart-login{
+	/*width: 70px;*/
+	height: 40px;
+	margin-top: 24px;
+	line-height: 40px;
+	font-size: 14px;
+}
+.cart-login a,.cart-login span{
+	color: #757575;
+	margin-right: 3px;
+}
+
+/*购物车页面主体*/
+.cart-body{
+	width: 100%;
+	/*height: 500px;*/
+	background:#F5F5F5;
+	border-top: 2px solid #F56600;
+	margin-top: 20px;
+	padding-bottom: 30px;
+}
+.cart-nono{
+	width: 1226px;
+	height:50px;
+	margin:0px auto;
+}
+/*购物车信息*/
+
+.cart-table{
+	width: 1226px;
+	margin:0px auto;
+	/*background: red;*/
+	
+}
+.cart-table table{
+	border: 1px solid #BABABA;
+}
+
+.goumai{
+	width: 1226px;
+	height: 50px;
+	margin-top:20px;
+	/*background: red;*/
+}
+.lijigoumai{
+	width: 348px;
+	height: 50px;
+	background: #EF5B00;
+	color: #FFFFFF;
+	border:0px;
+	font-size: 15px;
+}
+
+.shoping{
+	display: block;
+	width: 100px;
+	height: 50px;
+	float: left;
+	line-height: 50px;
+}
+.heji{
+	margin-left: 400px;
+	width:200px;
+	color: #FF6700;
+}
+.jiage{
+	font-size: 25px;
+}
+.duoduo{
+	color: #FF6700;
+}
