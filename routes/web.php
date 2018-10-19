@@ -83,19 +83,19 @@ Route::resource('/homelogin','Home\LoginController');
 // 前台登录成功操作
 Route::post('/dologin1','Home\LoginController@dologin1');
 
-// 购物测试用的控制器
-Route::get('/test',"Home\CartController@test");
+// 商品管理
+Route::group([],function(){
+	// 商品列表
+	Route::resource('/goodsinfo','Admin\Goods\GoodsController');
+	//ajax获取所有商品信息
+	Route::get('/getgoods','Admin\Goods\GoodsController@getGoods');
+	Route::post('/goodsupload','Admin\Goods\GoodsController@upload');
+	// 商品删除
+	Route::get('goodsdel','Admin\Goods\GoodsController@goodsDel');
+});
 
-// 购物车控制器
-Route::resource("/homecart","Home\CartController");
-// 购物车减
-Route::get("/updatee/{id}","Home\CartController@updatee");
-// 购物车加
-Route::get("/updates/{id}","Home\CartController@updates");
-// 购物车商品删除
-Route::get("/cartdel/{id}","Home\CartController@del");
-
-// 前台订单操作
+// Home商品详情
+Route::resource('/homegoods','Home\Goods\HomeGoodsController');
 Route::group(['middleware'=>'homelogin'],function(){
 	// 订单控制器
 	Route::resource("/orders","Home\OrdersController");
@@ -104,6 +104,3 @@ Route::group(['middleware'=>'homelogin'],function(){
 	// 提交订单
 	Route::post("/ordershop","Home\OrdersController@ordershop");
 });
-
-
-
