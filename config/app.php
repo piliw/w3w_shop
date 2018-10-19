@@ -163,6 +163,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        // 验证码配置
+        // Mews\Captcha\CaptchaServiceProvider::class,
 
 
         /*

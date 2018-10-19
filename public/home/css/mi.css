@@ -1,0 +1,535 @@
+/*初始化网页*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li, pre, fieldset, lengend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{
+	list-style-type: none;
+}
+/*去除a链接的下划线字体颜色*/
+a{
+	text-decoration: none;
+}
+/*左右浮动公共样式*/
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+/*设置网页顶部黑条*/
+.topbar{
+	width: 100%;
+	height: 40px;
+	background: #333333;
+}
+/*设置顶部黑条上文字导航*/
+.topbar-nav{
+	width: 1226px;
+	height:40px;
+	/*background: yellow;*/
+	margin:0px auto;
+}
+/*顶部黑条左边*/
+.topbar-nav-left{
+	width: 492px;
+	height: 40px;
+	/*background: pink;*/
+	float:left;
+}
+.topbar-nav-left ul li a{
+	display: block;
+	height: 40px;
+	color: #B0B0B0;
+	float: left;
+	margin-right:9px;
+	font-size: 13px;
+	line-height:40px;
+}
+.topbar-nav-left ul li a:hover{
+	color:white;
+}
+/*顶部黑条右边*/
+.topbar-nav-right{
+	width: 270px;
+	height: 40px;
+	/*background: pink;*/
+	float:right;
+}
+.denglu,.zhuce,.message{
+	height: 40px;
+	line-height: 40px;
+	font-size:13px;
+	float: left;
+	margin:0px 5px;
+}
+.topbar-nav-right a{
+	color: #B0B0B0;
+}
+.topbar-nav-right a:hover{
+	color:white;
+}
+/*购物车*/
+.gouwuche{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	font-size:11px;
+	float: right;
+	/*margin:0px 5px;*/
+	/*background: blue;*/
+}
+
+/*设置头部导航带logo部分*/
+.header{
+	width: 100%;
+	height: 100px;
+	/*background: red;*/
+}
+.header-center{
+	width:1226px;
+	height:100px;
+	/*background: green;*/
+	margin:0px auto;
+}
+/*设置logo*/
+.header-logo{
+	width: 55px;
+	height: 55px;
+	background: url(/home/img/logo.png);
+	float: left;
+	margin:22.5px 0px;
+}
+/*设置顶部logo右边的导航条*/
+.header-text{
+  width: 850px;
+  height:100px;
+  /*background:red;*/
+  float: left;
+}
+.header-text1{
+  width: 820px;
+  height: 88px;
+  margin-left: 30px;
+  margin-top: 12px;
+  /*background: yellow;*/
+}
+.header-text2{
+  width: 142px;
+  height: 88px;
+  margin-right: 15px;
+  /*background: pink;*/
+}
+.header-text3 li{
+  height: 22px;
+  /*line-height: 88px;*/
+  float: left;
+  margin-right: 20px;
+  font-size: 17px;
+  padding-top: 26px;
+}
+.header-text3 li a{
+  color: #333333;
+}
+.header-text3 li a:hover{
+  color: #FF6700;
+}
+/*设置搜索框*/
+.searchbox{
+	width: 297;
+	height: 50px;
+	border: 1px solid #E0E0E0;
+	margin-left: 20px;
+  	margin-top: 24px;
+}
+.search{
+  width: 245px;
+  height: 50px;
+  /*border: 1px solid #E0E0E0;*/
+}
+.searchbox1{
+  width: 52px;
+  height: 50px;
+}
+.searchpic{
+  width: 32px;
+  height: 32px;
+  margin: 8px auto;
+}
+
+/*轮播图加左侧导航 及下面4个方块区域到小米分隔图位置*/
+.daohang{
+	width: 1226px;
+	height:820px;
+	/*background: blue;*/
+	margin:0px auto;
+}
+.lunbopic{
+  position:relative;
+}
+/*设置轮播图左侧导航文字*/
+.daohanglist{
+  width: 234px;
+  height: 460px;
+  background: #470D0D;
+  position:absolute;
+  top: 0px;
+  left: 0px;
+}
+.daohanglist ul{
+  margin-top: 20px;
+}
+/*.daohanglist li{
+  width: 234px;
+  height: 42px;
+}*/
+.daohanglist a:hover{
+  background:#F47119;
+}
+.daohanglist a{
+  display: block;
+  width: 204px;
+  height: 42px;
+  /*float: left;*/
+  color: #FFFFFF;
+  font-size: 15px;
+  padding-left: 30px;
+  line-height: 42px;
+}
+.daohang-four{
+	width:1226px;
+	height:170px;
+	margin-top:10px;
+	/*background:red;*/
+}
+.daohang-four-1{
+	width:234px;
+	height: 170px;
+	background: #5F5750;
+	margin-right:2px;
+}
+.daohang-four-2{
+	width: 316px;
+	height:170px;
+	margin-left:14px;
+	/*background:pink;*/
+}
+/*设置小米8分隔图片*/
+.mi8box{
+	width: 1226px;
+	height:120px;
+	margin: 40px auto;
+	/*background: pink;*/
+
+}
+/*设置首页手机列表项*/
+.brick-list{
+	width: 100%;
+	height: 700px;
+	background:#F5F5F5;
+	padding-top: 20px;
+}
+.list-title{
+	width: 1226px;
+	height: 58px;
+	/*background:yellow;*/
+	margin:0px auto;
+	line-height: 58px;
+}
+/*设置商品列表区域*/
+.list-body{
+	width: 1226px;
+	height: 614px;
+	/*background:pink;*/
+	margin:0px auto;
+}
+/*列表左侧*/
+.list-body-left{
+	width: 234px;
+	height: 614px;
+}
+/*.list-body-left:hover{
+  border-style: outset;
+  border-width: 5px;
+  width: 224px;
+  height: 604px;
+}*/
+/*列表右侧*/
+.list-body-right{
+	width: 992px;
+	height: 614px;
+	/*background:yellow;*/
+}
+.list-body-right li{
+	width: 234px;
+	height: 300px;
+	background: #FEFEFE;
+	float:left;
+	/*border:1px solid;*/
+	margin-left: 13px;
+	margin-bottom: 14px;
+
+}
+.list-body-right li:hover{
+  border-style: outset;
+  border-width: 5px;
+  width: 225px;
+	height: 290px;
+}
+.list-pic{
+  margin-left: 37px;
+  margin-top: 20px;
+}
+/*.list-text{
+  width: 234px;
+  height: 30px;
+}*/
+/*设置商品标题*/
+.text-title{
+  width: 234px;
+  height: 30px;
+  /*background: blue;*/
+  font-size: 15px;
+  text-align: center;
+  /*line-height: 30px;*/
+  color: #333333;
+}
+.text-title a{
+  color: #333333;
+}
+.text-title1{
+  width: 234px;
+  height: 20px;
+  font-size: 13px;
+  text-align: center;
+  color: #B0B0B0;
+  /*background: yellow;*/
+  overflow: hidden;
+}
+/*设置价格样式*/
+.list-price{
+  width: 234px;
+  height: 30px;
+  text-align: center;
+  /*background: yellow;*/
+  color: #FF6700;
+  margin-top: 15px;
+}
+/*设置网页脚部信息*/
+.side-footer{
+	width: 100%;
+	height: 272px;
+	/*background: yellow;*/
+}
+.footer-server{
+	width: 1226px;
+	height: 80px;
+	/*background:red;*/
+	margin: 0 auto;
+	border-bottom: 1px solid #E0E0E0;
+}
+.footer-server li{
+	width: 242px;
+	height: 25px;
+	/*background:pink;*/
+	float: left;
+	margin-top: 27.5px;
+	font-size: 17px;
+	line-height: 25px;
+	/*border: 1px solid;*/
+}
+/*设置分隔垂直直线*/
+.fengexian{
+	border-left: 1px solid #E0E0E0;
+}
+.footer-server a{
+	color: #707070;
+}
+.footer-server a:hover{
+	color: #FF6700;
+}
+.server-logo1{
+	width: 25px;
+	height: 25px;
+	margin-left: 47px;
+	background-image: url(/home/img/help3rehru.png);
+	background-repeat: no-repeat;
+}
+.footer-server a:hover .server-logo1{
+	background-image: url(/home/img/help7623hs.png);
+}
+.server-logo2{
+	width: 25px;
+	height: 25px;
+	margin-left: 47px;
+	background-image: url(/home/img/sevenday.png);
+	background-repeat: no-repeat;
+}
+.footer-server a:hover .server-logo2{
+	background-image: url(/home/img/sevenday1.png);
+}
+.server-logo3{
+	width: 25px;
+	height: 25px;
+	margin-left: 47px;
+	background-image: url(/home/img/ksfddfv.png);
+	background-repeat: no-repeat;
+}
+.footer-server a:hover .server-logo3{
+	background-image: url(/home/img/jdsifdfdf.png);
+}
+.server-logo4{
+	width: 25px;
+	height: 25px;
+	margin-left: 47px;
+	background-image: url(/home/img/gift.png);
+	background-repeat: no-repeat;
+}
+.footer-server a:hover .server-logo4{
+	background-image: url(/home/img/gift1.png);
+}
+.server-logo5{
+	width: 25px;
+	height: 25px;
+	margin-left: 47px;
+	background-image: url(/home/img/fixed.png);
+	background-repeat: no-repeat;
+}
+.footer-server a:hover .server-logo5{
+	background-image: url(/home/img/fixed1.png);
+}
+.server-text{
+	width: 150px;
+	height: 25px;
+	line-height: 25px;
+	/*border: 1px solid;*/
+}
+/*设置底部链接*/
+.footer-link{
+	width: 1226px;
+	height: 192px;
+	/*background: pink;*/
+	margin:0px auto;
+}
+.footer-link-first{
+	width: 160px;
+	height: 192px;
+	/*background:pink;*/
+	/*border:1px solid;*/
+}
+.footer-link-first dt{
+	font-size: 15px;
+	font-weight: bold;
+	color: #424242;
+	margin-top: 30px;
+	margin-bottom: 25px;
+}
+.footer-link-first dd{
+	font-size: 14px;
+	color: #424242;
+	margin-top: 15px;
+}
+.footer-link-first dd a{
+color:  #707070;
+}
+/*设置联系方式联系客服*/
+.footer-link-second{
+	width: 252px;
+	height: 112px;
+	/*background:pink;*/
+	border-left:1px solid #E0E0E0;
+	margin-top: 30px;
+	margin-left: 11px;
+	text-align:center;
+}
+.footer-link-second span{
+	font-size:20px;
+	color:#FF6700;
+}
+.footer-link-second p{
+	font-size:12px;
+}
+.link-second-second{
+	width:120px;
+	height:30px;
+	border:1px solid #FF6700;
+	margin:21px auto 0px;
+	font-size:12px;
+}
+.kefulogo{
+	width:12px;
+	height:12px;
+	background: url(/home/img/diolopdd.png);
+	margin-left:25px;
+	margin-top:7px;
+}
+.lianxikefu{
+	margin-top:5px;
+}
+.footer-link-second .lianxikefu{
+	color:#FF6700;
+}
+/*设置鼠标放在联系客服上时的样式*/
+.link-second-second:hover{
+	background:#FF6700;
+}
+.link-second-second:hover .lianxikefu{
+	color:#FFFFFF;
+}
+.link-second-second:hover .kefulogo{
+	background:url(/home/img/dioslfdffd.png);
+}
+.side-info{
+	width: 100%;
+	height: 140px;
+	background: #F5F5F5;
+	padding-top: 30px;
+}
+/*底部*/
+.side-container{
+	width: 1226px;
+	height: 57px;
+	margin: 0px auto;
+	/*background:pink;*/
+}
+.side-logo{
+	width: 57px;
+	height: 57px;
+	background:url(/home/img/logo.png) no-repeat;
+	float: left;
+}
+.text-box{
+	width: 719px;
+	height: 57px;
+	/*background:yellow;*/
+	margin-left: 5px;
+	float: left;
+}
+.text-box>.box-one ,.text-box>.box-one a{
+	font-size: 12px;
+	/*font-weight:bold;*/
+	color: #757575;
+	font-family: 微软雅黑;
+}
+.text-box>.box-two,.text-box>.box-two a{
+	font-size: 10px;
+	color:#B0B0B0;
+	font-family: 微软雅黑;
+}
+.text-box a:hover{
+	color:#FF6700;
+}
+.side-img{
+	width: 445px;
+	height: 57px;
+	/*background:blue;*/
+	float: left;
+}
+/*设置小米为发烧而生*/
+.slogan{
+	width: 267px;
+	height: 19px;
+	background: url(/home/img/slogan2016.png) no-repeat;
+	margin: 30px auto 0px;
+}

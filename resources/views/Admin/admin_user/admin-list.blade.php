@@ -73,9 +73,11 @@
 				<td>{{$v->addtime}}</td>
 				<td class="td-manage">
 
+				<a title="修改管理员等级" href="javascript:;" onclick="admin_edit('修改管理员等级','/adminuser/{{$v->id}}','1','300','300')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe630;</i></a> 
+
 				<a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="改变状态"><i class="Hui-iconfont status">&#xe631;</i></a>
 
-				 <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','/adminuser/{{$v->id}}/edit','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
+				 <a title="修改密码" href="javascript:;" onclick="admin_edit('修改密码','/adminuser/{{$v->id}}/edit','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> 
 			
 				<a title="删除" href="javascript:;" class="ml-5 del" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
@@ -112,7 +114,7 @@ function admin_add(title,url,w,h){
 }
 // 管理员-ajax删除
 $('.del').click(function(){
-	id = $(this).parents('tr').find('td:eq(1)').html();
+	id = $(this).parents('tr').find('td').html();
 	// alert(id);
 	s = $(this).parents('tr');
 	c = confirm('确定删除吗?');
@@ -160,7 +162,7 @@ function admin_edit(title,url,id,w,h){
 
 // 改变管理员状态
 $('.status').click(function(){
-	id = $(this).parents('tr').find('td:eq(1)').html();
+	id = $(this).parents('tr').find('td').html();
 	// alert(id);
 	$.get('/status',{id:id},function(data){
 		// alert(data);

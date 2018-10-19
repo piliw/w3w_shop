@@ -6,8 +6,8 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" href="./layuiadmin/layui/css/layui.css" media="all">
-  <link rel="stylesheet" href="./layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
   <script>
   /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
   </script>
@@ -119,10 +119,10 @@
                   <a lay-href="/category">分类管理</a>
                 </dd>
                 <dd>
-                  <a lay-href="user/administrators/list.html">商品管理</a>
+                  <a lay-href="/goodsinfo">商品管理</a>
                 </dd>
                 <dd>
-                  <a lay-href="user/administrators/role.html">角色管理</a>
+                  <a lay-href="/goodsinfo/create">添加商品</a>
                 </dd>
               </dl>
             </li>
@@ -196,7 +196,7 @@
               </a>
               <dl class="layui-nav-child">
                 <dd>
-                  <a lay-href="/views/user/user/list.html">前台网站用户</a>
+                  <a lay-href="/homeuser">前台网站用户</a>
                 </dd>
                 <dd>
                   <a lay-href="/adminuser">后台管理员</a>
@@ -268,10 +268,10 @@
     </div>
   </div>
 
-  <script src="./layuiadmin/layui/layui.js"></script>
+  <script src="/layuiadmin/layui/layui.js"></script>
   <script>
   layui.config({
-    base: './layuiadmin/' //静态资源所在路径
+    base: '/layuiadmin/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
   }).use('index');
