@@ -51,19 +51,7 @@
           <p></p>
           </td>
         </tr>
-        <tr>
-          <th class="text-r">等级：</th>
-          <td><div class="row cl">
-          <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-            <select class="select" name="level" size="1">
-              <option value="0" @if($pass->level=='一级管理员') selected @endif >一级管理员</option>
-              <option value="1" @if($pass->level=='二级管理员') selected @endif >二级管理员</option>
-              <option value="2" @if($pass->level=='三级管理员') selected @endif >三级管理员</option>
-              <option value="3" @if($pass->level=='超级管理员') selected @endif >超级管理员</option>
-            </select>
-            </span> </div>
-        </div></td>
-        </tr>
+        <input type="hidden" name="id" value="{{$pass->id}}" id="id">
         <tr>
           <th></th>
           <td>
@@ -97,50 +85,51 @@ $(".Huiform").Validform();
 
 // alert($);
 var bool = false;
+
+// 旧密码失去焦点验证事件  
 $('#oldpassword').blur(function(){
+  // 获取表单值隐藏域id值
   oldpassword = $(this).val();
-  // alert(oldpassword);
-  $.get('/pass',{oldpassword:oldpassword},function(data){
+  id = $('#id').val();
+  $.get('/pass',{oldpassword:oldpassword,id:id},function(data){
     // alert(data);
       if(data == 2){
         $('#oldpassword').next('p').css("color",'red').css('fontSize','14px').html('输入的旧密码不正确');
         bool = false;
       }else{
-        bool = true;
         $('#oldpassword').next('p').html('');
-      }
-  });
-});
-
-
-$('#newpassword').blur(function(){
-  var pass = $(this).val();
-  var regPwd = /^\w{6,16}$/;
-  if(pass == ''){
-    $(this).next('p').css('color','red').css('fontSize','14px').html('密码不能为空');
-    bool = false;
-    // 正则匹配
-  }else if(!regPwd.test(pass)){
-    $(this).next('p').css('color','red').css('fontSize','14px').html("由英文字母和数字组成的6-16位字符");
-    bool=false;
-  }else{
-    $(this).next('p').html('');
-    // 重复密码框失去焦点事件
-    $('#newpassword2').blur(function(){
-      var passs = $(this).val();
-      // 将第一个密码框的值赋值
-      var regPwd2 = pass;
-      // 判断是否相等
-      if(passs!=(regPwd2)){
-            $(this).next('p').css("color",'red').css('fontSize','14px').html("两次输入密码不一致");
+        // 新密码失去焦点验证事件  
+        $('#newpassword').blur(function(){
+          var pass = $(this).val();
+          var regPwd = /^\w{6,16}$/;
+          if(pass == ''){
+            $(this).next('p').css('color','red').css('fontSize','14px').html('密码不能为空');
+            bool = false;
+            // 正则匹配
+          }else if(!regPwd.test(pass)){
+            $(this).next('p').css('color','red').css('fontSize','14px').html("由英文字母和数字组成的6-16位字符");
             bool=false;
           }else{
-            $(this).next("p").html("");
-            // 允许默认事件
-            bool=true;
+            $(this).next('p').html('');
+            // 重复密码框失去焦点事件
+            $('#newpassword2').blur(function(){
+              var passs = $(this).val();
+              // 将第一个密码框的值赋值
+              var regPwd2 = pass;
+              // 判断是否相等
+              if(passs!=(regPwd2)){
+                    $(this).next('p').css("color",'red').css('fontSize','14px').html("两次输入密码不一致");
+                    bool=false;
+                  }else{
+                    $(this).next("p").html("");
+                    // 允许默认事件
+                    bool=true;
+                  }
+            });
           }
-    });
-  }
+        });
+    }
+  });
 });
 
 // 旧密码

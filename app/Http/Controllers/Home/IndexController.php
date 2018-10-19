@@ -23,8 +23,7 @@ class IndexController extends Controller
             // 获取当前分类信息子类信息
             $value->dev=self::getCatesBypid($value->id);
             $data[]=$value;
-        }
-        
+        } 
         return $res;
     }
 
@@ -39,8 +38,8 @@ class IndexController extends Controller
         // $cate = DB::table('cate')->get();
         $cate = self::getCatesBypid(0);
         // dd($cate);
-         //加载前台首页  
-        return view('Home.index',['pic'=>$pic,'cate'=>$cate,'abs'=>$abs]);   
+            //加载前台首页 
+            return view('Home.index',['pic'=>$pic,'cate'=>$cate,'abs'=>$abs]);
     }
 
     /**

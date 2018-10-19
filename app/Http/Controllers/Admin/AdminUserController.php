@@ -95,9 +95,29 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        //
+        // 修改管理员等级页面
+        // echo 1;
+        // 查询数据
+        $data = DB::table('admin_user')->where('id','=',$id)->first();
+        // 加载模板  分配数据
+        return view('Admin.admin_user.admin-level',['data'=>$data]);
     }
 
+    // 修改管理员等级操作
+    public function level(Request $request){
+        $id = $request->input('id');
+        // 获取表单值
+        $level['level'] = $request->input('level');
+        // dd($level);
+        // 修改level
+        $res = DB::table('admin_user')->where('id','=',$id)->update($level);
+        if($res){
+            echo '<h2>修改成功,点击右上角关闭后刷新页面...</h2>';
+        }else{
+            return redirect('/adminuser/'.$id);
+        }
+    }
+ 
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,12 +135,15 @@ class AdminUserController extends Controller
 
     // 修改密码时旧密码验证
     public function pass(Request $request){
+        // 获取隐藏域的id
+        $id = $request->input('id');
+        // echo $id;die;
         // 获取ajax参数
         $pass = $request->input('oldpassword');
         // echo $pass;
-        $repass = AdminUsers::where('password','=',$pass)->first();
+        $repass = DB::table('admin_user')->where('id','=',$id)->first();
         // 判断是否有值
-        if($repass){
+        if(Hash::check($pass,$repass->password)){
             echo 1;exit;
         }else{
             echo 2;exit;
@@ -140,7 +163,7 @@ class AdminUserController extends Controller
         //echo 2;
         // $data = $request->all();
         // 筛选所需字段
-        $data = $request->only(['password','level']);
+        $data = $request->only(['password']);
         // 密码加密
         $data['password']=Hash::make($data['password']);
         // dd($data);
