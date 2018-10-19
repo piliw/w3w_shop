@@ -45,7 +45,7 @@
             </div>
             <div class="layui-col-xs5">
               <div style="margin-left: 10px;">
-                <img src="{{captcha_src('inverse')}}" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode" id="captcha">
+                <img src="" class="layadmin-user-login-codeimg" id="LAY-user-get-vercode" id="captcha">
               </div>
             </div>
           </div>

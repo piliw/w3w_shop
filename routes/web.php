@@ -83,3 +83,27 @@ Route::resource('/homelogin','Home\LoginController');
 // 前台登录成功操作
 Route::post('/dologin1','Home\LoginController@dologin1');
 
+// 购物测试用的控制器
+Route::get('/test',"Home\CartController@test");
+
+// 购物车控制器
+Route::resource("/homecart","Home\CartController");
+// 购物车减
+Route::get("/updatee/{id}","Home\CartController@updatee");
+// 购物车加
+Route::get("/updates/{id}","Home\CartController@updates");
+// 购物车商品删除
+Route::get("/cartdel/{id}","Home\CartController@del");
+
+// 前台订单操作
+Route::group(['middleware'=>'homelogin'],function(){
+	// 订单控制器
+	Route::resource("/orders","Home\OrdersController");
+	// 收货地址删除
+	Route::get("/addressdel","Home\OrdersController@del");
+	// 提交订单
+	Route::post("/ordershop","Home\OrdersController@ordershop");
+});
+
+
+

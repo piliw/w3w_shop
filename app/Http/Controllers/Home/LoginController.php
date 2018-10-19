@@ -32,13 +32,13 @@ class LoginController extends Controller
     {
         // 获取表单信息     
         $name = $_POST['username'];
-        $pass = $_POST['password'];
+        // $pass = $_POST['password'];
         // 查询数据
         $datas = DB::table('user')->where('phone','=',$name)->first();
-        // dd($datas);
+        // dd($datas);die;
         if($datas){
-            // if(Hash::check($_POST['password'],$datas->password)){
-            if($pass == $datas->password){
+            if(Hash::check($_POST['password'],$datas->password)){
+            // if($pass == $datas->password){
                 // dd(1);
                //把用户信息写入到session
                 session(['hid'=>$datas->id]);
