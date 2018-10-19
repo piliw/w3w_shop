@@ -149,7 +149,13 @@ class AbsController extends Controller
     {
         $id = $request->input('id');
         // echo $id;
+        $path=Abs::where('id','=',$id)->first();
+        // 获取图片路径
+        $paths=$path['pic'];
+        // echo $paths;
         if(Abs::where('id','=',$id)->delete()){
+            // 删除图片
+            unlink($paths);
             echo 1;
         }else{
             echo 2;

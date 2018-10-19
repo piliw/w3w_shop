@@ -120,9 +120,12 @@ $('.del').click(function(){
   // alert(id);
   tr = $(this).parents('tr');
   // alert(tr);
+  // pic = $(this).parents('tr').find('td:nth(2)').html();
+  // alert(pic);
   tips = confirm('确定删除吗');
 
   if(tips){
+    // alert(pic.clear());
     $.get('/lunbotudel',{id:id},function(data){
       // alert(data);
       if(data==1){
