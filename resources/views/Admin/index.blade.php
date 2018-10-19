@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +13,9 @@
   </script>
 </head>
 <body class="layui-layout-body">
-  
+  @if(Session::has('error'))
+    <script>alert("{{Session::get('error')}}")</script>
+  @endif
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
@@ -126,7 +126,6 @@
                 </dd>
               </dl>
             </li>
-          
                <li data-name="user" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
                 <i class="layui-icon layui-icon-user"></i>
@@ -141,7 +140,7 @@
                 </dd>
               </dl>
             </li>
-            
+          
             <li data-name="template" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
                 <i class="layui-icon layui-icon-template"></i>
@@ -155,7 +154,7 @@
             </li>
             <li data-name="template" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
-                <i class="layui-icon layui-icon-template"></i>
+                <i class="layui-icon layui-icon-find-fill"></i>
                 <cite>品牌管理</cite>
               </a>
               <dl class="layui-nav-child">
@@ -166,16 +165,30 @@
             </li>
             <li data-name="template" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
-                <i class="layui-icon layui-icon-template"></i>
+                <i class="layui-icon layui-icon-template-1"></i>
                 <cite>广告管理</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd>
                   <a lay-href="/adminabs">广告列表</a>
                 </dd>
+                <dd>
+                  <a lay-href="/notece">公告列表</a>
+                </dd>
               </dl>
             </li>
 
+            <li data-name="template" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="用户" lay-direction="2">
+                <i class="layui-icon layui-icon-survey"></i>
+                <cite>评价管理</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="/appraise">评价列表</a>
+                </dd>
+              </dl>
+            </li>
             <li data-name="user" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
                 <i class="layui-icon layui-icon-user"></i>
@@ -189,7 +202,7 @@
                   <a lay-href="/adminuser">后台管理员</a>
                 </dd>
                 <dd>
-                  <a lay-href="/views/user/administrators/role.html">角色管理</a>
+                  <a lay-href="/node">权限管理</a>
                 </dd>
               </dl>
             </li>

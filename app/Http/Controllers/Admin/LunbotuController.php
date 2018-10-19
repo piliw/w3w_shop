@@ -160,11 +160,16 @@ class LunbotuController extends Controller
     public function lunbotudel(Request $request)
     {
         $id = $request->input('id');
-        // echo $id;
+        // echo $ypic;
+        $path=Lunbotu::where('id','=',$id)->first();
+        // 获取图片路径
+        $paths=$path['path'];
         if(Lunbotu::where('id','=',$id)->delete()){
-            echo 1;
+            // 删除图片
+            unlink($paths);
+            echo 1;exit;
         }else{
-            echo 2;
+            echo 2;exit;
         }
     }
 }

@@ -52,7 +52,14 @@ Route::get('/branddel','Admin\BrandController@branddel');
 Route::resource('/adminabs','Admin\AbsController');
 // 后台广告Ajax删除
 Route::get('/absdel','Admin\AbsController@absdel');
-
+// 后台公告管理模块
+Route::resource('/notece','Admin\NoteceController');
+// 后台公告Ajax删除
+Route::get('/notecedel','Admin\NoteceController@notecedel');
+// 后台评价管理模块
+Route::resource('/appraise','Admin\AppraiseController');
+// 后台评价Ajax评价删除
+Route::get('/appraisedel','Admin\AppraiseController@appraisedel');
 // ----------------后台控制器-------------------------
 
 // 后台登录操作
@@ -73,7 +80,12 @@ Route::get('/del','Admin\AdminUserController@del');
 Route::get('/status','Admin\AdminUserController@status');
 // 后台修改密码时,旧密码验证
 Route::get('/pass','Admin\AdminUserController@pass');
-
+// 后台用户权限管理
+Route::resource('/node','Admin\NodeController');
+// 后台分配权限
+Route::get('/auth/{id}','Admin\NodeController@auth');
+// 后台保存分权限
+Route::post('/saveauth','Admin\NodeController@saveauth');
 });
 
 // ----------------前台控制器-------------------------
