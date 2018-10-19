@@ -70,12 +70,11 @@
       全部商品分类
     </div>
     <div class="morelist">
-      <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
+      @foreach($cate as $c)
+      @foreach($c->dev as $d)
+      <a href="#">{{$d->name}}</a>
+      @endforeach
+      @endforeach 
     </div>
 </div>
 
