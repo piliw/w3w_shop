@@ -111,3 +111,16 @@ Route::get('/demo','Home\HomeUsersController@demo');
 Route::get('/code','Home\HomeUsersController@code');
 
 
+// 商品管理
+Route::group([],function(){
+	// 商品列表
+	Route::resource('/goodsinfo','Admin\Goods\GoodsController');
+	//ajax获取所有商品信息
+	Route::get('/getgoods','Admin\Goods\GoodsController@getGoods');
+	Route::post('/goodsupload','Admin\Goods\GoodsController@upload');
+	// 商品删除
+	Route::get('goodsdel','Admin\Goods\GoodsController@goodsDel');
+});
+
+// Home商品详情
+Route::resource('/homegoods','Home\Goods\HomeGoodsController');

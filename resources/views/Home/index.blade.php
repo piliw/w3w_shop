@@ -9,12 +9,11 @@
 <script src="/home/js/public.js"></script>
 </head>
 <body>
-<div style="width:100%;text-align:center;font-size:0;" class="abs">
+  <div style="width:100%;text-align:center;font-size:0;" id="abs">
 @foreach($abs as $f)
 <a href=""><img src="{{$f->file}}" alt="" style="width:100%;"></a>
 @endforeach
 </div>
-
 <!--顶部菜单-->
 <div class="dy1">
   <div class="dy2">
@@ -90,7 +89,7 @@
        <a class="banner_menu_i">&gt;</a>
        <div class="banner_menu_content"  
        style="width: 600px;  top:-<?php echo $n?>px;">
-       <?php $n+=62; ?>
+       <?php $n+=42; ?>
          <ul class="banner_menu_content_ul">
          @foreach($c->dev as $d)
            <li>
@@ -109,8 +108,10 @@
    </ul>
    <div id="big_banner_pic_wrap">
      <ul id="big_banner_pic">
-       @foreach($pic as $p)
-       <li><img src="{{$p->path}}" width="1226px" height="460px"></li>
+       @foreach($pic as $p) 
+       <li><a>
+       <img src="{{$p->path}}" width="1226px" height="460px">
+       </a></li>
        @endforeach
      </ul>
    </div>
@@ -2961,9 +2962,11 @@ $(function() {
 $(window).scroll(function() { 
 var top = $(window).scrollTop()-$(this).scrollTop()+200
  
-$(".dy19").css({top: top }); 
+$(".dy19").css({top: top });
 }); 
 }); 
+
+
 </script> 
 <!--页脚-->
 <!--footer-->
