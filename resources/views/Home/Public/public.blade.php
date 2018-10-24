@@ -10,6 +10,7 @@
 <script src="/home/js/jquery-1.8.3.min.js"></script>
 <script src="/home/js/public.js"></script>
 <link rel="stylesheet" type="text/css" href="/home/css/vipcenter.css">
+<link rel="stylesheet" type="text/css" href="/home/css/bootstrap.min.css"/>
 </head>
 
 <body>
