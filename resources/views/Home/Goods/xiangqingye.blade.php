@@ -33,7 +33,7 @@
 			<div id="preview">
 				@foreach($photo as $img)
 				@if($img->main==1)
-				<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="380px" src="{{$img->p_url}}" jqimg="{{$img->p_url}}" width="350px">
+				<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="380px" src="{{$img->p_url}}" jqimg="{{$img->p_url}}" width="320px">
 					</div>
 				@endif
 				@endforeach

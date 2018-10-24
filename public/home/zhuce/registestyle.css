@@ -32,13 +32,13 @@ body{
 	width: 786px;
 	height: 88px;
 	/*background: red;*/
-	margin: 0px auto;
+	margin: 40px auto;
 }
 .milogo{
-	width: 49px;
-	height: 48px;
+	width: 350px;
+	height: 88px;
 	background:url(./images/milogo.png);
-	margin: 0px auto;
+	margin: 10px auto;
 }
 .title_big30{
 	width: 786px;

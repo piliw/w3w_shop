@@ -146,7 +146,6 @@ $(function(){
         <p class="ad">Copyright © 2010 - 2013, 版权所有 SHUIGUO.COM &nbsp;&nbsp;&nbsp;苏ICP备10088888号-1</p>
     </div>
 </div>
-
 </body>	
 </html>    
                 

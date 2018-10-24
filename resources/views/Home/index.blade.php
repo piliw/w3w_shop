@@ -128,15 +128,19 @@
   <div class="dy15">
       <ul>
         <!-- 遍历品牌 -->
-        @foreach($brand as $bra)
+        @foreach($brand as $keys=>$bra)
+        @if($keys<6)
         <li><a href="#">{{$bra->name}}<br/>{{$bra->name}}</a></li>
+        @endif
         @endforeach
       </ul>
     </div>
     <div class="dy16">
       <ul>
-        @foreach($brand_pic as $bp)
+        @foreach($brand_pic as $keyss=>$bp)
+        @if($keyss<3)
         <li><a href="#"><img src="{{$bp->logo}}" width="318px" height="160"/></a></li>
+        @endif
         @endforeach
         </ul>
     </div>
@@ -148,7 +152,7 @@
       <li>
       @foreach($res as $key=>$row)
       @if($key<5)
-          <a href="#">
+          <a href="/homegoods/{{$row->gid}}">
               <b><img src="{{$row->p_url}}"/></b>
                     <h5 class="pp">{{$row->name}}</h5>
                     <p class="pp">{{$row->summ}}</p>
@@ -160,7 +164,7 @@
         <li>
           @foreach($res as $key=>$row)
           @if($key>=5)
-          <a href="#">
+          <a href="/homegoods/{{$row->gid}}">
               <b><img src="{{$row->p_url}}"/></b>
                     <h5 class="pp">{{$row->name}}</h5>
                     <p class="pp">{{$row->summ}}</p>
@@ -204,7 +208,7 @@
                     @foreach($res as $row)
                     @if($row->id==$cc->id)
                         <li>
-                            <a href="#">
+                            <a href="/homegoods/{{$row->gid}}">
                                 <b>
                                     <img src="{{$row->p_url}}"/>
                                 </b>
@@ -225,7 +229,7 @@
                        @foreach($res as $row)
                        @if($row->id==$ccc->id)
                         <li>
-                            <a href="#">
+                            <a href="/homegoods/{{$row->gid}}">
                                 <b>
                                     <img src="{{$row->p_url}}"/>
                                 </b>

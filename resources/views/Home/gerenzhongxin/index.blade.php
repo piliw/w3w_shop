@@ -1,5 +1,5 @@
-@extends('Home.home_public.public')
-@section('home')
+@extends('Home.Public.public')
+@section('main')
 <!--个人中心首页 -->
 <div class="thetoubu">
 	<!--头部-->
