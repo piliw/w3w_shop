@@ -11,14 +11,14 @@
         <a href="./index.php"><div class="cart-mi-logo"></div></a>
         <h2 class="my-cart">我的购物车</h2>
         <div class="cart-login fr" >
-            @if(empty($user))
-            <span class="fr"><a href="">注册</a></span>
+            @if(empty($uname))
+            <span class="fr"><a href="/zhuce/create">注册</a></span>
             <span class="fr">|</span>
-            <span class="fr cart-reg"><a href="">登陆</a></span>
+            <span class="fr cart-reg"><a href="/homelogin">登陆</a></span>
             @else
-            <span class="fr"><a href="">我的订单</a></span>
+            <span class="fr"><a href="/zhuce/{{Session::get('hid')}}"">我的订单</a></span>
             <span class="fr">|</span>
-            <span class="fr cart-reg"><a href="">{{$user}}</a></span>
+            <span class="fr cart-reg"><a href="">{{$uname}}</a></span>
             @endif
         </div>
 

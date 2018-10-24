@@ -64,7 +64,8 @@
 .cart-affirm{
 	width: 558px;
 	height: 273px;
-	background: url(/home/img/cart-empty.png) no-repeat right;
+	background: url(/home/img/liping.jpg) no-repeat right;
+	background-size:350px 350px;
 }
 
 .cart-right-info{

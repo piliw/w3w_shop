@@ -40,9 +40,10 @@ class OrdersController extends Controller
         $sid=session('hid');
         // 获取收货地址的数据
         $data1=DB::table('address')->where('user_id','=',$sid)->get();
+        $adda=DB::table('address')->where('user_id','=',$sid)->where('default','=',1)->first();
         // dd($data1);
         // 加载订单模板
-        return view("Home.orders.ordera",['sid'=>$sid,'data1'=>$data1,'result'=>$result,'total'=>$total]);
+        return view("Home.orders.ordera",['sid'=>$sid,'data1'=>$data1,'result'=>$result,'total'=>$total,'adda'=>$adda]);
         
     }
 
@@ -69,14 +70,15 @@ class OrdersController extends Controller
         // 获取用户id
         $id=session('hid');
         $oid=DB::table('order')->insertGetId(['user_id'=>$id,'o_number'=>$o_number,'name'=>$pres['name'],'address'=>$pres['address'],'total'=>$pres['total'],'status'=>0,'addtime'=>$addtime,'o_phone'=>$pres['phone']]);
-            // dd($id);
-            if($id>0){
+        // dd($oid);
+            if($oid>0){
                 // $info=$request->only('id','num','price');
                 // dd($info);
+                
                 $oiid=DB::table('order_info')->insert(['order_id'=>$oid,'goods_id'=>$pres['id'],'g_number'=>$pres['num'],'g_price'=>$pres['price'],'g_total'=>$pres['num']*$pres['price']]);
                // dd($oiid);
-             // 获取订单数据
-            $data=DB::table('order')->where('id','=',$oid)->first();
+                // 获取订单数据
+                $data=DB::table('order')->where('id','=',$oid)->first();
             }
 
             return view("Home.Payment.payment",['data'=>$data]);

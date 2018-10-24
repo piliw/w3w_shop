@@ -49,7 +49,7 @@ class StatusController extends Controller
     // 确认收货
     public function affirm($id){
         // echo $id;
-        // DB::table('order')->where('id','=',$id)->update(['status'=>3]);
+        DB::table('order')->where('id','=',$id)->update(['status'=>3]);
         return view("Home.orders.affirm");
     }
 
