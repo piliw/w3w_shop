@@ -48,7 +48,7 @@ class IndexController extends Controller
         ->join('cate','cate.id','=','goods.cate_id')
         ->select('goods.id','goods.name','price','summ','pic_url.p_url','cate.id')
         ->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
-        // dd($cate);
+        // dd($res);
         //加载前台首页 
         return view('Home.index',['pic'=>$pic,'cate'=>$cate,'abs'=>$abs,'brand'=>$brand,'brand_pic'=>$brand_pic,'res'=>$res]);
 

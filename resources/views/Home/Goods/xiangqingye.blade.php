@@ -33,7 +33,7 @@
 			<div id="preview">
 				@foreach($photo as $img)
 				@if($img->main==1)
-				<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="350" src="{{$img->p_url}}" jqimg="{{$img->p_url}}" width="350">
+				<div class=jqzoom id="spec-n1" onClick="window.open('/')"><IMG height="380px" src="{{$img->p_url}}" jqimg="{{$img->p_url}}" width="350px">
 					</div>
 				@endif
 				@endforeach
@@ -103,7 +103,7 @@
             </div>
             <div class="shoujiap">
             	<span>商城价格</span>
-                <i>{{$data->price}}</i>￥
+                <i>￥</i><em>{{$data->price}}</em>
             </div>
             <div class="chuxinxi">
             	<span>促销信息</span><i>满200.00减20.00，满400.00减40.00</i>

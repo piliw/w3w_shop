@@ -1,5 +1,5 @@
-@extends('Home.home_public.public')
-@section('home')
+@extends('Home.Public.public')
+@section('main')
 	<link rel="stylesheet" href="/home/css/youqingcss.css">
 	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 	<script src="/home/zhuce/jquery-1.8.3.min.js"></script>

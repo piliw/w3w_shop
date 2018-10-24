@@ -151,7 +151,7 @@ $(function(){
                 <a href="#">公司简介</a>
                 <a href="#">合作专区</a>
                 <a href="#">联系我们</a>
-                <a href="#">友情链接</a>
+                <a href="/link/create">友情链接</a>
             </li>
             <li>
                 <p><img src="/home/img/fot5.png">帮助中心</p>

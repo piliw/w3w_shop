@@ -25,13 +25,13 @@ var i=0
 	$(".lunbobanner .lunboimg").append(clone)
 	var size=$(".lunbobanner .lunboimg li").size()
 	/*自动轮播*/
-	var t=setInterval(moveL,2000)
+	var t=setInterval(moveL,3000)
 	/*定时器的关闭与开启*/
 	$(".kongzhianniu").hover(function(){
 		clearInterval(t);
 		
 		},function(){
-		t=setInterval(moveL,2000)	
+		t=setInterval(moveL,3000)	
 			
 		})
 	
@@ -44,7 +44,7 @@ var i=0
 			$(".lunboimg").css({left:0})
 			i=1;
 			}
-		$(".lunboimg").stop().animate({left:-i*1225},500)
+		$(".lunboimg").stop().animate({left:-i*1225},1000)
 		
 		}	
 		
