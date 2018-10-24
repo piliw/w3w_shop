@@ -17,7 +17,7 @@
 <div class="dy1">
 	<div class="dy2">
         <ul class="dy3">
-            <li><a href="#">帝云官网<br/>帝云官网</a></li>
+            <li><a href="/">维尚衣族官网<br/>维尚衣族官网</a></li>
             <li><a href="#" id="diyunapp">商城APP<br/>商城APP</a></li>
         </ul>
         <a href="#" class="dy5">购物车</a>
@@ -147,7 +147,6 @@ $(function(){
         <p class="ad">Copyright © 2010 - 2013, 版权所有 SHUIGUO.COM &nbsp;&nbsp;&nbsp;苏ICP备10088888号-1</p>
     </div>
 </div>
-
 </body>	
 </html>    
                 

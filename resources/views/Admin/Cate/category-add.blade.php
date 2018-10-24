@@ -11,10 +11,10 @@
 <script type="text/javascript" src="lib/respond.min.js"></script>
 
 <![endif]-->
-<link rel="stylesheet" type="text/css" href="static/static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="static/static/h-ui.admin/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="static/lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="static/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/static/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="/static/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/static/static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -29,7 +29,7 @@
 	</div>
 	<div>
 		<div class="page-container">
-			<form action="/category" method="post" class="form form-horizontal" id="form-cate">
+			<form action="/category" method="post" class="form form-horizontal" id="form-cate" enctype="multipart/form-data">
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">
 						<span class="c-red">*</span>
@@ -74,6 +74,15 @@
 					<font style="color:red"></font>
 				</div>
 				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">
+						<span class="c-red">*</span>
+						上传图片：</label>
+					<div class="formControls col-xs-6 col-sm-5">
+						<input type="file" class="" value="" placeholder="" id="cpic" name="pic">
+					</div>
+					<font style="color:red"></font>
+				</div>
+				<div class="row cl">
 					<div class="col-9 col-offset-2">
 						<input class="btn btn-success radius" type="submit" style="width:346px" value="&nbsp;&nbsp;添加&nbsp;&nbsp;">
 					</div>
@@ -82,7 +91,7 @@
 			</form>
 		</div>
 		<div class="page-container" style="display:none">
-			<form action="/cateupdate" method="post" class="form form-horizontal" id="cateupdate">
+			<form action="/cateupdate" method="post" class="form form-horizontal" id="cateupdate" enctype="multipart/form-data">
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">
 						<span class="c-red">*</span>
@@ -106,11 +115,20 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">选择分类：</label>
 					<div class="formControls col-xs-6 col-sm-5">
-						<span class="select-box" style="width:356px">
+						<span class="select-box" style="width:347px">
 							<select class="select cateall" name="id" size="1" id="upselect">
 								<option selected>--请选择要修改的分类--</option>
 							</select>
 						</span>
+					</div>
+					<font style="color:red"></font>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">
+						<span class="c-red">*</span>
+						上传图片：</label>
+					<div class="formControls col-xs-6 col-sm-5">
+						<input type="file" class="" value="" placeholder="" id="rpic" name="pic" enctype="multipart/data-form">
 					</div>
 					<font style="color:red"></font>
 				</div>
@@ -152,15 +170,15 @@
 		</div>
 	</div>
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="static/lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="static/lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="static/static/h-ui/js/H-ui.min.js"></script> 
-<script type="text/javascript" src="static/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/static/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/static/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="/static/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="static/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
-<script type="text/javascript" src="static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 $(function(){
 	
@@ -220,6 +238,10 @@ $('#form-cate').submit(function(e){
 		$('#cate_name').parent().next().html('分类名不能为空');
 		e.preventDefault()
 		}
+		if($('#cpic').val()==''){
+		$('#cpic').parent().next().html('请上传图片');
+		e.preventDefault()
+		}
 
 		if($('#cate-parnet').val()=='--请选择--'){
 			$('#cate-parnet').parent().parent().next().html('请选择父级分类');
@@ -228,6 +250,10 @@ $('#form-cate').submit(function(e){
 	}else{
 		if($('#cate_name').val()==''){
 		$('#cate_name').parent().next().html('分类名不能为空');
+		e.preventDefault()
+		}
+		if($('#cpic').val()==''){
+		$('#cpic').parent().next().html('请上传图片');
 		e.preventDefault()
 		}
 	}

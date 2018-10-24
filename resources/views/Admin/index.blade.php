@@ -174,15 +174,17 @@
                 </dd>
               </dl>
             </li>
-
             <li data-name="template" class="layui-nav-item">
               <a href="javascript:;" lay-tips="用户" lay-direction="2">
                 <i class="layui-icon layui-icon-survey"></i>
-                <cite>评价管理</cite>
+                <cite>其他管理</cite>
               </a>
               <dl class="layui-nav-child">
                 <dd>
                   <a lay-href="/appraise">评价列表</a>
+                </dd>
+                <dd>
+                  <a lay-href="/link">友情链接</a>
                 </dd>
               </dl>
             </li>
@@ -199,7 +201,13 @@
                   <a lay-href="/adminuser">后台管理员</a>
                 </dd>
                 <dd>
+                  <a lay-href="/roles">角色管理</a>
+                </dd>
+                <dd>
                   <a lay-href="/node">权限管理</a>
+                </dd>
+                <dd>
+                  <a lay-href="/nodelist">权限列表</a>
                 </dd>
               </dl>
             </li>

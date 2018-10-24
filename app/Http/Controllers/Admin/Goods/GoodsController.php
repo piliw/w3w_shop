@@ -111,7 +111,7 @@ class GoodsController extends Controller
         //获取修改后的图片
         $pic=$request->input('pic');
         if(empty($pic)){
-            return back()->with('error','请先上传图片');
+            return back()->with('error','请至少上传一张图片');
         }
         // 获取要删除的图片文件信息
         $del=$request->input('del');
@@ -147,9 +147,15 @@ class GoodsController extends Controller
         //
     }
 
-    public function getGoods(){
+    public function getGoods(Request $request){
+        // 分页
+        $page=$request->input('page');
+        $limit=$request->input('limit');
+        $offset=($page-1)*$limit;
+        //搜索
+        $key=$request->input('key');
         // 获取所有商品信息
-        $infos=Goods::join('admin_brand','admin_brand.id','=','goods.bid')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id as gid','goods.name','goods.number','goods.cate_id','goods.price','goods.store','goods.sales','goods.status','goods.summ','goods.size','admin_brand.name as bname','pic_url.p_url')->where('pic_url.main','=',1)->orderBy('goods.id','asc')->get();
+        $infos=Goods::join('admin_brand','admin_brand.id','=','goods.bid')->join('pic_url','pic_url.gid','=','goods.id')->join('cate','cate.id','=','goods.cate_id')->select('goods.id as gid','goods.name','goods.number','goods.price','goods.store','goods.sales','goods.status','goods.summ','goods.size','admin_brand.name as bname','pic_url.p_url','cate.name as cname')->where('goods.name','like','%'.$key.'%')->where('pic_url.main','=',1)->orderBy('goods.id','asc')->offset($offset)->limit($limit)->get();
         // 统计数量
         $total=Goods::count();
         foreach($infos as $info){
@@ -199,9 +205,10 @@ class GoodsController extends Controller
         }
 
         public function goodsDel(Request $request){
+                // 商品删除
                 $id=$request->input('id');
                 if(DB::table('goods')->where('id','=',$id)->delete()){
-                    // 查询商品图片
+                 // 查询商品图片
                     $img=DB::table('pic_url')->where('gid','=',$id)->get();
                     foreach($img as $ppic){
                         if(DB::table('pic_url')->where('id','=',$ppic->id)->delete()){
@@ -212,6 +219,19 @@ class GoodsController extends Controller
                 }else{
                     echo 0;
                 }
+        }
+
+        // 商品批量上下架
+        public function status(Request $request,$d){
+            $data=$request->input('id');
+            $data=explode(',',rtrim($data,','));
+            if($d==1){
+                DB::table('goods')->whereIn('id',$data)->update(['status'=>1]);
+                echo 1;
+            }else{
+                DB::table('goods')->whereIn('id',$data)->update(['status'=>0]);
+                echo 0;
+            }
         }
 
 }

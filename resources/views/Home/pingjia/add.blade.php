@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html>
- <head> 
-  <meta charset="utf-8" /> 
-  <title>我要评价</title> 
-  <link rel="stylesheet" type="text/css" href="/home/css/vipcenter.css" /> 
+@extends('Home.Public.public')
+@section('main') 
   <link rel="stylesheet" type="text/css" href="/home/js/statics/grade.css" /> 
   <link rel="stylesheet" type="text/css" href="/home/css/appraise.css" /> 
-  <script src="/home/js/jquery-1.8.3.min.js"></script> 
-  <script src="/home/js/public.js"></script> 
   <script src="/home/js/statics/jquery-latest.pack.js"></script> 
   <script src="/home/js/statics/grade.js"></script> 
- </head> 
- <body> 
   <!--个人中心首页 --> 
   <div class="thetoubu"> 
    <!--头部--> 
    <div class="thetoubu1"> 
-    <b> <img src="/home/img/touxiang.png" /> </b> 
-    <em>czz1994612</em> 
+    <b> <img src="{{$datas->user_pic}}" /> </b> 
+    <em>{{$data->phone}}</em> 
     <em>欢迎来到会员中心</em> 
     <a href="#">地址管理</a> 
-    <a href="#">修改资料</a> 
+    <a href="/zhuce/{{$data->id}}/edit">修改资料</a> 
     <h5>账户安全</h5> 
     <strong>低</strong> 
     <span> <p style=" width:27%"></p> </span> 
@@ -112,7 +104,7 @@
          <div class="shop-rating"> 
           <span class="title">宝贝质量：</span> 
          <ul class="rating-level" id="stars1"> 
-          <li><a class="one-star" star:value="1">1</a></li> 
+          <li><a class="one-star" star:value="1" style="padding-left:0px">1</a></li> 
           <li><a class="two-stars" star:value="2" >2</a></li> 
           <li><a class="three-stars" star:value="3" >3</a></li> 
           <li><a class="four-stars" star:value="4" >4</a></li> 
@@ -226,4 +218,5 @@
   // }
       var Stars1 = new Stars("stars1",{nowClass:"current-rating",tipsTxt:["1星-严重差评","2星-差评","3星-中评","4星-比较好","5星-好评"]});
  </script>
-</html>
+@endsection
+@section('title','我要评价')

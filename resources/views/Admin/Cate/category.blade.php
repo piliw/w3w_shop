@@ -58,10 +58,12 @@ var setting = {
 		beforeClick: function(treeId, treeNode) {
 			var zTree = $.fn.zTree.getZTreeObj("tree");
 			if (treeNode.isParent) {
-				zTree.expandNode(treeNode);
+				demoIframe.attr("src","/category/"+treeNode.id);
 				return false;
+				/*zTree.expandNode(treeNode);
+				return false;*/
 			} else {
-				// demoIframe.attr("src",treeNode.file + ".html");
+				demoIframe.attr("src","/category/"+treeNode.id);
 				return false;
 			}
 		}

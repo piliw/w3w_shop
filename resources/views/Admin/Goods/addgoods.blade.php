@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +47,11 @@
               </div> 
               <label class="layui-form-label">品牌</label>
                <div class="layui-input-inline">
-                <select name="bid">
+                <select name="bid" lay-verify="required">
                   <option value="">--请选择--</option>
-                  <optgroup label="选择品牌">
                   @foreach($brand as $v)
                     <option value="{{$v->id}}">{{$v->name}}</option>
                   @endforeach
-                  </optgroup>
                 </select>
               </div>
             </div>
@@ -83,7 +79,7 @@
           <div class="layui-form-item">
             <label class="layui-form-label">选择分类</label>
             <div class="layui-input-block">
-              <select name="cate_id" lay-filter="aihao">
+              <select name="cate_id" lay-filter="aihao" lay-verify="required">
                 <option value=""></option>
                 @foreach($cate as $val)
                 <option value="{{$val->id}}">{{$val->name}}</option>
@@ -184,10 +180,6 @@
         if(value==""){
           return '请先上传商品图片';
         }
-      }
-      ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-      ,content: function(value){
-        layedit.sync(editIndex);
       }
     });
   

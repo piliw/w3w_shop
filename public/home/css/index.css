@@ -19,9 +19,9 @@
 .dy8:hover{ color:#FF6700}
 .dy9{ width:110px; height:110px; box-shadow:0 2px 2px rgba(0,0,0,0.1); position:absolute; top:40px; left:30px; overflow:hidden; display:none; z-index:1000; background:#fff}
 .dy9 img{ display:block; width:90px; height:90px; margin-left:10px; margin-top:10px}
-.dy10{ width:1226px; height:60px; margin:0 auto; overflow:hidden; margin-top:15px}
-.dy11{ width:364px; height:60px; float:left}
-.dy11 img{ display:block; width:364px; height:60px}
+.dy10{ width:1226px; height:90px; margin:0 auto; overflow:hidden; margin-top:15px}
+.dy11{ width:360px; height:90px; float:left}
+.dy11 img{ display:block; width:360px; height:90px}
 .dy12{ width:570px; height:36px; border:1px solid #333; float:right; margin-top:11px; margin-right:40px; overflow:hidden}
 .dy13{ width:120px; height:45px; float:right; overflow:hidden; margin-top:7px; z-index:-1; position:relative; }
 .dy13 embed{ position:absolute; top:0; left:0}
@@ -120,7 +120,7 @@
 .guanfangremai{ position:absolute; top:-26px; left:0; font-family:"微软雅黑"; color:#333; font-size:16px}
 /*其他商品 */
 .dy17{ width:100%; height:auto; background:#f8f8f8; margin-top:30px; overflow:hidden; position:relative; padding-top:10px; padding-bottom:100px}
-.dy19{ position:fixed; top:50%; left:51%; width:80px; background:#111; margin-left:-704px;padding:6px 0; display:none}
+.dy19{ position:fixed; top:50%; left:51%; width:78px; background:#111; margin-left:-704px;padding:6px 0; display:none}
 .dy19 a{ display:block; width:100%; text-align:center; height:28px; line-height:28px; color:#b0b0b0; font-size:12px}
 .dy19 .danb{ color:#fff}
 .dy19 a:hover{ color:#fff}
@@ -132,7 +132,8 @@
 .dy21{ width:1226px; height:614px; overflow:hidden} 
 .dy22{ width:234px; height:604px; float:left; margin-top:5px}
 .dy24{ width:234px; height:302px}
-.dy24 a{ display:block; width:234px; height:302px; overflow:hidden}
+.dy24 a{ display:block; width:230px;height:555px; overflow:hidden}
+.dy24 a img{width:100%;}
 .dy25{ width:234px; height:302px;overflow:hidden; background:#fff} 
 .dy25 ul{ width:224px; margin:0 auto}
 .dy25 ul li{ width:108px; height:37px;float:left; margin-top:6px; margin-left:1px}
@@ -223,7 +224,14 @@
 	text-align:center;
 	}
 
- 
+ .notece{
+ 	background:url(../img/notece.png) no-repeat scroll 0px 10px;
+ 	background-size:20px 20px;
+ 	color:#b0b0b0;
+  padding-left: 26px;
+  text-align: left;
+
+ }
  
  
  

@@ -37,6 +37,8 @@ Route::group([],function(){
 	Route::post('/cateupdate','Admin\CateController@cateUpdate');
 	//分类删除
 	Route::get('/catedelete','Admin\CateController@delete');
+	//改变分类状态
+	Route::get('/catedisplay','Admin\CateController@display');
 
 });
 
@@ -54,12 +56,20 @@ Route::resource('/adminabs','Admin\AbsController');
 Route::get('/absdel','Admin\AbsController@absdel');
 // 后台公告管理模块
 Route::resource('/notece','Admin\NoteceController');
+// 前台公告
+Route::get('/homenotece','Home\IndexController@homenotece');
 // 后台公告Ajax删除
 Route::get('/notecedel','Admin\NoteceController@notecedel');
 // 后台评价管理模块
 Route::resource('/appraise','Admin\AppraiseController');
 // 后台评价Ajax评价删除
 Route::get('/appraisedel','Admin\AppraiseController@appraisedel');
+// 后台友情链接管理模块
+Route::resource('/link','Admin\LinkController');
+// 友情链接更改状态
+Route::get('/link_status','Admin\LinkController@link_status');
+// 友情链接ajax删除
+Route::get('/linkdel','Admin\LinkController@linkdel');
 // ----------------后台控制器-------------------------
 // 后台登录操作
 Route::resource('/login','Admin\LoginController');
@@ -83,12 +93,24 @@ Route::get('/del','Admin\AdminUserController@del');
 Route::get('/status','Admin\AdminUserController@status');
 // 后台修改密码时,旧密码验证
 Route::get('/pass','Admin\AdminUserController@pass');
+// 后台分配角色
+Route::get('/adminrole','Admin\NodeController@rolelist');
+// 后台保存角色
+Route::post('/saverole','Admin\NodeController@saverole');
+// 后台角色列表
+Route::get('/roles','Admin\NodeController@roles');
+// 后台角色删除
+Route::get('/rolesdel','Admin\NodeController@rolesdel');
 // 后台用户权限管理
 Route::resource('/node','Admin\NodeController');
 // 后台分配权限
 Route::get('/auth/{id}','Admin\NodeController@auth');
 // 后台保存分权限
 Route::post('/saveauth','Admin\NodeController@saveauth');
+// 权限列表
+Route::get('/nodelist','Admin\NodeController@nodelist');
+// ajax权限删除
+Route::get('/nodedel','Admin\NodeController@nodedel');
 // 后台的前台用户列表
 Route::resource('/homeuser','Admin\HomeUsersController');
 // 后台的前台用户删除
@@ -121,6 +143,10 @@ Route::get('/phone','Home\HomeUsersController@phone');
 Route::get('/demo','Home\HomeUsersController@demo');
 // ajax短信校验
 Route::get('/code','Home\HomeUsersController@code');
+// 前台列表页
+Route::resource('/list','Home\listController');
+// 前台和列表搜索
+Route::post('/keywords','Home\listController@index');
 
 
 // 购物车控制器
@@ -162,6 +188,8 @@ Route::group([],function(){
 	Route::post('/goodsupload','Admin\Goods\GoodsController@upload');
 	// 商品删除
 	Route::get('goodsdel','Admin\Goods\GoodsController@goodsDel');
+	//商品批量删除
+	Route::post('/goodsup/{d}','Admin\Goods\GoodsController@status');
 });
 
 // Home商品详情

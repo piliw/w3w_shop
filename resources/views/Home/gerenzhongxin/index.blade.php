@@ -1,5 +1,5 @@
-@extends('Home.home_public.public')
-@section('home')
+@extends('Home.Public.public')
+@section('main')
 <style>
         .ddss{
             width:980px;

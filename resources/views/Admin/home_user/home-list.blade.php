@@ -55,7 +55,7 @@
 			<tr class="text-c">
 				<th>ID</th>
 				<th>账号</th>
-				<th>密码</th>
+				<th style="width:150px">密码</th>
 				<th>等级</th>
 				<th>状态</th>
 				<th>地域</th>

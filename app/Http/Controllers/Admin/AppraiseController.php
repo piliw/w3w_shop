@@ -30,8 +30,6 @@ class AppraiseController extends Controller
     public function create()
     {
         
-        //加载用户评价模板
-        return view('Home.pingjia.add');
     }
 
     /**
@@ -61,7 +59,19 @@ class AppraiseController extends Controller
      */
     public function show($id)
     {
-        //
+        // 获取个人用户详情
+        // session判断是否有值
+        if(session()->has('hname')){
+            $value = session('hid');
+            $data = DB::table('user')->where('id','=',$value)->first();
+            $datas = DB::table('user_info')->where('user_id','=',$value)->first();
+            // 加载模板
+        //加载用户评价模板
+        return view('Home.pingjia.add',['data'=>$data,'datas'=>$datas]);
+        }else{
+            // 跳转到登录
+            return redirect('/homelogin');
+        }
     }
 
     /**
