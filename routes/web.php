@@ -152,6 +152,8 @@ Route::group([],function(){
 	Route::post('/goodsupload','Admin\Goods\GoodsController@upload');
 	// 商品删除
 	Route::get('goodsdel','Admin\Goods\GoodsController@goodsDel');
+	//商品批量删除
+	Route::post('/goodsup/{d}','Admin\Goods\GoodsController@status');
 });
 
 // Home商品详情

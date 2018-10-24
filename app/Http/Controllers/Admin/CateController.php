@@ -40,13 +40,25 @@ class CateController extends Controller
     {
         //获取添加等级号
         $type=$request->input('type');
+        // 判断是否有文件上传
+        if($request->hasFile('pic')){
+            // 初始化文件名
+            $name=time().rand(1,10000);
+            //获取文件后缀名
+            $ext=$request->file('pic')->getClientOriginalExtension();
+            //初始化文件夹
+            $dir='/uploads/'.date('Y-m-d').'/';
+        }
         if($type==0){
             // 添加一级分类
             $data['name']=$request->input('name');
             $data['display']=$request->input('display');
             $data['pid']=0;
             $data['path']='0,';
+            $data['curl']=$dir.$name.'.'.$ext;
             if(DB::table('cate')->insert($data)){
+                // 存储图片
+                $request->file('pic')->move('.'.$dir,$name.'.'.$ext);
                 echo '添加成功,请手动刷新';
             }else{
                 echo '添加失败,刷新后重新添加';
@@ -59,7 +71,10 @@ class CateController extends Controller
             $data['pid']=$pid;
             $data['path']=$path->path.$path->id.',';
             $data['display']=$request->input('display');
+            $data['curl']=$dir.$name.'.'.$ext;
             if(DB::table('cate')->insert($data)){
+                  // 存储图片
+                $request->file('pic')->move('.'.$dir,$name.'.'.$ext);
                 echo '添加成功,请手动刷新';
             }else{
                 echo '添加失败,刷新后重新添加';
@@ -179,11 +194,27 @@ class CateController extends Controller
     //修改分类
     public function cateUpdate(Request $request){
         $id=$request->input('id');
-        $data=$request->except('id','_token');
+        $data=$request->except('id','_token','pic');
+        if($request->hasFile('pic')){
+             // 初始化文件名
+            $name=time().rand(1,10000);
+            //获取文件后缀名
+            $ext=$request->file('pic')->getClientOriginalExtension();
+            //初始化文件夹
+            $dir='/uploads/'.date('Y-m-d').'/';
+            $data['curl']=$dir.$name.'.'.$ext;
+            //获取原来图片
+            $inof=DB::table('cate')->select('curl')->where('id','=',$id)->first();
+            $old=$inof->curl;
+        }
         if(DB::table('cate')->where('id','=',$id)->update($data)){
+            if($request->hasFile('pic')){
+                $request->file('pic')->move('.'.$dir,$name.'.'.$ext);
+                unlink('.'.$old);
+            }
             echo "修改成功";
         }else{
-            echo '删除失败';
+            echo '修改失败';
         }
     }
 
@@ -195,7 +226,10 @@ class CateController extends Controller
                 echo '<script>alert("该分类下有子分类,请先删除子分类在执行操作")</script>';
                 return view('Admin.Cate.category-add');
         }else{
+            $info=DB::table('cate')->select('curl')->where('id','=',$id)->first();
+            $old=$info->curl;
             if(DB::table('cate')->where('id','=',$id)->delete()){
+                unlink('.'.$old);
                 echo '删除成功,请刷新';
             }
         }

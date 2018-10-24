@@ -4,10 +4,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>数据操作 - 数据表格</title>
+  <title>商品管理</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
   <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
 </head>
@@ -26,14 +27,18 @@
     <div class="layui-row layui-col-space15">
       <div class="layui-col-md12">
         <div class="layui-card">
-          <div class="layui-card-header">商品管理</div>
           <div class="layui-card-body">
             <div class="layui-btn-group test-table-operate-btn" style="margin-bottom: 10px;">
-              <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-              <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-              <button class="layui-btn" data-type="isAll">验证是否全选</button>
+              <button class="layui-btn" data-type="getCheckUp">批量上架</button>
+              <button class="layui-btn" data-type="getCheckDown">批量下架</button>
+              <!-- <button class="layui-btn" data-type="getCheckLength">获取选中数目</button> -->
+              <!-- <button class="layui-btn" data-type="isAll">验证是否全选</button> -->
             </div>
-        
+              搜索商品：
+              <div class="layui-inline" style="margin-bottom:10px">
+                <input class="layui-input" name="id" id="test-table-demoReload" autocomplete="off">
+              </div>
+              <button class="layui-btn search" data-type="reload" style="margin-bottom:10px">搜索</button>
             <table class="layui-hide" id="test-table-operate" lay-filter="test-table-operate"></table>
             
             <script type="text/html" id="test-table-operate-barDemo">
@@ -49,7 +54,7 @@
   <div id="show_img" style="position:absolute;left:100px;top:100px">
   </div>
    
-  <script src="/layuiadmin/layui/layui.js"></script>  
+  <script src="/layuiadmin/layui/layui.js"></script>
   <script>
   layui.config({
     base: '/layuiadmin/', //静态资源所在路径
@@ -63,22 +68,22 @@
       elem: '#test-table-operate'
       ,url: "/getgoods"
     
-      ,height: 'full-130'
+      ,height: 'full-90'
       ,cols: [[
         {type:'checkbox', fixed: 'left'}
         ,{field:'gid', width:80, title: 'ID', sort: true, fixed: 'left'}
+        ,{field:'status', width:80, title: '状态', sort: true}
         ,{field:'p_url', width:150, title: '预览图',templet:function(d){
                  return '<img src="'+d.p_url+'" alt="点击查看大图" class="show_img" >';
         }}
         ,{field:'name', width:300, title: '商品名称'}
-        ,{field:'cate_id', width:120, title: '所属分类'}
+        ,{field:'cname', width:120, title: '所属分类'}
         ,{field:'number', width:120, title: '商品货号'}
         ,{field:'price', width:80, title: '单价'}
         ,{field:'store', width: 80, title: '库存',sort: true}
         ,{field:'sales', width:80, title: '销量', sort: true}
         ,{field:'bname', width:100, title: '品牌'}
         ,{field:'size', width:100, title: '尺码'}
-        ,{field:'status', width:80, title: '状态', sort: true}
         ,{field:'summ', width:300, title: '简介'}
         ,{width:178, align:'center', fixed: 'right', toolbar: '#test-table-operate-barDemo'}
       ]]
@@ -123,10 +128,55 @@
     });
     
     var $ = layui.$, active = {
-      getCheckData: function(){ //获取选中数据
+      getCheckUp: function(){ //获取选中数据
+          var checkStatus = table.checkStatus('test-table-operate')
+          ,data = checkStatus.data;
+         
+         // 当前页
+         var page=$(".layui-laypage-skip").find("input").val();
+         // 分页数目
+         // var limit=$(".layui-laypage-limits").find("option:selected").val();
+          if(data.length!=0){
+              var str='';
+              for(var i=0;i<data.length;i++){
+                   str += data[i].gid+',';
+              }
+              $.post('/goodsup/1',{id:str},function(data){
+                     if(data==1){
+                           table.reload('test-table-operate', {
+                                page: {
+                                    curr: page //重新从当前页开始
+                                }     
+                           });
+                    }
+               });
+          }else{
+             layer.msg('请选择商品');
+          }
+      }
+      , getCheckDown: function(){ //获取选中数据
         var checkStatus = table.checkStatus('test-table-operate')
         ,data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
+        
+        var page=$(".layui-laypage-skip").find("input").val();
+          if(data.length!=0){
+              var str='';
+              for(var i=0;i<data.length;i++){
+                   str += data[i].gid+',';
+              }
+              $.post('/goodsup/0',{id:str},function(data){
+                     if(data==0){
+                           table.reload('test-table-operate', {
+                                page: {
+                                    curr: page //重新从当前页开始
+                                }     
+                           });
+                    }
+               });
+          }else{
+             layer.msg('请选择商品');
+          }
+
       }
       ,getCheckLength: function(){ //获取选中数目
         var checkStatus = table.checkStatus('test-table-operate')
@@ -143,7 +193,20 @@
       var type = $(this).data('type');
       active[type] ? active[type].call(this) : '';
     });
-  
+
+      $('.search').click(function(){
+            var demoReload = $('#test-table-demoReload');
+          //执行重载
+          table.reload('test-table-operate', {
+            page: {
+              curr: 1 //重新从第 1 页开始
+            }
+            ,where: {
+              key:demoReload.val()
+            }
+          });
+      });
+
   });
 
   layui.use(['jquery'], function(){
@@ -160,6 +223,12 @@
           $('body').on('mouseleave','.show_img',function(){
            $('#show_img').empty().hide();
       });
+          //添加保护
+          $.ajaxSetup({
+           headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+          });
 });
  
   </script>

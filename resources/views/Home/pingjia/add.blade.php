@@ -112,7 +112,7 @@
          <div class="shop-rating"> 
           <span class="title">宝贝质量：</span> 
          <ul class="rating-level" id="stars1"> 
-          <li><a class="one-star" star:value="1">1</a></li> 
+          <li><a class="one-star" star:value="1" style="padding-left:0px">1</a></li> 
           <li><a class="two-stars" star:value="2" >2</a></li> 
           <li><a class="three-stars" star:value="3" >3</a></li> 
           <li><a class="four-stars" star:value="4" >4</a></li> 

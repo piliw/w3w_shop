@@ -16,7 +16,7 @@ class Goods extends Model
 	public $fillable=['name','cate_id','price','store','sales','bid','status','descr'];
 	// 状态转换
 	public function getStatusAttribute($value){
-		$status=['下架','上架'];
+		$status=['<font style="color:red">下架</font>','<font style="color:green">上架</font>'];
 		return $status[$value];
 	}
 }

@@ -15,6 +15,7 @@ class HomeGoodsController extends Controller
     public function index()
     {
         //
+      return view('Home.Public.public');
 
     }
 
@@ -52,12 +53,50 @@ class HomeGoodsController extends Controller
         //获取图片
         $photo=DB::table('pic_url')->where('gid','=',$id)->get();
         //当前分类
-        $cate=DB::table('cate')->where('id','=',$data->cate_id)->select('id','name')->first();
+        $cate=DB::table('cate')->where('id','=',$data->cate_id)->select('id','name','pid')->first();
         //获取当前分类下的商品 取6条
         $categoods=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('cate_id','=',$cate->id)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(6)->get();
         //$data->cate_id重新赋值
         $data->cate_id=$cate->name;
-        return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods]);
+        //获取同等相关分类
+        $cates=DB::table('cate')->select('id','name')->where('pid','=',$cate->pid)->where('display','=',1)->get();
+        //其它相关分类数据
+        //获取当前二级分类下的pid
+         $pid=DB::table('cate')->select('id','pid')->where('id','=',$cate->pid)->where('display','=',1)->first();
+         $othercate=DB::table('cate')->select('id')->where('pid','=',$pid->pid)->where('id','!=',$pid->id)->where('display','=',1)->get();
+         foreach($othercate as $other){
+                $oth=DB::table('cate')->select('id','name')->where('pid','=',$other->id)->where('display','=',1)->get();
+                foreach($oth as $v){
+                    $others[]=$v;
+                }
+         }
+        //瞧 了又瞧数据
+          $sales=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(5)->get();
+        //达人推荐数据
+           $rows=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(10)->get();
+        //商品评价
+           $appraise=DB::table('appraise')->where('goods_id','=',$id)->get();
+        //好评率
+        //获取商品评价条数   
+        $total=count($appraise);
+        //获取好评条数
+        if($total!=0){
+            $hping=DB::table('appraise')->where('goods_id','=',$id)->where('gscore','>=',4)->count();
+            //计算好评率
+            $per=round($hping/$total,2)*100;
+            //中评条数
+            $zhong=DB::table('appraise')->where('goods_id','=',$id)->where('gscore','=',3)->count();
+            $zper=round($zhong/$total,2)*100;
+             //中评条数
+            $cha=DB::table('appraise')->where('goods_id','=',$id)->where('gscore','<',3)->count();
+            $cper=round($zhong/$total,2)*100;   
+        }else{
+            $per='00';
+            $zper='00';
+            $cper='00';
+        }
+
+        return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods,'cates'=>$cates,'sales'=>$sales,'rows'=>$rows,'others'=>$others,'appraise'=>$appraise,'per'=>$per,'zper'=>$zper,'cper'=>$cper]);
     }
 
     /**

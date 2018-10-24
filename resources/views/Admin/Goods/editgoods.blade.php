@@ -49,9 +49,8 @@
               </div> 
               <label class="layui-form-label">品牌</label>
                <div class="layui-input-inline">
-                <select name="bid">
+                <select name="bid" lay-verify="required">
                   <option value="">--请选择--</option>
-                  <optgroup label="选择品牌">
                   @foreach($brand as $v)
                   @if($v->id==$data->bid)
                     <option value="{{$v->id}}" selected>{{$v->name}}</option>
@@ -59,7 +58,6 @@
                    <option value="{{$v->id}}">{{$v->name}}</option>
                   @endif
                   @endforeach
-                  </optgroup>
                 </select>
               </div>
             </div>
@@ -87,7 +85,7 @@
           <div class="layui-form-item">
             <label class="layui-form-label">选择分类</label>
             <div class="layui-input-block">
-              <select name="cate_id" lay-filter="aihao">
+              <select name="cate_id" lay-filter="aihao" lay-verify="required">
                 <option value=""></option>
                 @foreach($cate as $val)
                 @if($val->id==$data->cate_id)
@@ -212,6 +210,10 @@
       }
     });
   
+
+      @if(!empty(session('error')))
+           layer.alert("{{session('error')}}");
+      @endif
     /* 监听提交 */
    /* form.on('submit(component-form-demo1)', function(data){
       parent.layer.alert(JSON.stringify(data.field), {
