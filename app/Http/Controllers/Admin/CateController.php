@@ -90,7 +90,12 @@ class CateController extends Controller
      */
     public function show($id)
     {
-        //
+        //分类信息
+        $cate=DB::table('cate')->where('id','=',$id)->first();
+        $display=['禁用','启用'];
+        $cate->display=$display[$cate->display];
+        return view('Admin.Cate.catelist',['cate'=>$cate]);
+
     }
 
     /**
