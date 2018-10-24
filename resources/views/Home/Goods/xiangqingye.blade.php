@@ -161,44 +161,55 @@
                         </ul>
                     </div>
                 </div>
-                <!--购买数量-->
+                 <!--购买数量-->
+
+                <form action="/homecart" method="post">
+
+                <!-- 获取尺码数据 -->
+                <input type="hidden" name="size" value="{{$data->size}}">
+                <!-- 商品的价格 -->
+                <input type="hidden" name="price" value="{{$data->price}}">
+
                 <div class="goumaijiajian">
                     <span>购买数量</span>
                     <input id="min" name="" type="button" value="减" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">  
-    <input id="text_box" name="" type="text" value="1" style="width:60px;height:30px; font-size:12px; text-align:center; float:left"/>  
+    <input id="text_box" name="num" type="text" value="1" style="width:60px;height:30px; font-size:12px; text-align:center; float:left"/>  
     <input id="add" name="" type="button" value="加" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">
-				</div>
-				<script>
-					$(document).ready(function(){
-					//获得文本框对象
-					   var t = $("#text_box");
-					//初始化数量为1,并失效减
-					$('#min').attr('disabled',true);
-						//数量增加操作
-						$("#add").click(function(){    
-							t.val(parseInt(t.val())+1)
-							if (parseInt(t.val())!=1){
-								$('#min').attr('disabled',false);
-							}
-						  
-						}) 
-						//数量减少操作
-						$("#min").click(function(){
-							t.val(parseInt(t.val())-1);
-							if (parseInt(t.val())==1){
-								$('#min').attr('disabled',true);
-							}
-						  
-						})
-					   
-					});
-					</script>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                    //获得文本框对象
+                       var t = $("#text_box");
+                    //初始化数量为1,并失效减
+                    $('#min').attr('disabled',true);
+                        //数量增加操作
+                        $("#add").click(function(){    
+                            t.val(parseInt(t.val())+1)
+                            if (parseInt(t.val())!=1){
+                                $('#min').attr('disabled',false);
+                            }
+                          
+                        }) 
+                        //数量减少操作
+                        $("#min").click(function(){
+                            t.val(parseInt(t.val())-1);
+                            if (parseInt(t.val())==1){
+                                $('#min').attr('disabled',true);
+                            }
+                          
+                        })
+                       
+                    });
+                    </script>
                  <!--加入购物车与收藏商品-->
+                <input type="hidden" name="id" value="{{$data->id}}">
                  <div class="joinspadsp">
-                 	<a href="#" style=" margin-left:67px">立即购买</a>
-                 	<a href="#" style=" margin-left:6px">加入购物车</a>
-                    <a href="#" style=" margin-left:6px">收藏该商品</a>
+                    <a href="javascript:void(0)" style=" margin-left:67px"><input type="submit" style="background-color:#DF3033;color:white" value="立即购买"></a>
+                    <a href="javascript:void(0)" style=" margin-left:6px" id="shops">加入购物车</a>
+                    <a href="javascript:void(0)" style=" margin-left:6px">收藏该商品</a>
                  </div>
+                 {{csrf_field()}}
+                </form>
                  <!--商品编号-->
                  <div class="shopbh">
                  	<span>商品编号</span>

@@ -28,7 +28,7 @@
         "psr-4": {
             "App\\": "app/"
         },
-        "files":[
+        "files": [
             "app/Library/helper.php"
         ]
     },

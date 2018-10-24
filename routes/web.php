@@ -148,8 +148,6 @@ Route::resource('/list','Home\listController');
 // 前台和列表搜索
 Route::post('/keywords','Home\listController@index');
 
-// 购物测试用的控制器
-Route::get('/test',"Home\CartController@test");
 
 // 购物车控制器
 Route::resource("/homecart","Home\CartController");
@@ -164,10 +162,22 @@ Route::get("/cartdel/{id}","Home\CartController@del");
 Route::group(['middleware'=>'homelogin'],function(){
 	// 订单控制器
 	Route::resource("/orders","Home\OrdersController");
+	// 订单状态
+	Route::resource("/status","Home\StatusController");
+	// 确认收货处理
+	Route::get("/affirm/{id}","Home\StatusController@affirm");
+	
 	// 收货地址删除
 	Route::get("/addressdel","Home\OrdersController@del");
-	// 提交订单
+	// 立即购买订单处理
 	Route::post("/ordershop","Home\OrdersController@ordershop");
+	// 购物车购买订单处理
+	Route::post("/ordershopa","Home\OrdersController@ordershopa");
+
+	// 支付宝接口调用
+	Route::resource("/pays","Home\PayController");
+	// 支付完成的通知页面
+	Route::get("/returnurl","Home\PayController@returnurl");
 });
 // 商品管理
 Route::group([],function(){

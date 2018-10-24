@@ -1,0 +1,102 @@
+/*初始化网页*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li, pre, fieldset, lengend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{
+	list-style-type: none;
+}
+/*去除a链接的下划线字体颜色*/
+a{
+	text-decoration: none;
+}
+/*左右浮动公共样式*/
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+body{
+	background:#F9F9F9;
+}
+.main-container{
+	width: 854px;
+	height:400px;
+	background: #FFFFFF;
+	margin: 0px auto;
+}
+
+.title_big30{
+	width: 786px;
+	height: 45px;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 28px;
+	/*color: #333333;*/
+}
+.input-container{
+	width: 786px;
+	height: 385px;
+	margin: 0px auto;
+}
+/*设置国家地区*/
+.tit-normal{
+	width: 332px;
+	height: 25px;
+	margin: 0px auto;
+	font-size: 14px;
+}
+.tits-box{
+	width: 332px;
+	height:42px;
+	/*background: yellow;*/
+	margin: 0px auto;
+}
+#tits-select{
+	width: 332px;
+	height: 42px;
+	font-size: 15px;
+}
+.tits-notice{
+	width: 332px;
+	height: 20px;
+	margin: 5px auto 10px;
+	font-size: 13px;
+}
+/*设置手机号码输入框*/
+.phone-box{
+	width: 332px;
+	height:60px;
+	/*background: yellow;*/
+	margin: 0px auto;
+}
+
+#guojibianma{
+	width: 74px;
+	height: 42px;
+	font-size: 25px;
+}
+.phone-number{
+	width: 332px;
+	height: 40px;
+}
+.num-input{
+	width: 330px;
+	height: 37px;
+	font-size: 16px;
+}
+/*设置立即注册按钮*/
+.submit-btn{
+	width: 330px;
+	height: 42px;
+	margin: 0px auto;
+}
+#submitButton{
+	width: 330px;
+	height: 42px;
+	background: #FF6700;
+}
+
+
