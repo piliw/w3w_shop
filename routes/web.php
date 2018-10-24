@@ -54,12 +54,20 @@ Route::resource('/adminabs','Admin\AbsController');
 Route::get('/absdel','Admin\AbsController@absdel');
 // 后台公告管理模块
 Route::resource('/notece','Admin\NoteceController');
+// 前台公告
+Route::get('/homenotece','Home\IndexController@homenotece');
 // 后台公告Ajax删除
 Route::get('/notecedel','Admin\NoteceController@notecedel');
 // 后台评价管理模块
 Route::resource('/appraise','Admin\AppraiseController');
 // 后台评价Ajax评价删除
 Route::get('/appraisedel','Admin\AppraiseController@appraisedel');
+// 后台友情链接管理模块
+Route::resource('/link','Admin\LinkController');
+// 友情链接更改状态
+Route::get('/link_status','Admin\LinkController@link_status');
+// 友情链接ajax删除
+Route::get('/linkdel','Admin\LinkController@linkdel');
 // ----------------后台控制器-------------------------
 // 后台登录操作
 Route::resource('/login','Admin\LoginController');

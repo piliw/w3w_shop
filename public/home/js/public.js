@@ -77,7 +77,7 @@ $(function(){
         rightBar();
 	})	
 //////////////////////////一大群的js控制个个对应的地区
-$('a[href*=#fzxba],area[href*=#fzxba]').click(function() {
+$('a[href*=#f20],area[href*=#f20]').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var $target = $(this.hash);
             $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
@@ -92,7 +92,7 @@ $('a[href*=#fzxba],area[href*=#fzxba]').click(function() {
         }
     });	
 ////////////////////////////////
-$('a[href*=#ghmza],area[href*=#ghmza]').click(function() {
+$('a[href*=#f21],area[href*=#f21]').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var $target = $(this.hash);
             $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
@@ -107,7 +107,7 @@ $('a[href*=#ghmza],area[href*=#ghmza]').click(function() {
         }
     });	
 ///////////////////////////////
-$('a[href*=#sjtxa],area[href*=#sjtxa]').click(function() {
+$('a[href*=#f33],area[href*=#f33]').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var $target = $(this.hash);
             $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
@@ -122,7 +122,7 @@ $('a[href*=#sjtxa],area[href*=#sjtxa]').click(function() {
         }
     });	
 ///////////////////////////////
-$('a[href*=#jydq],area[href*=#jydq]').click(function() {
+$('a[href*=#f29],area[href*=#f29]').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var $target = $(this.hash);
             $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
@@ -137,7 +137,7 @@ $('a[href*=#jydq],area[href*=#jydq]').click(function() {
         }
     });	
 ///////////////////////////////
-$('a[href*=#dnsma],area[href*=#dnsma]').click(function() {
+$('a[href*=#f30],area[href*=#f30]').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var $target = $(this.hash);
             $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
