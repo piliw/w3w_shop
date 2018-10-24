@@ -221,6 +221,24 @@
                  </div>    
             </div>
         </div>
+        <!-- 加入购物车 -->
+        <script>
+            $('#shops').click(function(){
+                // alert(1);
+                var size=$('input[name=size]').val();
+                var num=$('input[name=num]').val();
+                var id=$('input[name=id]').val();
+                var price=$('input[name=price]').val();
+                // alert(id);
+                $.get("/homecart/create",{size:size,num:num,id:id,price:price},function(data){
+                    if(data==1){
+                        alert('成功添加购物车');
+                    }else{
+                        alert('商品已在购物车');
+                    }
+                })
+            });
+        </script>
     	<!--n2-->
         <div class="daitianc">
         	<span class="lkadlk">瞧了又瞧</span>
