@@ -19,10 +19,10 @@
 .dy8:hover{ color:#FF6700}
 .dy9{ width:110px; height:110px; box-shadow:0 2px 2px rgba(0,0,0,0.1); position:absolute; top:40px; left:30px; overflow:hidden; display:none; z-index:1000; background:#fff}
 .dy9 img{ display:block; width:90px; height:90px; margin-left:10px; margin-top:10px}
-.dy10{ width:1226px; height:60px; margin:0 auto; overflow:hidden; margin-top:15px}
+.dy10{ width:1226px; height:90px; margin:0 auto; overflow:hidden; margin-top:15px}
 .dy11{ width:364px; height:60px; float:left}
-.dy11 img{ display:block; width:364px; height:60px}
-.dy12{ width:570px; height:36px; border:1px solid #333; float:right; margin-top:11px; margin-right:40px; overflow:hidden}
+.dy11 img{ display:block; width:364px; height:90px}
+.dy12{ height:36px; border:1px solid #333; float:right; margin-top:11px; margin-right:40px; overflow:hidden}
 .dy13{ width:120px; height:45px; float:right; overflow:hidden; margin-top:7px; z-index:-1; position:relative; }
 .dy13 embed{ position:absolute; top:0; left:0}
 /*logo加时间加搜索框*/
@@ -32,7 +32,7 @@
 .qbspfl{ width:1226px; height:40px; border-bottom:2px solid #111; margin:0 auto; overflow:hidden; margin-top:20px}
 .djfl{ float:left; text-align: center; line-height:40px; font-size:16px; color:#FFF; background:#111; height:40px; width:234px; cursor:pointer}
 .morelist{ float:left; height:40px}
-.morelist a{ display:block; padding-left:30px; padding-right:15px; color:#111; float:left; line-height:40px; font-size:16px}
+.morelist a{ display:block; padding-left:30px; padding-right:15px; color:#333; float:left; line-height:40px; font-size:16px}
 .morelist a:hover{ color:#09f; }
 
 

@@ -1,5 +1,5 @@
-@extends('Home.home_public.public')
-@section('home')
+@extends('Home.Public.public')
+@section('main')
 <div style="width:1190px;height:30px;background-color:#fcfcfc;margin:10px auto;border:1px solid #d9d9d9;margin-bottom: 10px;padding-left: 10px;color:#666;font-size:14px;line-height:30px">官方公告</div>
 	<center>
 		@foreach($data as $v)

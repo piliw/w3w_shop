@@ -59,7 +59,7 @@
 <!--logo加时间加搜索框-->
 <div class="dy10">
   <div class="dy11">
-      <img src="/home//home//home/img/logo.png"/>
+      <img src="/home/img/logo.png"/>
     </div>
     <div class="dy13">
       <embed src="/home//home//home/img/honehone_clock_wh.swf" style=" height:45px; width:120px"></embed>
@@ -100,18 +100,14 @@
        <div class="banner_menu_content"  
        style="width: 600px;  top:-<?php echo $n?>px;">
        <?php $n+=42; ?>
-         <ul class="banner_menu_content_ul">
          @foreach($c->dev as $d)
-           <li>
-             <a><img src="/home/img/headphone.jpg"></a><a>{{$d->name}}</a><span>选购</span></li>
-               <ul class="banner_menu_content_ul">
+          <ul class="banner_menu_content_ul">
          @foreach($d->dev as $dd)
            <li>
              <a><img src="/home/img/headphone.jpg"></a><a>{{$dd->name}}</a><span>选购</span></li>
           @endforeach
          </ul>
           @endforeach 
-         </ul>
        
        </div>
      </li>
@@ -121,7 +117,7 @@
      <ul id="big_banner_pic">
        @foreach($pic as $p) 
        <li><a>
-       <img src="{{$p->path}}" width="1226px" height="460px">
+       <img src="{{$p->path}}" width="100%" height="100%">
        </a></li>
        @endforeach
      </ul>
@@ -138,15 +134,19 @@
   <div class="dy15">
       <ul>
         <!-- 遍历品牌 -->
-        @foreach($brand as $bra)
+        @foreach($brand as $keys=>$bra)
+        @if($keys<6)
         <li><a href="#">{{$bra->name}}<br/>{{$bra->name}}</a></li>
+        @endif
         @endforeach
       </ul>
     </div>
     <div class="dy16">
       <ul>
-        @foreach($brand_pic as $bp)
+        @foreach($brand_pic as $keyss=>$bp)
+        @if($keyss<3)
         <li><a href="#"><img src="{{$bp->logo}}" width="318px" height="160"/></a></li>
+        @endif
         @endforeach
         </ul>
     </div>
@@ -156,22 +156,28 @@
 <div class="lunbobanner">
   <ul class="lunboimg">
       <li>
-      @foreach($res as $row)
-          <a href="#">
+      @foreach($res as $key=>$row)
+      @if($key<5)
+          <a href="/homegoods/{{$row->gid}}">
               <b><img src="{{$row->p_url}}"/></b>
                     <h5 class="pp">{{$row->name}}</h5>
                     <p class="pp">{{$row->summ}}</p>
                     <span>{{$row->price}}元</span>
-            </a>   
-            @endforeach          
+            </a>
+        @endif   
+        @endforeach          
         </li>
         <li>
-          <a href="#">
-              <b><img src="/home/img/diannaozhuji.png"/></b>
-                    <h5>磐石DIY游戏主机</h5>
-                    <p>坚如磐石，带给你极致游戏体验</p>
-                    <span>5000元5</span>
+          @foreach($res as $key=>$row)
+          @if($key>=5)
+          <a href="/homegoods/{{$row->gid}}">
+              <b><img src="{{$row->p_url}}"/></b>
+                    <h5 class="pp">{{$row->name}}</h5>
+                    <p class="pp">{{$row->summ}}</p>
+                    <span>{{$row->price}}元</span>
             </a>
+           @endif 
+        @endforeach  
         </li>
     </ul>
 </div>    
@@ -208,7 +214,7 @@
                     @foreach($res as $row)
                     @if($row->id==$cc->id)
                         <li>
-                            <a href="#">
+                            <a href="/homegoods/{{$row->gid}}">
                                 <b>
                                     <img src="{{$row->p_url}}"/>
                                 </b>
@@ -229,7 +235,7 @@
                        @foreach($res as $row)
                        @if($row->id==$ccc->id)
                         <li>
-                            <a href="#">
+                            <a href="/homegoods/{{$row->gid}}">
                                 <b>
                                     <img src="{{$row->p_url}}"/>
                                 </b>
@@ -306,7 +312,7 @@ $(".dy19").css({top: top });
                 <a href="#">公司简介</a>
                 <a href="#">合作专区</a>
                 <a href="#">联系我们</a>
-                <a href="#">友情链接</a>
+                <a href="/link/create">友情链接</a>
             </li>
             <li>
                 <p><img src="/home/img/fot5.png">帮助中心</p>

@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/home/css/footer.css">
 <script src="/home/js/jquery-1.8.3.min.js"></script>
 <script src="/home/js/public.js"></script>
+<link rel="stylesheet" type="text/css" href="/home/css/vipcenter.css">
 </head>
 
 <body>
@@ -151,7 +152,7 @@ $(function(){
                 <a href="#">公司简介</a>
                 <a href="#">合作专区</a>
                 <a href="#">联系我们</a>
-                <a href="#">友情链接</a>
+                <a href="/link/create">友情链接</a>
             </li>
             <li>
                 <p><img src="/home/img/fot5.png">帮助中心</p>

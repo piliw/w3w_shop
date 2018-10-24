@@ -6,7 +6,7 @@
 .nowweizhi b{ display:block; height:30px; line-height:32px; font-family:"宋体"; float:left; color:#333; font-size:12px}
 /*商品展示区域*/
 #preview{ float:left; text-align:center; width:350px;}
-.jqzoom{ width:350px; height:350px; position:relative; border:1px solid #ccc;padding:2px;}
+.jqzoom{ width:350px; height:380px; position:relative; border:1px solid #ccc;padding:2px;overflow: hidden;}
 .zoomdiv{ left:859px; height:400px; width:400px; display:none}
 .list-h li{ float:left;}
 #spec-n5{width:350px; height:56px; padding-top:6px; overflow:hidden;}
@@ -27,9 +27,10 @@
 .shanpmai{ width:624px; height:auto; overflow:hidden; float:left}
 .spdname{ width:100%; height:auto; font-size:14px; color:#333; display:block; line-height:28px}
 .hotspeak{ width:100%; height:auto; font-size:12px; color:#F00; display:block; line-height:30px}
-.shoujiap{ width:100%; height:auto; overflow:hidden; line-height:30px; font-size:12px; color:#F00}
-.shoujiap span{ display:block; padding-right:10px; height:30px; line-height:30px; font-size:12px; color:#999; float:left}
-.shoujiap i{ display:block; float:left; height:30px; line-height:30px; font-style:normal; color:#F00; font-size:20px}
+.shoujiap{ width:100%; height:60px; overflow:hidden; line-height:60px; font-size:12px; color:#F00}
+.shoujiap span{ display:block; padding-right:10px; height:60px; line-height:60px; font-size:12px; color:#999; float:left}
+.shoujiap i{float:left;font-size: 20px;font-style: normal;color: #f43499;line-height: 72px;padding-left:10px;}
+.shoujiap em{ display:block; float:left; height:60px; line-height:60px; font-style:normal; color:#F00; font-size:48px;font-weight: 400;color: #f43499;font-family: arial;}
 .chuxinxi{ width:100%; height:auto; overflow:hidden}
 .chuxinxi span{ display:block; padding-right:10px; font-size:12px; color:#999; height:30px; line-height:30px; float:left}
 .chuxinxi i{ display:block; float:left; height:auto; line-height:30px; line-height:30px; font-size:12px; color:#999; font-style:normal}
@@ -85,7 +86,7 @@ ul, ol, dl { list-style: none; }
 .lklksp ul li a h5{ display:block; text-align:center; font-size:12px; color:#111}
 .lklksp ul li a p{ display:block; width:100%;font-size:12px; color:#666; text-align:center; line-height:16px}
 .lklksp ul li a span{ display:block; width:100%; line-height:20px; font-size:12px; color:#F00; text-align:center}
-.lklksp ul li a b img{ width:163px; height:140px; display:block}
+.lklksp ul li a b img{ width:113px; height:140px; display:block;margin:0 auto;}
 .theqjd:hover{ text-decoration:underline}
 .lklksp{ width:163px; height:436px; overflow:hidden; margin:0 auto; position:relative}
 .ananniu{ width:28px; height:15px; background:#FFF; float:left}
