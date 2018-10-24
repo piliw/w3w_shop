@@ -107,6 +107,8 @@ class CateController extends Controller
     public function edit($id)
     {
         //
+        $cate=DB::table('cate')->where('id','=',$id)->first();
+        return view('Admin.Cate.edit',['cate'=>$cate]);
     }
 
     /**
@@ -141,9 +143,9 @@ class CateController extends Controller
         //获取分类信息
         $cates=DB::table('cate')->select('id','pid','name','display')->get();
         foreach($cates as $key=>$val){
-                if($val->display==0){
+               /* if($val->display==0){
                      $cates[$key]->name .= '(已禁用)';
-                }
+                }*/
                 if($val->pid==0){
                     $cates[$key]->open=true;
                 }
@@ -236,6 +238,21 @@ class CateController extends Controller
             if(DB::table('cate')->where('id','=',$id)->delete()){
                 unlink('.'.$old);
                 echo '删除成功,请刷新';
+            }
+        }
+    }
+
+    //分类状态改变
+    public function display(Request $request){
+        $id=$request->input('id');
+        $display=$request->input('display');
+        if($display==1){
+            if(DB::table('cate')->where('id','=',$id)->update(['display'=>0])){
+                echo 0;
+            }
+        }else{
+            if(DB::table('cate')->where('id','=',$id)->update(['display'=>1])){
+                echo 1;
             }
         }
     }

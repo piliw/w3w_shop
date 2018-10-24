@@ -37,6 +37,8 @@ Route::group([],function(){
 	Route::post('/cateupdate','Admin\CateController@cateUpdate');
 	//分类删除
 	Route::get('/catedelete','Admin\CateController@delete');
+	//改变分类状态
+	Route::get('/catedisplay','Admin\CateController@display');
 
 });
 

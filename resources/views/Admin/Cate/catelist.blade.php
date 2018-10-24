@@ -23,20 +23,10 @@
 </head>
 <body>
 <div class="page-container">
-	<div class="text-c">
-		<form class="Huiform" method="post" action="" target="_self">
-			<input type="text" placeholder="分类名称" value="" class="input-text" style="width:120px">
-			<span class="btn-upload form-group">
-			<input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly style="width:200px">
-			<a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 上传logo</a>
-			<input type="file" multiple name="file-2" class="input-file">
-			</span> <span class="select-box" style="width:150px">
-			<select class="select" name="brandclass" size="1">
-				<option value="1" selected>国内品牌</option>
-				<option value="0">国外品牌</option>
-			</select>
-			</span><button type="button" class="btn btn-success" id="" name="" onClick="picture_colume_add(this);"><i class="Hui-iconfont">&#xe600;</i> 添加</button>
-		</form>
+			<a href="/categoryadd">
+			<button type="button" class="btn btn-success" id="" name="" onClick="picture_colume_add(this);"><i class="Hui-iconfont">&#xe600;</i> 添加分类</button>
+			</a>
+		
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-sort">
@@ -56,8 +46,8 @@
 					<td>{{$cate->name}}</td>
 					<td><img src="{{$cate->curl}}" height="100px"></td>
 					<td>{{$cate->pid}}</td>
-					<td>{{$cate->display}}</td>
-					<td class="f-14 product-brand-manage"><a style="text-decoration:none" onClick="product_brand_edit('品牌编辑','codeing.html','1')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" href="/catedelete?id={{$cate->id}}" onclick="return confirm('你确定要删除吗?');" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td><button @if($cate->display=='启用')class="btn btn-success display"@else class="btn btn-danger display" @endif attr="{{$cate->id}}">{{$cate->display}}</button></td>
+					<td class="f-14 product-brand-manage"><a style="text-decoration:none" class="edit" attr="{{$cate->id}}"href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" href="/catedelete?id={{$cate->id}}" onclick="return confirm('你确定要删除吗?');" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -75,5 +65,56 @@
 <script type="text/javascript" src="/static/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
 </script>
+
+  <script src="/layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element
+    ,layer = layui.layer;
+
+    element.render();
+    
+    /* 触发弹层 */
+    $('.edit').click(function(){
+    	var id=$(this).attr('attr');
+      	   layer.open({
+          type: 2
+          ,content: '/category/'+id+'/edit'
+          ,shadeClose: true
+          ,area:['800px', '350px']
+          ,maxmin: true
+          ,end: function(index, layero){ 
+ 		 location.reload();
+  		// return false; 
+		}    
+        });
+    });
+ 
+ });
+    </script>
+    <script>
+    $('.display').click(function(){
+    	var id=$(this).attr('attr');
+    	if($(this).html()=="启用"){
+    		display=1;
+    	}else{
+    		display=0;
+    	}
+    	$.get('/catedisplay',{id:id,display:display},function(data){
+    		if(data==1){
+    			 $('.display').removeClass('btn-danger').addClass('btn-success').html('启用');
+    		}else{
+    			 $('.display').removeClass('btn-success').addClass('btn-danger').html('禁用');
+    		}
+    	});
+    });
+
+    </script>
 </body>
 </html>
