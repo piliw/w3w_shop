@@ -19,6 +19,7 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]--> 
   <style>
+  .content img{max-height:250px;}
   </style>
   <title>品牌管理</title> 
   <link rel="stylesheet" href="http://localhost/H-ui.admin/lib/layer/2.4/skin/layer.css" id="layui_layer_skinlayercss" style="" />
@@ -28,7 +29,7 @@
 
   <div class="page-container"> 
    <div class="cl pd-5 bg-1 bk-gray mt-20"> 
-    <span class="l"><a href="javascript:;" onclick="member_add('添加广告','/notece/create','','510')" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 添加广告</a></span> 
+    <span class="l"><a href="javascript:;" onclick="member_add('添加广告','/notece/create','','510')" class="btn btn-primary radius"><i class="Hui-iconfont"></i> 添加公告</a></span> 
    </div> 
    <div class="mt-20"> 
     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
@@ -38,7 +39,7 @@
         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 20px;" aria-label="ID: 升序排列" width="20">ID</th>
         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 40px;" aria-label="图片名: 升序排列" width="40">公告名</th>
         <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 40px;" aria-label="添加时间: 升序排列" width="40">跳转URL</th>
-        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 180px;" aria-label="添加时间: 升序排列" width="180">公告内容</th>
+        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;align:center" aria-label="添加时间: 升序排列" width="150">公告内容</th>
         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 40px;" aria-label="状态" width="40">状态</th>
         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 40px;" aria-label="操作" width="40">操作</th>
        </tr> 
@@ -49,7 +50,7 @@
         <td>{{$v->id}}</td> 
         <td>{{$v->name}}</td> 
         <td>{{$v->url}}</td>
-        <td>{!!$v->content!!}</td>
+        <td class="content">{!!$v->content!!}</td>
         @if($v->status=='上架')
         <td class="td-status"><span class="label label-success radius">{{$v->status}}</span></td>
         @else

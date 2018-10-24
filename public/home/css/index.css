@@ -120,7 +120,7 @@
 .guanfangremai{ position:absolute; top:-26px; left:0; font-family:"微软雅黑"; color:#333; font-size:16px}
 /*其他商品 */
 .dy17{ width:100%; height:auto; background:#f8f8f8; margin-top:30px; overflow:hidden; position:relative; padding-top:10px; padding-bottom:100px}
-.dy19{ position:fixed; top:50%; left:51%; width:80px; background:#111; margin-left:-704px;padding:6px 0; display:none}
+.dy19{ position:fixed; top:50%; left:51%; width:78px; background:#111; margin-left:-704px;padding:6px 0; display:none}
 .dy19 a{ display:block; width:100%; text-align:center; height:28px; line-height:28px; color:#b0b0b0; font-size:12px}
 .dy19 .danb{ color:#fff}
 .dy19 a:hover{ color:#fff}
@@ -132,7 +132,8 @@
 .dy21{ width:1226px; height:614px; overflow:hidden} 
 .dy22{ width:234px; height:604px; float:left; margin-top:5px}
 .dy24{ width:234px; height:302px}
-.dy24 a{ display:block; width:234px; height:302px; overflow:hidden}
+.dy24 a{ display:block; width:230px;height:555px; overflow:hidden}
+.dy24 a img{width:100%;}
 .dy25{ width:234px; height:302px;overflow:hidden; background:#fff} 
 .dy25 ul{ width:224px; margin:0 auto}
 .dy25 ul li{ width:108px; height:37px;float:left; margin-top:6px; margin-left:1px}
@@ -223,7 +224,14 @@
 	text-align:center;
 	}
 
- 
+ .notece{
+ 	background:url(../img/notece.png) no-repeat scroll 0px 10px;
+ 	background-size:20px 20px;
+ 	color:#b0b0b0;
+  padding-left: 26px;
+  text-align: left;
+
+ }
  
  
  
