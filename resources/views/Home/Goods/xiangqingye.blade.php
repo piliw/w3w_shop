@@ -201,10 +201,14 @@
                        
                     });
                     </script>
-                 <!--加入购物车与收藏商品-->
+                <!--加入购物车与收藏商品-->
                 <input type="hidden" name="id" value="{{$data->id}}">
                  <div class="joinspadsp">
+                    @if(session('hid'))
                     <a href="javascript:void(0)" style=" margin-left:67px"><input type="submit" style="background-color:#DF3033;color:white" value="立即购买"></a>
+                    @else
+                    <a href="/homelogin" style=" margin-left:67px" onclick="return confirm('你还没登录,请登录')">立即购买</a>
+                    @endif
                     <a href="javascript:void(0)" style=" margin-left:6px" id="shops">加入购物车</a>
                     <a href="javascript:void(0)" style=" margin-left:6px">收藏该商品</a>
                  </div>
@@ -212,7 +216,7 @@
                 </form>
                  <!--商品编号-->
                  <div class="shopbh">
-                 	<span>商品编号</span>
+                 	<span style="width:60px">商品编号</span>
                     <em>{{$data->number}}</em>
                  </div>    
             </div>
