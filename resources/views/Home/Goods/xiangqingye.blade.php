@@ -19,23 +19,22 @@
             <li><a href="#">唯尚衣族官网<br/>唯尚衣族官网</a></li>
             <li><a href="#" id="diyunapp">商城APP<br/>商城APP</a></li>
         </ul>
-        <a href="#" class="dy5">购物车</a>
+        <a href="/homecart" class="dy5">购物车</a>
         <ul class="dy4">
             <li><a href="#">登录<br/>登录</a></li>
             <li><a href="#">注册<br/>注册</a></li>
         </ul>
         <div class="dy6">
             <ul>
-               	<li>
-                   	<b><img src="/home/img/wxrzhuji.jpg"/></b>
-                    <a href="#" class="dy7">外星人主机</a>
-                    <a href="#" class="dy8">删除</a>
-                </li>
-                <li>
-                   	<b><img src="/home/img/gaoqingxianshiqi.jpg"/></b>
-                    <a href="#" class="dy7">4k高清显示器</a>
-                    <a href="#" class="dy8">删除</a>
-                </li>
+            	@if(!empty($datas))
+	            	@foreach($datas as $rows)
+	               	<li>
+	                   	<b><img src="{{$rows['p_url']}}"/></b>
+	                    <a href="#" class="dy7">{{$rows['name']}}</a>
+	                    <a href="#" class="dy8">删除</a>
+	                </li>
+	                @endforeach
+                @endif
              </ul>
          </div>
          <div class="dy9">
@@ -441,6 +440,7 @@ $(function(){
             							})
                                 </script>
                             </div> -->
+
                 <div class="choosecm">
                 	<span>选择尺码</span>
                     <div class="morecm">
@@ -450,10 +450,18 @@ $(function(){
                     </div>
                 </div>
                 <!--购买数量-->
+
+                <form action="/homecart" method="post">
+
+                <!-- 获取尺码数据 -->
+                <input type="hidden" name="size" value="{{$data->size}}">
+                <!-- 商品的价格 -->
+                <input type="hidden" name="price" value="{{$data->price}}">
+
                 <div class="goumaijiajian">
                     <span>购买数量</span>
                     <input id="min" name="" type="button" value="减" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">  
-    <input id="text_box" name="" type="text" value="1" style="width:60px;height:30px; font-size:12px; text-align:center; float:left"/>  
+    <input id="text_box" name="num" type="text" value="1" style="width:60px;height:30px; font-size:12px; text-align:center; float:left"/>  
     <input id="add" name="" type="button" value="加" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">
 				</div>
 				<script>
@@ -482,11 +490,14 @@ $(function(){
 					});
 					</script>
                  <!--加入购物车与收藏商品-->
+				<input type="hidden" name="id" value="{{$data->id}}">
                  <div class="joinspadsp">
-                 	<a href="#" style=" margin-left:67px">立即购买</a>
-                 	<a href="#" style=" margin-left:6px">加入购物车</a>
-                    <a href="#" style=" margin-left:6px">收藏该商品</a>
+                 	<a href="javascript:void(0)" style=" margin-left:67px"><input type="submit" style="background-color:#DF3033;color:white" value="立即购买"></a>
+                 	<a href="javascript:void(0)" style=" margin-left:6px" id="shops">加入购物车</a>
+                    <a href="javascript:void(0)" style=" margin-left:6px">收藏该商品</a>
                  </div>
+                 {{csrf_field()}}
+				</form>
                  <!--商品编号-->
                  <div class="shopbh">
                  	<span>商品编号</span>
@@ -494,6 +505,24 @@ $(function(){
                  </div>    
             </div>
         </div>
+        <!-- 加入购物车 -->
+        <script>
+        	$('#shops').click(function(){
+        		// alert(1);
+        		var size=$('input[name=size]').val();
+        		var num=$('input[name=num]').val();
+        		var id=$('input[name=id]').val();
+        		var price=$('input[name=price]').val();
+        		// alert(id);
+        		$.get("/homecart/create",{size:size,num:num,id:id,price:price},function(data){
+        			if(data==1){
+        				alert('成功添加购物车');
+        			}else{
+        				alert('商品已在购物车');
+        			}
+        		})
+        	});
+        </script>
     	<!--n2-->
         <div class="daitianc">
         	<span class="lkadlk">瞧了又瞧</span>

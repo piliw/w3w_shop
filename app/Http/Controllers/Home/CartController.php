@@ -13,16 +13,11 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    // 商品购物测试
-    public function test(){
-        $info=DB::table('goods')->where('id','=',13)->first();
-        // dd($info);
-        return view("Home.test.test",['info'=>$info]);
-    }
-
+   
     // 购物车列表方法
-    public function index(Request $request)
+    public function index()
     {
+
         //获取session数组数据 id和num
         $cart=session('cart');
         // dd($cart);
@@ -34,13 +29,12 @@ class CartController extends Controller
         // 遍历$cart
         foreach($cart as $key=>$value){
             // 获取商品数据
-            // $info=DB::table('goods')->where('id','=',$value['id'])->first();
             $info=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.*','pic_url.p_url')->where('goods.id','=',$value['id'])->where('pic_url.main','=',1)->first();
             // dd($info);
             $row['name']=$info->name;
             $row['price']=$info->price;
             $row['p_url']=$info->p_url;
-            $row['size']=$info->size;
+            $row['size']=$value['size'];
             $row['num']=$value['num'];
             $total+=$row['price']*$row['num'];
             $tot+=$row['num'];
@@ -123,9 +117,34 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    
+    // cart购物车去重复商品
+    public function checkShop($id){
+        // 获取cart1购物车的信息
+        $shopcart=session('cart');
+        if(empty($shopcart)) return false;
+        // 遍历
+        foreach($shopcart as $k=>$v){
+            if($v['id']==$id){
+                return true;
+            }
+        }
+    }
+    // cart购物车商品存进session
+    public function create(Request $request)
     {
-        //
+        //加入购物车
+        $req=$request->all();
+        // dd($req);
+        
+        if(!$this->checkShop($req['id'])){
+            // 把商品添加到session里
+            $request->session()->push('cart',$req);
+            echo 1;
+        }else{
+            echo 2;
+        }
+       
     }
 
     /**
@@ -135,32 +154,35 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    // 购物车去重
-    public function checkExists($id){
-        // 获取所有购物车的信息
-        $goods=session('cart');
-        // 判断
-        if(empty($goods)) return false;
-        // 遍历
-        foreach($goods as $key=>$value){
-            if($value['id']==$id){
-                return true;
-            }
-        }
-    }
 
-    // 购物车设计
+    // 直接到订单结算页
     public function store(Request $request)
     {
         // dd($request->all());
-        $res=$request->except('_token');
-
-        if(!$this->checkExists($res['id'])){
-            // 把当前购买的商品加入到session里
-            $request->session()->push('cart',$res);
-        }
-        // 跳转
-        return redirect("/homecart");
+        $req=$request->except('_token');
+        // dd($req);
+        $result=[];
+        $total='';
+        $infos=DB::table('goods')->join('pic_url','goods.id','=','pic_url.gid')->select('goods.*','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.id','=',$req['id'])->first();
+        // dd($infos);
+        $rows['name']=$infos->name;
+        $rows['price']=$infos->price;
+        $rows['p_url']=$infos->p_url;
+        $rows['num']=$req['num'];
+        // 总数
+        $total+=$rows['price']*$rows['num'];
+        // 商品数量的小计
+        $rows['toot']=$rows['price']*$rows['num'];
+        $rows['id']=$req['id'];
+        
+        $result[]=$rows;
+        // dd($result);
+        // 获取登录的用户
+        $sid=session('hid');
+        // 获取收货地址的数据
+        $data1=DB::table('address')->where('user_id','=',$sid)->get();
+        // 直接跳转到结算页
+        return view("Home.orders.orders",['sid'=>$sid,'result'=>$result,'total'=>$total,'data1'=>$data1]);
     }
 
     /**

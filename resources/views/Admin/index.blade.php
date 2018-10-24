@@ -135,9 +135,6 @@
                 <dd>
                   <a lay-href="/order">订单详情</a>
                 </dd>
-                <dd>
-                  <a lay-href="user/administrators/role.html">商品详情</a>
-                </dd>
               </dl>
             </li>
           

@@ -24,45 +24,7 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
-<style>
-	.toubu li{
-		width:120px;
-		height:25px;
-		line-height:25px;
-		float:left;
-		text-align:center;
-		list-style-type:none;
-		/*border:1px solid lightgreen;*/
-		/*background:#E8F2FF;*/
-		margin-right:10px;
-		margin-bottom:5px;
-	}
-	.current{
-		background:#E8F2FF;
-		border:1px solid lightgreen;
-	}
-	.contents{
-		width:1050px;
-		height:350px;
-		float:left;
-	}
-	.contentss{
-	width:1050px;
-	height:350px;
-	border:1px solid lightgreen;
-	display:block;
-	}
-	.contentsss{
-		width:1050px;
-		height:350px;
-		border:1px solid lightgreen;
-		display:none;
-	}
-	.cons{
-		width:1050px;
-		height:50px;
-	}
-</style>
+
 <title>基本设置</title>
 </head>
 <body>
@@ -126,9 +88,10 @@
 												未付款
 											@elseif($row->status == 1)
 												已付款
-												<a class="label label-danger" data-target="#mymodels" data-toggle="modal">去发货</a>
+												<a class="label label-danger cargo" attr="{{$row->id}}">去发货</a>
 											@elseif($row->status == 2)
 												待收货
+												<a class="label label-primary send" dttr="{{$row->id}}">查看物流</a>
 											@elseif($row->status == 3)
 												已收货
 											@else
@@ -137,7 +100,7 @@
 										</td>
 										<td>{{$row->addtime}}</td>
 										<td>{{$row->paytime}}</td>
-										<td class="f-14"><a class="btn btn-success" data-target="#mymodel" data-toggle="modal">详情</a></td>
+										<td class="f-14"><a class="btn btn-success test" attr="{{$row->id}}">详情</a></td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -185,20 +148,11 @@
 										<td>
 											@if($rowa->status==0)
 												未付款
-											@elseif($rowa->status == 1)
-												已付款
-												<a class="label label-danger" data-target="#mymodels" data-toggle="modal">去发货</a>
-											@elseif($rowa->status == 2)
-												待收货
-											@elseif($rowa->status == 3)
-												已收货
-											@else
-											待评价
 											@endif
 										</td>
 										<td>{{$rowa->addtime}}</td>
 										<td>{{$rowa->paytime}}</td>
-										<td class="f-14"><a class="btn btn-success" data-target="#mymodel" data-toggle="modal">详情</a></td>
+										<td class="f-14"><a class="btn btn-success test" attr="{{$rowa->id}}">详情</a></td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -244,22 +198,14 @@
 										<td>{{$rowb->address}}</td>
 										<td>{{$rowb->total}}</td>
 										<td>
-											@if($rowb->status==0)
-												未付款
-											@elseif($rowb->status == 1)
+											@if($rowb->status == 1)
 												已付款
-												<a class="label label-danger" data-target="#mymodels" data-toggle="modal">去发货</a>
-											@elseif($rowb->status == 2)
-												待收货
-											@elseif($rowb->status == 3)
-												已收货
-											@else
-											待评价
+												<a class="label label-danger cargo" attr="{{$rowb->id}}">去发货</a>
 											@endif
 										</td>
 										<td>{{$rowb->addtime}}</td>
 										<td>{{$rowb->paytime}}</td>
-										<td class="f-14"><a class="btn btn-success" data-target="#mymodel" data-toggle="modal">详情</a></td>
+										<td class="f-14"><a class="btn btn-success test" attr="{{$rowb->id}}">详情</a></td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -305,22 +251,14 @@
 										<td>{{$rowc->address}}</td>
 										<td>{{$rowc->total}}</td>
 										<td>
-											@if($rowc->status==0)
-												未付款
-											@elseif($rowc->status == 1)
-												已付款
-												<a class="label label-danger" data-target="#mymodels" data-toggle="modal">去发货</a>
-											@elseif($rowc->status == 2)
+											@if($rowc->status==2)
 												待收货
-											@elseif($rowc->status == 3)
-												已收货
-											@else
-											待评价
+												<a class="label label-primary send" dttr="{{$rowc->id}}">查看物流</a>
 											@endif
 										</td>
 										<td>{{$rowc->addtime}}</td>
 										<td>{{$rowc->paytime}}</td>
-										<td class="f-14"><a class="btn btn-success" data-target="#mymodel" data-toggle="modal">详情</a></td>
+										<td class="f-14"><a class="btn btn-success test" attr="{{$rowc->id}}">详情</a></td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -412,22 +350,13 @@
 										<td>{{$rowd->address}}</td>
 										<td>{{$rowd->total}}</td>
 										<td>
-											@if($rowd->status==0)
-												未付款
-											@elseif($rowd->status == 1)
-												已付款
-												<a class="label label-danger" data-target="#mymodels" data-toggle="modal">去发货</a>
-											@elseif($rowd->status == 2)
-												待收货
-											@elseif($rowd->status == 3)
+											@if($rowd->status==3)
 												待评价
-											@else
-											关闭的订单
 											@endif
 										</td>
 										<td>{{$rowd->addtime}}</td>
 										<td>{{$rowd->paytime}}</td>
-										<td class="f-14"><a class="btn btn-success" data-target="#mymodel" data-toggle="modal">详情</a></td>
+										<td class="f-14"><a class="btn btn-success test" attr="{{$rowd->id}}">详情</a></td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -487,126 +416,6 @@
 		</form>
 	</div>
 	
-	<!-- 去发货模态框开始 -->
-	<div class="modal fade" id="mymodels" >
-		<div class="modal-dialog" style="width:1100px">
-			<div class="modal-content">
-			<!-- 这是模态框头部 -->
-				<div class="modal-header">
-					<!-- data-dismiss="modal" 关闭模态框 -->
-					<button class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title">填写物流信息:</h3>
-				</div>
-
-				<!-- 主体内容 -->
-				<div class="modal-body">
-					<div style="width:1000px;height:370px">
-						<form action="">
-							<div class="input-group has-success" >
-								<span class="input-group-addon">@</span> 
-								<input type="text" class="form-control">
-							</div>
-							<div class="input-group has-error">
-									<input type="text" class="form-control">
-									<span class="input-group-addon">.00</span>
-							</div>
-							<div class="input-group has-warning">
-									<span class="input-group-addon">$</span>
-									<input type="text" class="form-control">
-									<span class="input-group-addon">.00</span>
-							</div>
-							<input type="submit" value="提交" class="btn btn-success">
-						</form>
-					</div>
-				</div>
-				
-				<!-- 脚部内容 -->
-				<div class="modal-footer">
-					<button class="btn btn-danger" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 去发货模态框结束 -->
-
-	<!-- 详情模态框开始 -->
-	<div class="modal fade" id="mymodel" >
-		<div class="modal-dialog" style="width:1100px">
-			<div class="modal-content">
-			<!-- 这是模态框头部 -->
-				<div class="modal-header">
-					<!-- data-dismiss="modal" 关闭模态框 -->
-					<button class="close" data-dismiss="modal">&times;</button>
-					<h3 class="modal-title"> 交易详情</h3>
-				</div>
-
-				<!-- 主体内容 -->
-				<div class="modal-body">
-					<div style="width:1000px;height:370px">
-						<ul class="toubu">
-							<li class="current">订单信息</li>
-							<li>物流信息</li>
-						</ul>
-						<div class="contents">
-							<div class="contentss">
-								<div class="cons">
-									订单信息
-								</div>
-								<table class="table table-bordered table-striped table-condensed table-hover">
-									<tr class="success">
-										<th>姓名</th>
-										<th>性别</th>
-										<th>大小</th>
-										<th>操作</th>
-									</tr>
-									<tr class="warning">
-										<td class="text-center">龙哥</td>
-										<td>男</td>
-										<td>20</td>
-										<td><button class="btn btn-success"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button></td>
-									</tr>
-									<tr class="danger">
-										<td class="text-center">乃武</td>
-										<td>男</td>
-										<td>21</td>
-										<td><button class="btn btn-success"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button></td>
-									</tr>
-									<tr class="success">
-										<td class="text-center">焦哥</td>
-										<td>男</td>
-										<td>21.1</td>
-										<td><button class="btn btn-success"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button></td>
-									</tr>
-									<tr class="warning">
-										<td class="text-center">觉主</td>
-										<td>男</td>
-										<td>21.2</td>
-										<td><button class="btn btn-success"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button></td>
-									</tr>
-									<tr class="danger">
-										<td class="text-center">德宝</td>
-										<td>男</td>
-										<td>-20</td>
-										<td><button class="btn btn-success"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button></td>
-									</tr>
-								</table>
-							</div>
-							<div class="contentsss">
-								快乐十分个人sdda
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- 脚部内容 -->
-				<div class="modal-footer">
-					<button class="btn btn-danger" data-dismiss="modal">关闭</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 详情模态框结束 -->
-
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="static/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="static/lib/layer/2.4/layer.js"></script>
@@ -654,5 +463,61 @@ $(function(){
 });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+  layui.config({
+    base: '/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element
+    ,layer = layui.layer;
+
+    element.render();
+    
+    /* 触发弹层 */
+   // 订单详情
+   $('.test').click(function(){
+  	var id=$(this).attr('attr');
+   	layer.open({
+          type: 2
+          ,content: '/order/'+id
+          ,shadeClose: true
+          , area: ['1000px', '500px']
+          ,maxmin: true
+        });
+   });
+
+   // 物流发货
+   $('.cargo').click(function(){
+   	// alert(1);
+  	var id=$(this).attr('attr');
+   	layer.open({
+          type: 2
+          ,content: '/order/create?id='+id
+          ,shadeClose: true
+          , area: ['1000px', '500px']
+          ,maxmin: true
+        });
+   });
+
+   // 查看物流
+   $('.send').click(function(){
+  	var id=$(this).attr('dttr');
+  	// alert(id);
+   	layer.open({
+          type: 2
+          ,content: 'http://www.baidu.com'
+          ,shadeClose: true
+          , area: ['1000px', '500px']
+          ,maxmin: true
+        });
+   });
+     
+});
+
+</script>  
 </body>
 </html>

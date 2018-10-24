@@ -321,21 +321,13 @@
         <!--一条商品信息结束-->
     </div>
     <!--商品清单结束-->
-    <form action="/ordershop" method="post">
+    <form action="/ordershopa" method="post">
 
         @foreach($data1 as $v)
             <div id="input">
             <input type="hidden" name="name" value="{{$v->u_name}}">
             <input type="hidden" name="address" value="{{$v->u_address}}">
             <input type="hidden" name="phone" value="{{$v->u_phone}}">
-            </div>
-        @endforeach
-
-        @foreach($result as $key=>$vv)
-            <div>
-            <input type="hidden" name="id" value="{{$vv['id']}}">
-            <input type="hidden" name="num" value="{{$vv['num']}}">
-            <input type="hidden" name="price" value="{{$vv['price']}}">
             </div>
         @endforeach
             <input type="hidden" name="total" value="{{$total}}">

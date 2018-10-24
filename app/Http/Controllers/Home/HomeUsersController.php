@@ -173,8 +173,26 @@ class HomeUsersController extends Controller
             $value = session('hid');
             $data = DB::table('user')->where('id','=',$value)->first();
             $datas = DB::table('user_info')->where('user_id','=',$value)->first();
+
+            // 获取商品订单数据
+            $info=DB::table('order')->where('user_id','=',$value)->get();
+            // 获取订单全部条数
+            $sall=DB::table('order')->where('user_id','=',$value)->count();
+            // 获取订单各个状态的条数
+            $szero=DB::table('order')->where('user_id','=',$value)->where('status','=',0)->count();
+            $sone=DB::table('order')->where('user_id','=',$value)->where('status','=',1)->count();
+            $stwo=DB::table('order')->where('user_id','=',$value)->where('status','=',2)->count();
+            $sthree=DB::table('order')->where('user_id','=',$value)->where('status','=',3)->count();
+            // dd($szero);
+            $result=[];
+            foreach($info as $key=>$v){
+                $v->addtime=date('Y-m-d',$v->addtime);
+                $v->dev=DB::table('order_info')->join('goods','order_info.goods_id','=','goods.id')->join('pic_url','goods.id','=','pic_url.gid')->select('order_info.*','goods.*','pic_url.p_url')->where('order_info.order_id','=',$v->id)->where('pic_url.main','=',1)->get();
+                $result[]=$v;
+            }
+            // dd($result);
             // 加载模板
-            return view('Home.gerenzhongxin.index',['data'=>$data,'datas'=>$datas]);
+            return view('Home.gerenzhongxin.index',['data'=>$data,'datas'=>$datas,'result'=>$result,'sall'=>$sall,'szero'=>$szero,'sone'=>$sone,'stwo'=>$stwo,'sthree'=>$sthree]);
         }else{
             // 跳转到登录
             return redirect('/homelogin');

@@ -1,5 +1,96 @@
 @extends('Home.home_public.public')
 @section('home')
+<style>
+        .ddss{
+            width:980px;
+            text-align:center;
+            font-size:13px;
+        }
+        .rddss{
+            width:980px;
+            height:40px;
+            line-height:40px;
+            background-color:#F1F1F1;
+            float:left;
+        }
+        .reass{
+            width:380px;
+            height:40px;
+            float:left;
+        }
+        .reass1{
+            width:149px;
+            height:40px;
+            float:left;
+        }
+        .reass2{
+            width:300px;
+            height:40px;
+            float:left;
+        }
+        .big{
+            width:980px;
+        }
+        .left{
+            width:620px;
+            float: left;
+        }
+        .right{
+            width:119px;
+            border-right:1px solid #ECECEC;
+            border-bottom:1px solid #ECECEC;
+            float: left;
+        }
+
+
+        .center{
+            width: 620px;
+            height: 120px;
+            font-size:12px;
+            border-left:1px solid #ECECEC;
+            border-right:1px solid #ECECEC;
+            border-bottom:1px solid #ECECEC;
+        }
+        .reblas{
+            width:120px;
+            height:120px;
+            float:left;
+        }
+        .reblas1{
+            width:255px;
+            height:120px;
+            float:left;
+        }
+        .reblas2{
+            width:80px;
+            height:120px;
+            float:left;
+        }
+        .reblas3{
+            width:40px;
+            height:120px;
+            float:left;
+        }
+        .reblas4{
+            width:110px;
+            height:120px;
+            float:left;
+        }
+        #boead{
+
+            text-decoration:none;
+            color:#333333;
+            font-size:12px;
+        }
+        #boead:hover{
+            color:#FF6700;
+        }
+
+        #pright p{
+            font-size:15px;
+        }
+
+    </style>
 <!--个人中心首页 -->
 <div class="thetoubu">
 	<!--头部-->
@@ -97,165 +188,129 @@
         <!--lll-->
         	<div class="dfdaspjtk">
             	<span style=" display:block; float:left; font-size:14px; font-weight:bold; line-height:34px; padding-left:20px; padding-right:20px; color:#666">交易提醒</span>
-            	<a href="#" style="color:#09f">待付款&nbsp;<s>1</s></a>
-                <a href="#">待收货&nbsp;<s>1</s></a>
-                <a href="#">待发货&nbsp;<s>1</s></a>
-                <a href="#">待评价&nbsp;<s>1</s></a>
-                <a href="#">交易历史&nbsp;<s>1</s></a>
+                <a href="javascript:void(0)" dd="5" style="color:#09f">全部订单&nbsp;(<s>{{$sall}}</s>)</a>
+            	<a href="javascript:void(0)" dd="0">待付款&nbsp;(<s>{{$szero}}</s>)</a>
+                <a href="javascript:void(0)" dd="1">待发货&nbsp;(<s>{{$sone}}</s>)</a>
+                <a href="javascript:void(0)" dd="2">待收货&nbsp;(<s>{{$stwo}}</s>)</a>
+                <a href="javascript:void(0)" dd="3">待评价&nbsp;(<s>{{$sthree}}</s>)</a>
             </div>
             <script>
 			$(function(){
 				$(".dfdaspjtk a").click(function(){
-					$(this).css({color:"#09f"}).siblings().css({color:"#333"})
-					})
-				})
+					$(this).css({color:"#09f"}).siblings().css({color:"#333"});
+                    var id=$(this).attr('dd');
+                    // alert(id);
+                    $('#removes').empty();
+                    $.get("/status",{id:id},function(data){
+                        // alert(data);
+                        // 遍历
+                        for(var i=0;i<data.length;i++){
+                            // alert(data[i].dev);
+                            var ddss=$('<div class="ddss"></div>');
+                            var rddss=$('<div class="rddss"><div class="reass">'+data[i].addtime+'&nbsp;&nbsp; 订单编号 : '+data[i].o_number+'</div><div class="reass1"></div><div class="reass1"></div><div class="reass2"></div></div>');
+                            if(data[i].status==0){
+                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p><p style="margin-top:15px" ><a href="/status/'+data[i].id+'" id="reads">去付款</a></p></div><div class="right"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">未付款</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
+                            }else if(data[i].status==1){
+                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">待发货</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
+                            }else if(data[i].status==2){
+                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">待收货</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
+                            }else if(data[i].status==3){
+                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">已收货</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
+                            }
+                            
+                            var bigs=$('<div class="big"></div>');
+                            var lefts=$('<div class="left"></div>');
+                            for(var j=0;j<(data[i].dev).length;j++){
+                                // alert((data[i].dev)[j].g_total);
+                                var centers=$('<div class="center"><div class="reblas"><img src="'+(data[i].dev)[j].p_url+'" height="80px" style="margin-top:15px"></div><div class="reblas1"><p style="text-align:left;margin-top:15px"><a href="/homegoods/'+(data[i].dev)[j].id+'" id="boead">'+(data[i].dev)[j].name+'</a></p></div><div class="reblas2"><p style="margin-top:15px">￥'+(data[i].dev)[j].g_price+'</p></div><div class="reblas3"><p style="margin-top:15px">x'+(data[i].dev)[j].g_number+'</p></div><div class="reblas4"><p style="margin-top:15px"><a href="#" id="boead">申请售后</a></p></div></div>');
+                                
+                                lefts.append(centers);
+                            }
+                            bigs.append(lefts);
+                            bigs.append(rights);
+                            ddss.append(rddss);
+                            ddss.append(bigs);
+                            $('#removes').append(ddss);
+
+                             $('.right').each(function(){
+                                dd=$(this).parent().find('div').eq(0).css('height');
+                                $(this).css('height',dd);
+                            });
+
+                        }
+                    },'json');
+
+                   
+				});
+			});
             </script>
         <!--所有列表-->
-            <div class="sydlbdzz">
+            <div class="sydlbdzz" id="removes">
                 <!--一个列表开始-->
-                <div class="gzdlbdzzl">
-                    <!--左-->
-                    <div class="spzhaopin">
-                        <a href="#"><img src="/home/img/img02.jpg"/></a>
+                @foreach($result as $key=>$v)
+                <div class="ddss">
+                    <div class="rddss">
+                        <div class="reass">{{$v->addtime}} &nbsp;&nbsp;订单编号 : {{$v->o_number}}</div>
+                        <div class="reass1"></div>
+                        <div class="reass1"></div>
+                        <div class="reass2"></div>
                     </div>
-                    <!--中-->
-                    <div class="youstdongi">
-                        <a href="#"><h5>中华老字号乌鸡白凤丸300粒</h5></a>
-                        <span>下单时间：2016-6-6&nbsp;14:08</span>
-                        <span style=" color:#09f">订单状态：待付款</span>
-                        <span>订单金额：<s>￥600</s>
-                        <s style="color:#666; margin-left:10px">(1)件</s>
-                        <s style="color:#666; margin-left:10px">免运费</s>
-                        <s style="color:#666; margin-left:10px">在线支付</s>
-                        <a href="#" style="margin-left:10px">小明的店铺</a>
-                        <a href="#" style="margin-left:10px">取消订单</a>
-                        <a href="#" style="color:#F00; cursor:pointer; float:right">删除</a></span>
-                    </div>
-                    <!--右-->
-                    <div class="quzhifubasb">
-                        <a href="#">支付订单</a>
-                    </div>
-                    <!--右下-->
-                    <div class="chakanxiangqingfg">
-                    	<a href="#">查看详情</a>
+                    <div class="big">
+                        <div class="left" id="div">
+                            @foreach($v->dev as $k=>$vv)
+                            <div class="center">
+                                <div class="reblas"><img src="{{$vv->p_url}}" height="80px" style="margin-top:15px"></div>
+                                <div class="reblas1"><p style="text-align:left;margin-top:15px">
+                                    <a href="/homegoods/{{$vv->id}}" id="boead">{{$vv->name}}</a></p>
+                                </div>
+                                <div class="reblas2"><p style="margin-top:15px">￥{{$vv->g_price}}</p></div>
+                                <div class="reblas3"><p style="margin-top:15px">x{{$vv->g_number}}</p></div>
+                                <div class="reblas4">
+                                    <p style="margin-top:15px"><a href="#" id="boead">申请售后</a></p>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="right">
+                            <p style="margin-top:20px">￥{{$v->total}}.00</p>
+                            <p>(含运费：0.00)</p>
+                            @if($v->status==0)
+                                <p style="margin-top:15px" ><a href="/status/{{$v->id}}" id="reads" class="btn btn-success">去付款</a></p>
+                            @elseif($v->status==2)
+                                <p style="margin-top:15px"><a href="/affirm/{{$v->id}}" id="readss" class="btn btn-danger" onclick="return confirm('确认收货吗')">确认收货</a></p>
+                            @endif
+                        </div>
+                        <div class="right" id="pright">
+                            <p style="margin-top:20px">交易状态</p>
+                            @if($v->status==0)
+                            <p style="margin-top:20px;color:#ff6700">未付款</p>
+                            @elseif($v->status==1)
+                            <p style="margin-top:20px;color:#ff6700">待发货</p>
+                            @elseif($v->status==2)
+                            <p style="margin-top:20px;color:#ff6700">待收货</p>
+                            @elseif($v->status==3)
+                            <p style="margin-top:20px;color:#ff6700">已收货</p>
+                            @elseif($v->status==4)
+                            <p style="margin-top:20px;color:#ff6700">完成交易</p>
+                            @endif
+                        </div>
+                        <div class="right">
+                        <p style="margin-top:20px">评价商品</p>
+                        @if($v->status==3)
+                        <p style="margin-top:15px"><a href="/status/{{$v->id}}" id="readss" class="btn btn-primary">去评价</a></p>
+                        @endif
+                        </div>
                     </div>
                 </div>
+                @endforeach
                 <!--一个列表结束-->
-                <!--一个列表开始-->
-                <div class="gzdlbdzzl">
-                    <!--左-->
-                    <div class="spzhaopin">
-                        <a href="#"><img src="/home/img/img02.jpg"/></a>
-                    </div>
-                    <!--中-->
-                    <div class="youstdongi">
-                        <a href="#"><h5>中华老字号乌鸡白凤丸300粒</h5></a>
-                        <span>下单时间：2016-6-6&nbsp;14:08</span>
-                        <span style=" color:#f00">订单状态：待发货</span>
-                        <span>订单金额：<s>￥600</s>
-                        <s style="color:#666; margin-left:10px">(1)件</s>
-                        <s style="color:#666; margin-left:10px">免运费</s>
-                        <s style="color:#666; margin-left:10px">支付宝</s>
-                        <a href="#" style="margin-left:10px">小明的店铺</a>
-                        <a href="#" style=" margin-left:10px">交易投诉</a>
-                        
-                        <a href="#" style="color:#F00; cursor:pointer; float:right">删除</a></span>
-                    </div>
-                    <!--右-->
-                    <div class="quzhifubasb">
-                        <a href="#">订单退款</a>
-                    </div>
-                    <!--右下-->
-                    <div class="chakanxiangqingfg">
-                    	<a href="#">查看详情</a>
-                    </div>
-                </div>
-                <!--一个列表结束-->
-                <!--一个列表开始-->
-                <div class="gzdlbdzzl">
-                    <!--左-->
-                    <div class="spzhaopin">
-                        <a href="#"><img src="/home/img/img02.jpg"/></a>
-                    </div>
-                    <!--中-->
-                    <div class="youstdongi">
-                        <a href="#"><h5>中华老字号乌鸡白凤丸300粒</h5></a>
-                        <span>下单时间：2016-6-6&nbsp;14:08</span>
-                        <span style=" color:#09f">订单状态：待收货</span>
-                        <span>订单金额：<s>￥600</s>
-                        <s style="color:#666; margin-left:10px">(1)件</s>
-                        <s style="color:#666; margin-left:10px">免运费</s>
-                        <s style="color:#666; margin-left:10px">支付宝</s>
-                        <a href="#" style="margin-left:10px">小明的店铺</a>
-                        <a href="#" style=" margin-left:10px">交易投诉</a>
-                        <a href="#" style="color:#F00; cursor:pointer; float:right">删除</a></span>
-                    </div>
-                    <!--右-->
-                    <div class="quzhifubasb">
-                        <a href="#">确认收货</a>
-                    </div>
-                    <!--右下-->
-                    <div class="chakanxiangqingfg">
-                    	<a href="#">查看详情</a>
-                    </div>
-                </div>
-                <!--一个列表结束-->
-                <!--一个列表开始-->
-                <div class="gzdlbdzzl">
-                    <!--左-->
-                    <div class="spzhaopin">
-                        <a href="#"><img src="/home/img/img02.jpg"/></a>
-                    </div>
-                    <!--中-->
-                    <div class="youstdongi">
-                        <a href="#"><h5>中华老字号乌鸡白凤丸300粒</h5></a>
-                        <span>下单时间：2016-6-6&nbsp;14:08</span>
-                        <span style=" color:#09f">订单状态：待评价</span>
-                        <span>订单金额：<s>￥600</s>
-                        <s style="color:#666; margin-left:10px">(1)件</s>
-                        <s style="color:#666; margin-left:10px">免运费</s>
-                        <s style="color:#666; margin-left:10px">支付宝</s>
-                        <a href="#" style="margin-left:10px">小明的店铺</a>
-                        <a href="#" style=" margin-left:10px">交易投诉</a>
-                        <a href="#" style=" margin-left:10px">退款退货</a>
-                        <a href="#" style="color:#F00; cursor:pointer; float:right">删除</a></span>
-                    </div>
-                    <!--右-->
-                    <div class="quzhifubasb">
-                        <a href="#">我要评价</a>
-                    </div>
-                    <!--右下-->
-                    <div class="chakanxiangqingfg">
-                    	<a href="#">查看详情</a>
-                    </div>
-                </div>
-                <!--一个列表结束-->
-                <!--一个列表开始-->
-                <div class="gzdlbdzzl">
-                    <!--左-->
-                    <div class="spzhaopin">
-                        <a href="#"><img src="/home/img/img02.jpg"/></a>
-                    </div>
-                    <!--中-->
-                    <div class="youstdongi">
-                        <a href="#"><h5>中华老字号乌鸡白凤丸300粒</h5></a>
-                        <span>下单时间：2016-6-6&nbsp;14:08</span>
-                        <span style=" color:#999">订单状态：已取消</span>
-                        <span>订单金额：<s>￥600</s>
-                        <s style="color:#666; margin-left:10px">(1)件</s>
-                        <s style="color:#666; margin-left:10px">免运费</s>
-                        <s style="color:#666; margin-left:10px">在线付款</s>
-                        <a href="#" style="margin-left:10px">小明的店铺</a>
-                        <a href="#" style=" margin-left:10px">交易投诉</a>
-                        <a href="#" style=" margin-left:10px">退款退货</a>
-                        <a href="#" style="color:#F00; cursor:pointer; float:right">删除</a></span>
-                    </div>
-                    <!--右-->
-                    <div class="quzhifubasb">
-                        <a href="#">查看详情</a>
-                    </div>
-                </div>
-                <!--一个列表结束-->
+                <script>
+                    $('.right').each(function(){
+                        dd=$(this).parent().find('div').eq(0).css('height');
+                        $(this).css('height',dd);
+                    });
+
+                </script>
             </div> 
         <!--所有列表结束-->
         <!--我的购物车-->

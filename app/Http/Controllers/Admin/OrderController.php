@@ -25,17 +25,22 @@ class OrderController extends Controller
         // 已收货状态为3的
         $userd=DB::table('order')->where('status','=',3)->get();
         // dd($userd);
+        // 获取相关订单商品信息
+        // $data=$this->show();
         return view("Admin.Order.order",["user"=>$user,'usera'=>$usera,'userb'=>$userb,'userc'=>$userc,'userd'=>$userd]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $id=$request->input('id');
+        $info=DB::table('order')->where('id','=',$id)->first();
+        return view("Admin.Order.cargo",['info'=>$info]);
     }
 
     /**
@@ -46,7 +51,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id=$request->input('id');
+        $result=$request->only('send_area','send_number');
+        if(!empty($result['send_number'])){
+            $result['send_time']=time();
+            $result['status']=2;
+            // dd($result);
+            if(DB::table('order')->where('id','=',$id)->update($result)){
+                return redirect('/order');
+            }
+        }else{
+            return redirect('/order');
+        }
     }
 
     /**
@@ -58,7 +74,10 @@ class OrderController extends Controller
     public function show($id)
     {
         //订单详情
-        return view("/Admin.Order.order_info");
+        // dd($id);
+        $data=DB::table('order_info')->join('goods','order_info.goods_id','=','goods.id')->join('pic_url','goods.id','=','pic_url.gid')->select('goods.*','order_info.*','pic_url.*')->where('pic_url.main','=',1)->where("order_info.order_id",'=',$id)->get();
+        // dd($data);
+        return view("Admin.Order.shot",['data'=>$data]);
     }
 
     /**

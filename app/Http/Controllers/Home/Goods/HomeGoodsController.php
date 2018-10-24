@@ -57,7 +57,23 @@ class HomeGoodsController extends Controller
         $categoods=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('cate_id','=',$cate->id)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(6)->get();
         //$data->cate_id重新赋值
         $data->cate_id=$cate->name;
-        return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods]);
+
+        // 购物车显示,获取sessio的商品cart1
+        $data1=session('cart');
+        // dd($data1);
+        $datas=[];
+        // 获取用户id
+        if(!empty($data1)){
+            foreach($data1 as $key=>$value){
+                // dd($value['id']);
+                $result=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.name as gname','pic_url.p_url')->where('goods.id','=',$value['id'])->where('pic_url.main','=',1)->first();
+                $row['name']=$result->gname;
+                $row['p_url']=$result->p_url;
+                $datas[]=$row;
+            }
+        // dd($datas);
+        }
+        return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods,'datas'=>$datas]);
     }
 
     /**

@@ -52,19 +52,29 @@ Route::get('/branddel','Admin\BrandController@branddel');
 Route::resource('/adminabs','Admin\AbsController');
 // 后台广告Ajax删除
 Route::get('/absdel','Admin\AbsController@absdel');
-
+// 后台公告管理模块
+Route::resource('/notece','Admin\NoteceController');
+// 后台公告Ajax删除
+Route::get('/notecedel','Admin\NoteceController@notecedel');
+// 后台评价管理模块
+Route::resource('/appraise','Admin\AppraiseController');
+// 后台评价Ajax评价删除
+Route::get('/appraisedel','Admin\AppraiseController@appraisedel');
 // ----------------后台控制器-------------------------
-
 // 后台登录操作
 Route::resource('/login','Admin\LoginController');
-
+// 验证码
+Route::get('/fcode','Admin\LoginController@fcode');
+// ajax验证码验证是否正确
+Route::get('/fcodes','Admin\LoginController@fcodes');
 // 登录中间件路由组
 Route::group(['middleware'=>'login'],function(){
-
 // 后台首页
 Route::resource('/admin','Admin\IndexController');
 // 后台用户列表
 Route::resource('/adminuser','Admin\AdminUserController');
+// 修改管理员等级操作
+Route::post('/level','Admin\AdminUserController@level');
 // ajax用户名验证
 Route::get('/name','Admin\AdminUserController@name');
 // 后台用户删除
@@ -73,16 +83,76 @@ Route::get('/del','Admin\AdminUserController@del');
 Route::get('/status','Admin\AdminUserController@status');
 // 后台修改密码时,旧密码验证
 Route::get('/pass','Admin\AdminUserController@pass');
-
+// 后台用户权限管理
+Route::resource('/node','Admin\NodeController');
+// 后台分配权限
+Route::get('/auth/{id}','Admin\NodeController@auth');
+// 后台保存分权限
+Route::post('/saveauth','Admin\NodeController@saveauth');
+// 后台的前台用户列表
+Route::resource('/homeuser','Admin\HomeUsersController');
+// 后台的前台用户删除
+Route::get('/homedel','Admin\HomeUsersController@homedel');
+// 后台的前台用户列表是否禁用操作
+Route::get('/homestatus','Admin\HomeUsersController@homestatus');
+// ajax改变用户等级
+Route::get('/vip','Admin\HomeUsersController@vip');
 });
-
 // ----------------前台控制器-------------------------
-
 // 前台登录操作
 Route::resource('/homelogin','Home\LoginController');
 // 前台登录成功操作
 Route::post('/dologin1','Home\LoginController@dologin1');
+// 找回密码
+Route::get('/forget','Home\LoginController@forget');
+// 重置密码界面
+Route::post('/doforget','Home\LoginController@doforget');
+// 邮箱点击后的重置密码操作
+Route::get('/reset','Home\LoginController@reset');
+// 重置密码操作
+Route::post('/doreset','Home\LoginController@doreset');
+// 前台注册用户
+Route::resource('/zhuce','Home\HomeUsersController');
+// 邮箱激活状态
+Route::get('/jihuo','Home\HomeUsersController@jihuo');
+// ajax账户验证
+Route::get('/phone','Home\HomeUsersController@phone');
+// 自定义短信接口调用
+Route::get('/demo','Home\HomeUsersController@demo');
+// ajax短信校验
+Route::get('/code','Home\HomeUsersController@code');
 
+
+// 购物车控制器
+Route::resource("/homecart","Home\CartController");
+// 购物车减
+Route::get("/updatee/{id}","Home\CartController@updatee");
+// 购物车加
+Route::get("/updates/{id}","Home\CartController@updates");
+// 购物车商品删除
+Route::get("/cartdel/{id}","Home\CartController@del");
+
+// 前台订单操作
+Route::group(['middleware'=>'homelogin'],function(){
+	// 订单控制器
+	Route::resource("/orders","Home\OrdersController");
+	// 订单状态
+	Route::resource("/status","Home\StatusController");
+	// 确认收货处理
+	Route::get("/affirm/{id}","Home\StatusController@affirm");
+	
+	// 收货地址删除
+	Route::get("/addressdel","Home\OrdersController@del");
+	// 立即购买订单处理
+	Route::post("/ordershop","Home\OrdersController@ordershop");
+	// 购物车购买订单处理
+	Route::post("/ordershopa","Home\OrdersController@ordershopa");
+
+	// 支付宝接口调用
+	Route::resource("/pays","Home\PayController");
+	// 支付完成的通知页面
+	Route::get("/returnurl","Home\PayController@returnurl");
+});
 // 商品管理
 Route::group([],function(){
 	// 商品列表
@@ -96,11 +166,3 @@ Route::group([],function(){
 
 // Home商品详情
 Route::resource('/homegoods','Home\Goods\HomeGoodsController');
-Route::group(['middleware'=>'homelogin'],function(){
-	// 订单控制器
-	Route::resource("/orders","Home\OrdersController");
-	// 收货地址删除
-	Route::get("/addressdel","Home\OrdersController@del");
-	// 提交订单
-	Route::post("/ordershop","Home\OrdersController@ordershop");
-});
