@@ -1,5 +1,4 @@
-﻿<!--_meta 作为公共模版分离出去-->
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
@@ -29,6 +28,10 @@
 <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
+					<!-- 错误信息显示 -->
+          @if(Session::has('success'))
+						<script>alert("{{Session::get('success')}}");</script>
+          @endif
 <article class="page-container">
 	<form action="/saveauth" method="post" class="form form-horizontal">
 		<div class="row cl">
@@ -48,8 +51,8 @@
 						<ul class="cl permission-list2">
 								@foreach($auth as $v)
 								<li style="float:left;width:110px">
-								<label class="">
-									<input type="checkbox" value="{{$v->id}}" name="nids[]" @if(in_array($v->id,$nids)) checked @endif> {{$v->name}}</label>
+								
+									<input type="checkbox" value="{{$v->id}}" name="nids[]" @if(in_array($v->id,$nids)) checked @endif> {{$v->name}}
 							</li>
 							@endforeach
 						</ul>
@@ -61,6 +64,7 @@
 		<input type="hidden" name="rid" value="{{$role->id}}">
 		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<!-- <a type="submit" href="javascript:;" class="btn btn-success quan"><i class="icon-ok"></i> 全选</a> -->
 				<button type="submit" class="btn btn-success radius"><i class="icon-ok"></i> 确定</button>
 			</div>
 		</div>
@@ -78,43 +82,50 @@
 <script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/static/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
-$(function(){
-	$(".permission-list dt input:checkbox").click(function(){
-		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
-	});
-	$(".permission-list2 dd input:checkbox").click(function(){
-		var l =$(this).parent().parent().find("input:checked").length;
-		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
-		if($(this).prop("checked")){
-			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
-			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
-		}
-		else{
-			if(l==0){
-				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
-			}
-			if(l2==0){
-				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
-			}
-		}
-	});
+// $(function(){
+// 	$(".permission-list dt input:checkbox").click(function(){
+// 		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+// 	});
+// 	$(".permission-list2 dd input:checkbox").click(function(){
+// 		var l =$(this).parent().parent().find("input:checked").length;
+// 		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
+// 		if($(this).prop("checked")){
+// 			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
+// 			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
+// 		}
+// 		else{
+// 			if(l==0){
+// 				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
+// 			}
+// 			if(l2==0){
+// 				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
+// 			}
+// 		}
+// 	});
 	
-	$("#form-admin-role-add").validate({
-		rules:{
-			roleName:{
-				required:true,
-			},
-		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-		submitHandler:function(form){
-			$(form).ajaxSubmit();
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.layer.close(index);
-		}
-	});
-});
+// 	$("#form-admin-role-add").validate({
+// 		rules:{
+// 			roleName:{
+// 				required:true,
+// 			},
+// 		},
+// 		onkeyup:false,
+// 		focusCleanup:true,
+// 		success:"valid",
+// 		submitHandler:function(form){
+// 			$(form).ajaxSubmit();
+// 			var index = parent.layer.getFrameIndex(window.name);
+// 			parent.layer.close(index);
+// 		}
+// 	});
+// });
+
+// alert($);
+// 全选
+// $('.quan').click(function(){
+	// alert(1);
+	
+// });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

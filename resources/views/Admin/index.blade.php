@@ -204,7 +204,13 @@
                   <a lay-href="/adminuser">后台管理员</a>
                 </dd>
                 <dd>
+                  <a lay-href="/roles">角色管理</a>
+                </dd>
+                <dd>
                   <a lay-href="/node">权限管理</a>
+                </dd>
+                <dd>
+                  <a lay-href="/nodelist">权限列表</a>
                 </dd>
               </dl>
             </li>
