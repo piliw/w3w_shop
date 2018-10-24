@@ -23,6 +23,7 @@ class LoginController extends Controller
         // 删除登录session
         $a = $request->session()->pull('username');
         $a = $request->session()->pull('id');
+        
         // $data = $request->session()->all();
         // dd($a);die;
         // 加载模板
@@ -92,6 +93,35 @@ class LoginController extends Controller
                     //把用户信息写入到session
                     session(['id'=>$data->id]);
                     session(['username'=>$data->username]);
+
+                    // 1.获取当前登录用户所有权限信息
+                    $list = DB::select("select n.name,n.mname,n.aname from user_role as ur,node_role as rn,node as n where ur.rid=rn.rid and rn.nid=n.id and uid={$data->id}");
+                    // echo '<pre>';
+                    // var_dump($list);die;
+                    // 2.初始化权限
+                    // 让所有管理员都可以访问后台首页
+                    // IndexController  后台首页控制器
+                    // index  后台首页控制器的方法
+                    $nodelist['IndexController'][] = 'index';
+                    foreach($list as $key=>$value){
+                        $nodelist[$value->mname][]=$value->aname;
+                        //如果有create 添加store方法
+                        if($value->aname=='create'){
+                            $nodelist[$value->mname][]='store';
+                        }
+
+                        //如果有edit 方法 添加update方法
+                        if($value->aname=='edit'){
+                            $nodelist[$value->mname][]='update';
+                        }
+                    }
+                    // echo '<pre>';
+                    // var_dump($nodelist);die;
+                    // 3.把登录用户所有权限信息,存储在session里
+                    session(['nodelist'=>$nodelist]);
+                    
+                    
+                    // 跳转到后台首页
                     return redirect('/admin');
                     }else{
                         echo 3;

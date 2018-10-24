@@ -83,12 +83,24 @@ Route::get('/del','Admin\AdminUserController@del');
 Route::get('/status','Admin\AdminUserController@status');
 // 后台修改密码时,旧密码验证
 Route::get('/pass','Admin\AdminUserController@pass');
+// 后台分配角色
+Route::get('/adminrole','Admin\NodeController@rolelist');
+// 后台保存角色
+Route::post('/saverole','Admin\NodeController@saverole');
+// 后台角色列表
+Route::get('/roles','Admin\NodeController@roles');
+// 后台角色删除
+Route::get('/rolesdel','Admin\NodeController@rolesdel');
 // 后台用户权限管理
 Route::resource('/node','Admin\NodeController');
 // 后台分配权限
 Route::get('/auth/{id}','Admin\NodeController@auth');
 // 后台保存分权限
 Route::post('/saveauth','Admin\NodeController@saveauth');
+// 权限列表
+Route::get('/nodelist','Admin\NodeController@nodelist');
+// ajax权限删除
+Route::get('/nodedel','Admin\NodeController@nodedel');
 // 后台的前台用户列表
 Route::resource('/homeuser','Admin\HomeUsersController');
 // 后台的前台用户删除
@@ -121,6 +133,10 @@ Route::get('/phone','Home\HomeUsersController@phone');
 Route::get('/demo','Home\HomeUsersController@demo');
 // ajax短信校验
 Route::get('/code','Home\HomeUsersController@code');
+// 前台列表页
+Route::resource('/list','Home\listController');
+// 前台和列表搜索
+Route::post('/keywords','Home\listController@index');
 
 // 购物测试用的控制器
 Route::get('/test',"Home\CartController@test");

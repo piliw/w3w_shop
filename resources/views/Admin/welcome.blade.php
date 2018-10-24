@@ -1,4 +1,3 @@
-<<<<<<< .mine
 <html><head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -21,6 +20,9 @@
 <title>我的桌面</title>
 </head>
 <body>
+    @if(Session::has('error'))
+    <script>alert("{{Session::get('error')}}")</script>
+    @endif
 <div class="page-container">
 	<p class="f-20 text-success">欢迎使用H-ui.admin <span class="f-14">v3.1</span>后台模版！</p>
 	<p>登录次数：18 </p>

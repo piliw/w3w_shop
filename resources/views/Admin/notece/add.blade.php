@@ -139,6 +139,6 @@ var ue = UE.getEditor('editor');
 // 		return false;
 // 	}
 
-});
+// });
 </script>
 </html>

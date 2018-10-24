@@ -59,10 +59,13 @@
     <div class="dy13">
       <embed src="/home//home/img/honehone_clock_wh.swf" style=" height:45px; width:120px"></embed>
     </div>
+    <form action="/keywords" method="post">
     <div class="dy12">
-      <input type="text" value="搜索商品/店铺" onFocus="if(value=='搜索商品/店铺') {value=''}" onBlur="if (value=='') {value='搜索商品/店铺'}" style="width:500px; height:36px; text-indent:12px; font-size:12px; color:#666; float:left">
-        <input type="search" value="搜索" style=" cursor:pointer; width:70px; height:36px; float:right; text-align:center; background:#333;" class="shousuo">
+      <input type="text" value="" name="keywords" style="width:500px; height:36px; text-indent:12px; font-size:12px; color:#666; float:left">
+        <input type="submit" value="搜索" style=" cursor:pointer; width:70px; height:36px; float:right; text-align:center; background:#333;" class="shousuo">
     </div>
+    {{csrf_field()}}
+    </form>
 </div>
 <!--全部商品分类-->
 <div class="qbspfl">
@@ -70,11 +73,14 @@
       全部商品分类
     </div>
     <div class="morelist">
+    <a href="">首页</a>
+    <a href="/list">商品列表</a>
       @foreach($cate as $c)
       @foreach($c->dev as $d)
       <a href="#">{{$d->name}}</a>
       @endforeach
       @endforeach 
+
     </div>
 </div>
 

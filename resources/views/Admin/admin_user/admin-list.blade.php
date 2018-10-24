@@ -73,6 +73,8 @@
 				<td>{{$v->addtime}}</td>
 				<td class="td-manage">
 
+				<a title="分配角色" href="javascript:;" onclick="admin_edit('分配角色','/adminrole?id={{$v->id}}','1','500','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe654;</i></a> 
+
 				<a title="修改管理员等级" href="javascript:;" onclick="admin_edit('修改管理员等级','/adminuser/{{$v->id}}','1','300','300')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe630;</i></a> 
 
 				<a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="改变状态"><i class="Hui-iconfont status">&#xe631;</i></a>
