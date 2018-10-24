@@ -32,18 +32,27 @@ class listController extends Controller
     {
         // 获取品牌数据
         $brand = DB::table('admin_brand')->get();
-        // 获取品牌商品
-        
         // dd($brand);
+        
         // 获取分类数据
-        $cate=$this->getCatesBypid(0);
-        // dd($cates);
+        // $cate=$this->getCatesBypid(0);
+         // 获取分类id
+        $cid = $request->all();
+        // dd($cid);
+        // 获取子类信息
+        $cate = DB::table('cate')->where('pid','=',$cid)->where('display','=',1)->get();
+        if(count($cate)==0){
+            $ca = DB::table('cate')->where('id','=',$cid)->first();
+            $cate = DB::table('cate')->where('pid','=',$ca->pid)->where('display','=',1)->get();
+        }
+        // dd($cate);
+
         // 获取商品数据
          $goods = DB::table('goods')
         ->join('pic_url','pic_url.gid','=','goods.id')
         ->join('cate','cate.id','=','goods.cate_id')
-        ->select('goods.id','goods.name','price','summ','pic_url.p_url','cate.id')
-        ->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
+        ->select('goods.id as gid','goods.name','price','summ','pic_url.p_url','cate.id as cid')
+        ->where('cate_id','=',$cid)->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
         // dd($goods);
         
         // 首页和列表的方法
@@ -55,7 +64,7 @@ class listController extends Controller
             $goods = DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->where('name','like','%'.$data.'%')->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
             // dd($goods);
             // 加载模板分配数据
-            return view('Home.list.index',['brand'=>$brand,'cate'=>$cate,'goods'=>$goods]);
+            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate]);
         }
 
         // 判断是否为ajax请求
@@ -63,7 +72,7 @@ class listController extends Controller
             // 获取商品
             // 获取无限分类
             // 加载模板
-            return view('Home.list.index',['brand'=>$brand,'cate'=>$cate,'goods'=>$goods]);
+            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate]);
         }
         // 获取此类id
         $id = $request->get('id');
