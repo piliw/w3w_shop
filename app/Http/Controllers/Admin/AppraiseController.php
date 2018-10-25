@@ -29,7 +29,32 @@ class AppraiseController extends Controller
      */
     public function create()
     {
-        
+
+    }
+    public function goapp($id)
+    {
+        // dd($id);
+        // 获取个人用户详情
+        // session判断是否有值
+        if(session()->has('hname')){
+            $value = session('hid');
+            $data = DB::table('user')->where('id','=',$value)->first();
+            $datas = DB::table('user_info')->where('user_id','=',$value)->first();
+           // 获取订单信息
+           // 获取订单号
+           // dd($id);
+            $order = DB::table('order_info')->where('order_id','=',$id)->first(); 
+            // dd($order);
+            $goods = DB::table('goods')->where('goods.id','=',$order->goods_id)->first();
+            // dd($res);
+            $pic = DB::table('pic_url')->where('gid','=',$goods->id)->where('main','=',1)->first();
+            // dd($pic);
+            //加载用户评价模板
+             return view('Home.pingjia.add',['data'=>$data,'datas'=>$datas,'order'=>$order,'goods'=>$goods,'pic'=>$pic]);
+        }else{
+            // 跳转到登录
+            return redirect('/homelogin');
+        }
     }
 
     /**
@@ -43,9 +68,9 @@ class AppraiseController extends Controller
         $data = $request->except('_token');
         // dd($request->all());
         $data['addtime']=date('Y-m-d H:i:s');
-        // dd($data);
+        dd($data);
         if(Appraise::create($data)){
-            echo'评论成功';
+            return redirect("/zhuce/{{$data->user_id}}")->with('success','评价成功');
         }else{
             return redirect('/appraise/create');
         }
@@ -59,19 +84,7 @@ class AppraiseController extends Controller
      */
     public function show($id)
     {
-        // 获取个人用户详情
-        // session判断是否有值
-        if(session()->has('hname')){
-            $value = session('hid');
-            $data = DB::table('user')->where('id','=',$value)->first();
-            $datas = DB::table('user_info')->where('user_id','=',$value)->first();
-            // 加载模板
-        //加载用户评价模板
-        return view('Home.pingjia.add',['data'=>$data,'datas'=>$datas]);
-        }else{
-            // 跳转到登录
-            return redirect('/homelogin');
-        }
+        
     }
 
     /**

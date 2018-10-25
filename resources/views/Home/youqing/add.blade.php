@@ -115,9 +115,6 @@
 	</div>
 </body>
 <script>
-	// 提交按钮
-	bool=false;
-	e=$("input[name='email']");
 	// alert(n);
 	$("#name").blur(function(){
 		name=$(this).val();
@@ -128,6 +125,7 @@
 		bool=false;
 	}else if(!nReg.test(name)){
 		$('#err_name').css('color','#666').html('请填写网站名称，长度在1-20位字符之间');
+		bool=false;
 	}else{
 			$('#err_name').html('');
 			$("#url").blur(function(){
@@ -136,8 +134,10 @@
 				var urlReg = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?$/;
 				if(url==''){
 					$('#err_url').css('color','#666').html('网址不能为空');
+					bool=false;
 				}else if(!urlReg.test(url)){
 					$('#err_url').css('color','#666').html('请写正确的网址');
+					bool=false;
 				}else{
 					$('#err_url').html('');
 					$('#email').blur(function(){
@@ -146,8 +146,10 @@
 						var emailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
 						if(email==''){
 							$('#err_email').css('color','#666').html('邮箱不能为空');
+							bool=false;
 						}else if(!emailReg.test(email)){
 							$('#err_email').css('color','#666').html('邮箱格式不正确');
+							bool=false;
 						}else{
 							$('#err_email').html('');
 							bool=true;
@@ -157,6 +159,7 @@
 			});
 	}
 	});
+
 	$('#btnSubmit').click(function(){
 		n=$("input[name='name']").val();
 		// alert(n);
@@ -164,20 +167,29 @@
 			$('#err_name').css('color','#666').html('请填写网站名称，长度在1-20位字符之间');
 		bool=false;
 		}
-	});
-	$('#btnSubmit').click(function(){
 		url=$("input[name='url']").val();
+		var urlReg = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?$/;
 	 if(url==''){
 	 	$('#err_url').css('color','#666').html('网址格式不正确');
 	 	 bool=false;
+	 }else if(!urlReg.test(url)){
+	 	$('#err_url').css('color','#666').html('网址格式不正确');
+	 	bool=false;
+	 }else{
+	 	$('#err_url').html('');
 	 }
-	});
-	$('#btnSubmit').click(function(){
-		email=$("input[name='email']").val();
+	 email=$("input[name='email']").val();
+		var emailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
 	 if(email==''){
 	 	$('#err_email').css('color','#666').html('邮箱不能为空');
 	 	 bool=false;
+	 }else if(!emailReg.test(email)){
+	 	$('#err_email').css('color','#666').html('邮箱格式不正确');
+	 	bool=false;
+	 }else{
+	 	$('#err_email').html('');
 	 }
+	 bool=true;
 	});
   $('#frm_submit').submit(function(){
   	return bool;

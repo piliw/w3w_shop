@@ -72,11 +72,11 @@
         z-index: 5;
     }
     .rating-level a.three-stars {
-        width: 30%;
+        width: 60%;
         z-index: 4;
     }
     .rating-level a.four-stars {
-        width: 50%;
+        width: 80%;
         z-index: 3;
     }
     .rating-level a.five-stars {
