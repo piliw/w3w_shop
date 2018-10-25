@@ -1,8 +1,10 @@
+@extends('Home.Public.public')
+@section('main')
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>列表页</title>
+<title>@yield('title')</title>
 <link rel="stylesheet" type="text/css" href="/home/css/top.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/lunbo.css">
 <link rel="stylesheet" type="text/css" href="/home/css/liebiao.css"/>
@@ -13,300 +15,6 @@
 
 <body>
 <!--顶部菜单有改动与首页的不一样，请单独调用-->
-<div class="dy1">
-	<div class="dy2">
-        <ul class="dy3">
-            <li><a href="#">帝云官网<br/>帝云官网</a></li>
-            <li><a href="#" id="diyunapp">商城APP<br/>商城APP</a></li>
-        </ul>
-        <a href="#" class="dy5">购物车</a>
-        <ul class="dy4">
-            <li><a href="#">登录<br/>登录</a></li>
-            <li><a href="#">注册<br/>注册</a></li>
-        </ul>
-        <div class="dy6">
-            <ul>
-               	<li>
-                   	<b><img src="/home/img/wxrzhuji.jpg"/></b>
-                    <a href="#" class="dy7">外星人主机</a>
-                    <a href="#" class="dy8">删除</a>
-                </li>
-                <li>
-                   	<b><img src="/home/img/gaoqingxianshiqi.jpg"/></b>
-                    <a href="#" class="dy7">4k高清显示器</a>
-                    <a href="#" class="dy8">删除</a>
-                </li>
-             </ul>
-         </div>
-         <div class="dy9">
-         	<img src="/home/img/phone.png"/>
-         </div>
-    </div>
-</div>
-<!--logo加时间加搜索框-->
-<div class="dy10">
-	<div class="dy11">
-    	<img src="/home/img/logo.png"/>
-    </div>
-    <div class="dy13">
-    	<embed src="/home/img/honehone_clock_wh.swf" style=" height:45px; width:120px"></embed>
-    </div>
-    <form action="/keywords" method="post">
-    <div class="dy12">
-    	<input type="text" value="" name="keywords" style="width:500px; height:36px; text-indent:12px; font-size:12px; color:#666; float:left">
-        <input type="submit" value="搜索" style=" cursor:pointer; width:70px; height:36px; float:right; text-align:center; background:#333;" class="shousuo">
-    </div>
-    {{csrf_field()}}
-    </form>
-</div>
-<!--全部商品分类-->
-<div class="qbspfl">
-	<div class="djfl">
-    	全部商品分类
-    </div>
-    <div class="morelist">
-    	<a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-        <a href="#">标题一</a>
-    </div>
-</div>
-<script>
-$(function(){
-	$("#banner_menu_wrap").mouseleave(function(){
-		$(this).hide()
-		$("#big_banner_wrap").hide()
-		});
-	$(".djfl").mouseenter(function(){
-		$("#big_banner_wrap").show()
-		$("#banner_menu_wrap").show()
-		});	
-	})
-	
-</script>
-<!--banner轮播引入lunbo.css和daohang.js-->
-<div id="big_banner_wrap" style=" position:absolute; top:177px; left:50%; margin-left:-613px">
-	 <ul id="banner_menu_wrap">
-		 <li class="active"img>
-			 <a>手机&nbsp;平板</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 600px; top: -20px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>电视&nbsp;盒子</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 600px; top: -62px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>路由器&nbsp;智能配件</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 900px; top: -104px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><<span>选购</span>/li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>移动电源&nbsp;插线板</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 300px; top: -146px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg "></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>耳机&nbsp;音箱</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 300px; top: -188px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>电池&nbsp;存储卡</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 300px; top: -230px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>保护套&nbsp;后盖</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 300px; top: -272px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>贴膜&nbsp;其它配件</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 600px; top: -314px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>箱包&nbsp;服装</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 300px; top: -356px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-		 <li>
-			 <a>食品&nbsp;其它周边</a>
-			 <a class="banner_menu_i">&gt;</a>
-			 <div class="banner_menu_content" style="width: 300px; top: -398px;">
-				 <ul class="banner_menu_content_ul">
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-					 <li>
-						 <a><img src="/home/img/headphone.jpg"></a><a>帝云耳机</a><span>选购</span></li>
-				 </ul>
-			 </div>
-		 </li>
-	 </ul>
-	 
- </div>
- <script src="/home/js/daohang.js"></script>
 <!--属性栏筛选 -->
 <div class="shaixuan">
 	<!--品牌分类开始-->
@@ -333,38 +41,17 @@ $(function(){
     	<div class="sxname">分类</div>
         <div class="sxleibie">
         	<ul class="liebiaoyi">
-        	<!-- 一级遍历 -->
-        		@foreach($cate as $v)
-        		<!-- 二级遍历 -->
-        			@foreach($v->dev as $key=>$vs)
-        				<!-- 限制显示条数 -->
-								@if($key<15)
-		            	<li class="ll" name="{{$vs->id}}"><a href="#">{{$vs->name}}</a></li>
-		            @endif
-		            <!-- 三级遍历 -->
-		            	@foreach($vs->dev as $res)
-		            	<!-- 限制显示条数 -->
-		            	@if($key<15)
-		            	<li class="ll" name="{{$res->id}}"><a href="#">{{$res->name}}</a></li>
-		            	 @endif
-		            	@endforeach
-
-            	@endforeach
-            @endforeach
-            </ul>
+					@foreach($cate as $key=>$d)
+						@if($key<30)
+		        <li class="ll" name="{{$d->id}}"><a href="#">{{$d->name}}</a></li>
+		        @endif
+		      @endforeach
+           </ul>
             <span class="zdguanbi">更多/关闭</span>
             <ul class="liebiaoer">
-            	<!-- 一级遍历 -->
-              @foreach($cate as $va)
-              	<!-- 二级遍历 -->
-	        			@foreach($va->dev as $vsa)
-	            	<li class="ll" name="{{$vsa->id}}"><a href="#">{{$vsa->name}}</a></li>
-	            		<!-- 三级遍历 -->
-		            	@foreach($vsa->dev as $val)
-		            	<li class="ll" name="{{$val->id}}"><a href="#">{{$val->name}}</a></li>
-		            	@endforeach
-	            	@endforeach
-            @endforeach           
+            	@foreach($cate as $d)
+		        		<li class="ll" name="{{$d->id}}"><a href="#">{{$d->name}}</a></li>
+		      		@endforeach
             </ul>
         </div>
     </div>
@@ -397,7 +84,7 @@ $(function(){
 	<ul class="goodslist">
 				 @foreach($goods as $g)
     		<li>
-           <a href="/homegoods/{{$g->id}}" class="wocici">
+           <a href="/homegoods/{{$g->gid}}" class="wocici">
                <b class="uid">
                <img src="{{$g->p_url}}"/>
                </b>
@@ -422,7 +109,7 @@ $(function(){
         @foreach($goods as $key=>$g)
         @if($key<5)
             <li>
-           <a href="/homegoods/{{$g->id}}" class="wocici">
+           <a href="/homegoods/{{$g->gid}}" class="wocici">
                <b>
                <img src="{{$g->p_url}}"/>
                </b>
@@ -441,61 +128,6 @@ $(function(){
     </div>
 </div>    
 <!--页脚-->
-<!--footer-->
-<div class="footer">
-	<div class="box" style=" width:1226px; margin:0 auto">
-        <ul class="lian">
-            <li>
-                <p><img src="/home/img/fot.png">新手指南</p>
-                <a href="#">账户注册</a>
-                <a href="#">购物流程</a>
-                <a href="#">网站地图</a>
-            </li>
-            <li>
-                <p><img src="/home/img/fot1.png">支付方式</p>
-                <a href="#">货到付款</a>
-                <a href="#">在线支付</a>
-                <a href="#">礼品卡及账户余额</a>
-                <a href="#">其他支付方式</a>
-            </li>
-            <li>
-                <p><img src="/home/img/fot2.png">配送说明</p>
-                <a href="#">配送运费</a>
-                <a href="#">配送时间</a>
-            </li>
-            <li>
-                <p><img src="/home/img/fot3.png">售后服务</p>
-                <a href="#">退换货政策</a>
-                <a href="#">退换货办理流程</a>
-                <a href="#">退换货网上办理</a>
-                <a href="#">退款说明</a>
-            </li>
-            <li>
-                <p><img src="/home/img/fot4.png">关于我们</p>
-                <a href="#">公司简介</a>
-                <a href="#">合作专区</a>
-                <a href="#">联系我们</a>
-                <a href="#">友情链接</a>
-            </li>
-            <li>
-                <p><img src="/home/img/fot5.png">帮助中心</p>
-                <a href="#">找回密码</a>
-                <a href="#">邮件订阅</a>
-                <a href="#">产品册订阅</a>
-                <a href="#">隐私声明</a>
-            </li>
-        </ul>
-        <ul class="adv">
-        	<li><img src="/home/img/adv.png">正品保障</li>
-            <li><img src="/home/img/adv1.png">免运费</li>
-            <li><img src="/home/img/adv2.png">送货上门</li>
-            <li style="border-right:none;"><img src="/home/img/adv3.png">实物拍摄</li>
-        </ul>
-        <p class="ad">地址：山东省济南市天桥区历山北路黄台电子商务产业园1020室 &nbsp;&nbsp;&nbsp;邮箱：xgm@8and9.com.cn &nbsp;&nbsp;&nbsp;邮编:210008 &nbsp;&nbsp;&nbsp;电话:025-83218155</p>
-        <p class="ad">Copyright © 2010 - 2013, 版权所有 SHUIGUO.COM &nbsp;&nbsp;&nbsp;苏ICP备10088888号-1</p>
-    </div>
-</div>
-
 </body>
 <script>
 	// alert($);
@@ -504,17 +136,20 @@ $(function(){
 		id = $(this).attr('name');
 		// alert(id);
 		$.get('/list',{id:id},function(data){
-			console.log(data);
+			// console.log(data);
 			var str = '';
 			// 遍历
 			for(var i=0;i<data.length;i++){
-				str += '<li><a href="#" class="wocici"><b><img src="'+data[i]['pp']+'"></b><h2 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'+data[i]['gname']+'</h2><p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'+data[i]['summ']+'</p><span>'+data[i]['price']+'</span></a><em class="wocaca"><a href="#">唯尚衣族自营店</a><a href="#" style="border-right:hidden">联系卖家</a></em></li>';
+				str += '<li><a href="/homegoods/'+data[i]['gid']+'" class="wocici"><b><img src="'+data[i]['pp']+'"></b><h2 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'+data[i]['gname']+'</h2><p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'+data[i]['summ']+'</p><span>'+data[i]['price']+'</span></a><em class="wocaca"><a href="#">唯尚衣族自营店</a><a href="#" style="border-right:hidden">联系卖家</a></em></li>';
 			}
 			$('.goodslist').html(str);
 		},'json');
 	});
 </script>
-</html>    
+</html>
+@endsection
+@section("title",'列表页')
+ 
            
     
                

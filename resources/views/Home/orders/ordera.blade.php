@@ -21,8 +21,9 @@
             <em>收货人信息</em>
             <a href="#" class="chgeb">修改</a>
         </div>
+        @if(count($data1)!=0)
         @foreach($data1 as $row)
-            @if($row->default==0)
+            @if($row->default==1)
             <div class="shouhurxl2" id="ss">
                 <span>{{$row->u_name}}</span>
                 <span>{{$row->u_address}}</span>
@@ -30,25 +31,33 @@
             </div>
             @endif
         @endforeach
+        @else
+            <div class="shouhurxl2" id="ss">
+            </div>
+        @endif
     </div>
 
     <!--点击修改会出现这个选择框-->
-    <div class="changepc">
+    <div class="changepc" id="adnew">
         <!--以前的旧地址-->
+        @if(!empty($data1))
         @foreach($data1 as $rows)
         <div class="tongyongdizhi">
             <input type="radio" name="adressa" style=" float:left; display:block; width:13px; height:13px; margin-top:9px">
             <span>{{$rows->u_name}}</span>
             <span>{{$rows->u_address}}</span>
             <span><em>电话：</em><em>{{$rows->u_phone}}</em></span>
-            <a href="javascript:void(0)" class="del">删除</a>
+            <a href="javascript:void(0)" class="del" style=" margin-left:1130px;width:100px">删除</a>
             <div style="display:none">{{$rows->id}}</div>
         </div>
         @endforeach
+        @endif
         <!--添加新地址-->
         <div class="dandudizhi">
+            <label>
             <input type="radio" name="adressa" class="adressa" style=" float:left; display:block; width:13px; height:13px; margin-top:9px">
             <span>使用新地址</span>
+            </label>
         </div>   
         <!--添加新地址-->
             <div class="opcaty1">
@@ -116,15 +125,16 @@
             var readdress=$('#readdress').val(); 
             var address=readd+'-'+readdress;
             var phone=$('#sphone').val();
-            var default='1';
 
             var ss='<span>'+name+'</span><span>'+address+'</span><span><em>电话：</em><em>'+phone+'</em></span>';
             // alert(address);
             var put='<input type="hidden" name="name" value="'+name+'"><input type="hidden" name="address" value="'+address+'"><input type="hidden" name="phone" value="'+phone+'">';
+            var adnew='<div class="tongyongdizhi"><input type="radio" name="adressa" style=" float:left; display:block; width:13px; height:13px; margin-top:9px"><span>'+name+'</span><span>'+address+'</span><span><em>电话：</em><em>'+phone+'</em></span><a href="javascript:void(0)" class="del">删除</a>';
             $.post("/orders",{'user_id':sid,'u_name':name,'u_phone':phone,'u_address':address},function(data){
                 if(data==1){
                     $('#ss').empty().append($(ss));
-                    $('#input').empty().append($(put));
+                    $('#inp').empty().append($(put));
+                    $('#adnew').prepend($(adnew));
                 }
             });
         });
@@ -321,15 +331,20 @@
         <!--一条商品信息结束-->
     </div>
     <!--商品清单结束-->
-    <form action="/ordershopa" method="post">
+    <form action="/ordershopa" method="post" id="tijiao">
 
-        @foreach($data1 as $v)
-            <div id="input">
-            <input type="hidden" name="name" value="{{$v->u_name}}">
-            <input type="hidden" name="address" value="{{$v->u_address}}">
-            <input type="hidden" name="phone" value="{{$v->u_phone}}">
+            <div id="inp">
+            @if(count($adda)!=0)
+            <input type="hidden" name="name" value="{{$adda->u_name}}">
+            <input type="hidden" name="address" value="{{$adda->u_address}}">
+            <input type="hidden" name="phone" value="{{$adda->u_phone}}">
+            @else
+            <input type="hidden" name="name" value="">
+            <input type="hidden" name="address" value="">
+            <input type="hidden" name="phone" value="">
+            @endif
             </div>
-        @endforeach
+
             <input type="hidden" name="total" value="{{$total}}">
         {{csrf_field()}}
         <input type="submit" class="tijiaodingdang56" value="提交订单">
@@ -337,3 +352,14 @@
 </div>
 </body>
 </html>
+<script>
+    $('#tijiao').submit(function(e){
+        $(this).find('input').each(function(){
+            if($(this).val()==''){
+                alert('请填写正确的信息');
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+</script>

@@ -17,7 +17,7 @@ class CartController extends Controller
     // 购物车列表方法
     public function index()
     {
-
+        $uname=session('hname');
         //获取session数组数据 id和num
         $cart=session('cart');
         // dd($cart);
@@ -42,7 +42,7 @@ class CartController extends Controller
             $data[]=$row;
         }
         // dd($data);
-        return view('Home.Cart.index',['data'=>$data,'total'=>$total,'tot'=>$tot]);
+        return view('Home.Cart.index',['data'=>$data,'total'=>$total,'tot'=>$tot,'uname'=>$uname]);
     }
 
     // 购物车减
@@ -181,8 +181,9 @@ class CartController extends Controller
         $sid=session('hid');
         // 获取收货地址的数据
         $data1=DB::table('address')->where('user_id','=',$sid)->get();
+        $adda=DB::table('address')->where('user_id','=',$sid)->where('default','=',1)->first();
         // 直接跳转到结算页
-        return view("Home.orders.orders",['sid'=>$sid,'result'=>$result,'total'=>$total,'data1'=>$data1]);
+        return view("Home.orders.orders",['sid'=>$sid,'result'=>$result,'total'=>$total,'data1'=>$data1,'adda'=>$adda]);
     }
 
     /**

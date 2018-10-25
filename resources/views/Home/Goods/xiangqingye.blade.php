@@ -201,10 +201,14 @@
                        
                     });
                     </script>
-                 <!--加入购物车与收藏商品-->
+                <!--加入购物车与收藏商品-->
                 <input type="hidden" name="id" value="{{$data->id}}">
                  <div class="joinspadsp">
+                    @if(session('hid'))
                     <a href="javascript:void(0)" style=" margin-left:67px"><input type="submit" style="background-color:#DF3033;color:white" value="立即购买"></a>
+                    @else
+                    <a href="/homelogin" style=" margin-left:67px" onclick="return confirm('你还没登录,请登录')">立即购买</a>
+                    @endif
                     <a href="javascript:void(0)" style=" margin-left:6px" id="shops">加入购物车</a>
                     <a href="javascript:void(0)" style=" margin-left:6px">收藏该商品</a>
                  </div>
@@ -212,11 +216,29 @@
                 </form>
                  <!--商品编号-->
                  <div class="shopbh">
-                 	<span>商品编号</span>
+                 	<span style="width:60px">商品编号</span>
                     <em>{{$data->number}}</em>
                  </div>    
             </div>
         </div>
+        <!-- 加入购物车 -->
+        <script>
+            $('#shops').click(function(){
+                // alert(1);
+                var size=$('input[name=size]').val();
+                var num=$('input[name=num]').val();
+                var id=$('input[name=id]').val();
+                var price=$('input[name=price]').val();
+                // alert(id);
+                $.get("/homecart/create",{size:size,num:num,id:id,price:price},function(data){
+                    if(data==1){
+                        alert('成功添加购物车');
+                    }else{
+                        alert('商品已在购物车');
+                    }
+                })
+            });
+        </script>
     	<!--n2-->
         <div class="daitianc">
         	<span class="lkadlk">瞧了又瞧</span>
@@ -633,8 +655,7 @@
                 <!--差评结束-->
                 </div>
             </div>    
-        </div>
-        
+        </div> 
         <script>
 		/*控制商品详情、商品评价、售后保障的出现或消失*/
 			$(function(){
