@@ -63,7 +63,15 @@ class PayController extends Controller
         $paytime=time();
         // echo "123";
         DB::table('order')->where('o_number','=',$info)->update(['status'=>1,'paytime'=>$paytime]);
-
+        $res=DB::table('order')->join('order_info','order.id','=','order_info.order_id')->join('goods','order_info.goods_id','=','goods.id')->select('order_info.g_number','goods.id','goods.store','goods.sales')->where('o_number','=',20181023154029993263375)->get();
+        $data=[];
+        foreach($res as $key=>$v){
+            $dd=$v->store-$v->g_number;
+            $ss=$v->sales+$v->g_number;
+            // dd($dd);
+            DB::table('goods')->where('id',$v->id)->update(['store'=>$dd,'sales'=>$ss]);
+        }
+        // dd($res);
 
         return view("Home.Payment.emptypay");
     }

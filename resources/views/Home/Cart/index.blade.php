@@ -31,7 +31,7 @@
                 <center></center>
                     <table width="1226" align="center" bgcolor="#FFFFFF">
                         <tr height="30">
-                            <th>全选</th>
+                            <th>商品预览</th>
                             <th width="250"></th>
                             <th width="200">商品名称</th>
                             <th>单价</th>
@@ -42,7 +42,7 @@
                         <tr><td style="border:1px solid #BABABA;" colspan="7";></td></tr>
                         @foreach($data as $row)
                         <tr height="80" align="center">
-                            <td><input type="checkbox" checked></td>
+                            <!-- <td><input type="checkbox" checked></td> -->
                             <td><img src="{{$row['p_url']}}" height="120"></td>
                             <td style="font-size:13px;">{{$row['name']}}
                             <div>...</div>
@@ -79,7 +79,7 @@
                     </span>
                     <span>
                         <a href="/orders">
-                             <input class="lijigoumai fr" type="submit" value="立即购买">
+                             <input class="lijigoumai fr" style="cursor:pointer" type="submit" value="立即购买">
                         </a>
                     </span>
                 </div>
