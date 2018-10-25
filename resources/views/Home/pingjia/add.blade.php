@@ -55,6 +55,11 @@
       <a href="#">分享绑定</a> 
      </div> 
     </div> 
+    @if(Session::has('success'))
+        <script>
+        alert("{{Session::get('success')}}");
+        </script>
+    @endif
     <script type="text/javascript">
     $(function(){//第一步都得写这个
       $(".liefyu h2").click(function(){//获取title，并且让他执行下面的函数
@@ -91,30 +96,31 @@
       <span style=" display:block; font-size:14px; font-weight:bold; line-height:34px; padding-left:20px; padding-right:20px; color:#666">对该商品进行评价
        <s style="color:#09f"></s></span>
       <s style="color:#09f"> 
-       <div class="jhjadxcu" style=" width:100%; height:auto; overflow:hidden"> 
-        <a href="#"> <img src="/home/img/img01.jpg" /> </a> 
-        <a href="#"><em>2016时尚编制手链</em></a> 
+       <div class="jhjadxcu" style=" width:100%; height:100px; overflow:hidden;line-height:100px;"> 
+       <a href="#"> <img src="{{$pic->p_url}}" width="100px";height="100px"> </a>
+         
+        <a href="#"><em>{{$goods->name}}</em></a> 
         <em>
          <s>
-          30
+          {{$goods->price}}
          </s>元*
          <s>
-          1
-         </s>件</em> 
-         <div class="shop-rating"> 
+          {{$order->g_number}}
+         </s>件</em>  
+       </div> 
+        <div class="shop-rating" style="margin:0 100px"> 
           <span class="title">宝贝质量：</span> 
          <ul class="rating-level" id="stars1"> 
           <li><a class="one-star" star:value="1" style="padding-left:0px">1</a></li> 
-          <li><a class="two-stars" star:value="2" >2</a></li> 
+          <li><a class="two-stars" star:value="2" style="padding-left:25px">2</a></li> 
           <li><a class="three-stars" star:value="3" >3</a></li> 
           <li><a class="four-stars" star:value="4" >4</a></li> 
           <li><a class="five-stars" star:value="5" >5</a></li> 
          </ul> 
          <span class="result" id="stars1-tips"></span> 
-         <input type="hidden" id="stars1-input" name="gscore" value="" size="1" /> 
-         <em>(请点击小星星进行评分,默认4星哦)</em> 
+         <input type="hidden" id="stars1-input" name="gscore" value="4" size="1" /> 
+         <em style="line-height: 26px;">(请点击小星星进行评分,默认4星哦)</em> 
         </div> 
-       </div> 
        <!--对商品进行评价--> 
        <div class="dfdaspjtk"> 
         <textarea name="content" style=" min-height:140px; display:block; min-width:666px; max-height:141px; max-width:667px; border:1px solid #cacace; margin:5px auto; font-size:15px; line-height:20px; color:#111; text-indent:10px; box-shadow:none" placeholder="评价信息最多填写250字，请您根据本次交易，给予真实、客观地评价； 您的评价将是其他会员的参考。
@@ -123,11 +129,11 @@
        </div> 
 
         <!--订单号 -->
-        <input type="hidden" name="order_id" value="11111">
+        <input type="hidden" name="order_id" value="{{$order->order_id}}">
         <!-- 商品id -->
-        <input type="hidden" name="goods_id" value="22222">
+        <input type="hidden" name="goods_id" value="{{$order->goods_id}}">
         <!-- 用户id -->
-        <input type="hidden" name="user_id" value="10">
+        <input type="hidden" name="user_id" value="{{$datas->user_id}}">
        <!--评价结束-->  
         <!--一条综合评分结束--> 
        </div> 
@@ -204,7 +210,7 @@
           //设置默认属性 
           SetOptions: function(options) { this.options = {
           //默认值
-          Input: "0",
+          Input: "3",
           //设置触保存分数的
           Tips: "1",//设置提示文案容器 
           nowClass: "current-rating",
@@ -213,9 +219,9 @@
           //提示文案 
       };
   Extend(this.options, options || {}); }}/* For TEST */
-  // function teststars(){
-  //     alert(document.getElementById("stars1-input").value + "|" + document.getElementById("stars2-input").value)
-  // }
+  function teststars(){
+      alert(document.getElementById("stars1-input").value + "|" + document.getElementById("stars2-input").value)
+  }
       var Stars1 = new Stars("stars1",{nowClass:"current-rating",tipsTxt:["1星-严重差评","2星-差评","3星-中评","4星-比较好","5星-好评"]});
  </script>
 @endsection

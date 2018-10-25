@@ -158,7 +158,8 @@ Route::get("/updatee/{id}","Home\CartController@updatee");
 Route::get("/updates/{id}","Home\CartController@updates");
 // 购物车商品删除
 Route::get("/cartdel/{id}","Home\CartController@del");
-
+	// 收货成功后去评价
+	Route::get("/goapp/{id}","Admin\AppraiseController@goapp");
 // 前台订单操作
 Route::group(['middleware'=>'homelogin'],function(){
 	// 订单控制器
@@ -176,7 +177,6 @@ Route::group(['middleware'=>'homelogin'],function(){
 	Route::post("/ordershop","Home\OrdersController@ordershop");
 	// 购物车购买订单处理
 	Route::post("/ordershopa","Home\OrdersController@ordershopa");
-
 	// 支付宝接口调用
 	Route::resource("/pays","Home\PayController");
 	// 支付完成的通知页面

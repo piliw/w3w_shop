@@ -29,9 +29,9 @@
         <a href="#" class="dy5">购物车</a>
         <ul class="dy4">
             @if(Session::has('hname'))
-            <li><a href="/homelogin/create">退出<br/>退出</a></li>
             <li><a href="#">欢迎您登录!<br/>欢迎您登录!</a></li>
             <li><a href="/zhuce/{{Session::get('hid')}}">个人中心<br/>个人中心</a></li>
+            <li><a href="/homelogin/create">退出<br/>退出</a></li>
             @else
             <li><a href="/homelogin">登录<br/>登录</a></li>
             <li><a href="/zhuce/create">注册<br/>注册</a></li>
@@ -40,19 +40,19 @@
         <div class="dy6">
             <ul>
                 <li>
-                    <b><img src="/home//home/img/wxrzhuji.jpg"/></b>
+                    <b><img src="/home/img/wxrzhuji.jpg"/></b>
                     <a href="#" class="dy7">外星人主机</a>
                     <a href="#" class="dy8">删除</a>
                 </li>
                 <li>
-                    <b><img src="/home//home/img/gaoqingxianshiqi.jpg"/></b>
+                    <b><img src="/home/img/gaoqingxianshiqi.jpg"/></b>
                     <a href="#" class="dy7">4k高清显示器</a>
                     <a href="#" class="dy8">删除</a>
                 </li>
              </ul>
          </div>
          <div class="dy9">
-          <img src="/home//home/img/phone.png"/>
+          <img src="/home/img/phone.png"/>
          </div>
     </div>
 </div>
@@ -62,7 +62,6 @@
       <img src="/home/img/logo.png"/>
     </div>
     <div class="dy13">
-      <embed src="/home//home//home/img/honehone_clock_wh.swf" style=" height:45px; width:120px"></embed>
     </div>
     <form action="/keywords" method="post">
     <div class="dy12">
@@ -92,11 +91,11 @@
  <div id="big_banner_wrap" style="display:block">
    <ul id="banner_menu_wrap">
    @foreach($cate as $c)
-     <li class="active"img>
+     <li class="active">
        <a href="/list?id={{$c->id}}">{{$c->name}}</a>
        <a class="banner_menu_i">&gt;</a>
        <div class="banner_menu_content"  
-       style="width: 600px;  top:-<?php echo $n?>px;">
+       style="width: 600px; height:398px;  top:-<?php echo $n?>px;">
        <?php $n+=42; ?>
          @foreach($c->dev as $d)
             <ul class="banner_menu_content_ul">

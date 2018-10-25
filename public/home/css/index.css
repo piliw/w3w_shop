@@ -22,7 +22,7 @@
 .dy10{ width:1226px; height:90px; margin:0 auto; overflow:hidden; margin-top:15px}
 .dy11{ width:360px; height:90px; float:left}
 .dy11 img{ display:block; width:360px; height:90px}
-.dy12{ width:570px; height:36px; border:1px solid #333; float:right; margin-top:11px; margin-right:40px; overflow:hidden}
+.dy12{ width:570px; height:36px; border:1px solid #333; float:right; margin-top:11px; margin-right:-120px; overflow:hidden}
 .dy13{ width:120px; height:45px; float:right; overflow:hidden; margin-top:7px; z-index:-1; position:relative; }
 .dy13 embed{ position:absolute; top:0; left:0}
 /*logo加时间加搜索框*/
