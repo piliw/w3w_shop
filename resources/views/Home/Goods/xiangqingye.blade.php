@@ -311,7 +311,7 @@
 	<!--左-->
     <div class="theleftkz">
     	<div class="dpnames">
-        	<a href="#">唯尚衣族官方旗舰店</a>
+        	<a href="/">唯尚衣族官方旗舰店</a>
         </div>
         <div class="intolkads">
         	<a href="/">进店看看</a>
@@ -323,7 +323,7 @@
         <div class="zaizdnr">
         	<ul>
        	@foreach($others as $oth)
-                <li><a href="{{$oth->id}}">{{$oth->name}}</a></li>
+                <li><a href="/list?id={{$oth->id}}">{{$oth->name}}</a></li>
              @endforeach
             </ul>
         </div>
@@ -333,7 +333,7 @@
         <div class="aboutflsnr">
         	<ul>
         	@foreach($cates as $row)
-                <li><a href="{{$row->id}}">{{mb_substr($row->name,0,11,'utf-8')}}</a></li>
+                <li><a href="/list?id={{$row->id}}">{{mb_substr($row->name,0,11,'utf-8')}}</a></li>
              @endforeach
             </ul>
         </div>
@@ -343,7 +343,7 @@
         <div class="aboutflsnr">
         	<ul>
          	   @foreach($others as $other)	
-                <li><a href="{{$other->id}}">{{$other->name}}</a></li>
+                <li><a href="/list?id={{$other->id}}">{{$other->name}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -372,7 +372,7 @@
     	<div class="threespa">
             <ul>
                 <li class="oncolors" mt-floors="1" mt-cts="1" id="spencals1">商品介绍</li>
-                <li mt-floors="2" mt-cts="1" id="spencals2">商品评价<s>(1297)</s></li>
+                <li mt-floors="2" mt-cts="1" id="spencals2">商品评价<s>({{$total}})</s></li>
                 <li mt-floors="3" mt-cts="1" id="spencals3">售后保障</li>
                 
             </ul>
@@ -447,21 +447,21 @@
                         <div class="gdpjbf">
                         	<em>好评<i>{{$per}}%</i></em>
                             <span>
-                            	<p style=" width:50%"></p>
+                            	<p style=" width:{{$per}}%"></p>
                             </span>
                         </div>
                         <!--中评-->
                         <div class="gdpjbf">
-                        	<em>好评<i>{{$zper}}%</i></em>
+                        	<em>中评<i>{{$zper}}%</i></em>
                             <span>
-                            	<p style=" width:50%"></p>
+                            	<p style=" width:{{$zper}}%"></p>
                             </span>
                         </div>
                         <!--差评-->
                         <div class="gdpjbf">
-                        	<em>好评<i>{{$cper}}%</i></em>
+                        	<em>差评<i>{{$cper}}%</i></em>
                             <span>
-                            	<p style=" width:50%"></p>
+                            	<p style=" width:{{$cper}}%"></p>
                             </span>
                         </div>
                         <!--差评结束-->
@@ -470,10 +470,10 @@
                 </div>
                 <!--评分结束-->
             	<div class="quanbupinglun">
-                	<a href="javascript:void(0)" class="nocolors" mt-floord="1" mt-ctd="1">全部评论<em>(1010)</em></a>
-                    <a href="javascript:void(0)" mt-floord="2" mt-ctd="1">好评<em>(600)</em></a>
-                    <a href="javascript:void(0)" mt-floord="3" mt-ctd="1">中评<em>(300)</em></a>
-                    <a href="javascript:void(0)" mt-floord="4" mt-ctd="1">差评<em>(10)</em></a>
+                	<a href="javascript:void(0)" class="nocolors" mt-floord="1" mt-ctd="1">全部评论<em>({{$total}})</em></a>
+                    <a href="javascript:void(0)" mt-floord="2" mt-ctd="1">好评<em>({{$hping}})</em></a>
+                    <a href="javascript:void(0)" mt-floord="3" mt-ctd="1">中评<em>({{$zhong}})</em></a>
+                    <a href="javascript:void(0)" mt-floord="4" mt-ctd="1">差评<em>({{$cha}})</em></a>
                 </div>
                 <!--这个容器里面放了全部评论、好评、中评、差评、-->
                 <div class="qbpltyf123">

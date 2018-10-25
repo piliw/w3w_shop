@@ -35,16 +35,15 @@
         @endif
         <div class="dy6">
             <ul>
-               	<li>
-                   	<b><img src="/home/img/wxrzhuji.jpg"/></b>
-                    <a href="#" class="dy7">外星人主机</a>
-                    <a href="#" class="dy8">删除</a>
-                </li>
-                <li>
-                   	<b><img src="/home/img/gaoqingxianshiqi.jpg"/></b>
-                    <a href="#" class="dy7">4k高清显示器</a>
-                    <a href="#" class="dy8">删除</a>
-                </li>
+                @if(!empty($datas))
+                @foreach($datas as $rows)
+                    <li>
+                        <b><img src="{{$rows['p_url']}}"/></b>
+                        <a href="#" class="dy7">{{$rows['name']}}</a>
+                        <a href="#" class="dy8">删除</a>
+                    </li>
+                @endforeach
+                @endif
              </ul>
          </div>
          <div class="dy9">
@@ -58,10 +57,9 @@
     	<img src="/home/img/logo.png"/>
     </div>
     <div class="dy13">
-    	<embed src="/home/img/honehone_clock_wh.swf" style=" height:45px; width:120px"></embed>
     </div>
     <form action="/keywords" method="post">
-    <div class="dy12">
+    <div class="dy12" style="margin-right:-120px;">
         <input type="text" value="" name="keywords" style="width:500px; height:36px; text-indent:12px; font-size:12px; color:#666; float:left">
         <input type="submit" value="搜索" style=" cursor:pointer; width:70px; height:36px; float:right; text-align:center; background:#333;" class="shousuo">
     </div>

@@ -36,6 +36,22 @@ class ProfileComposer
     {
         $homecate=self:: getCageByPid(0);
         $view->with('homecate', $homecate);
+
+        //购物车
+          $data1=session('cart');
+        // dd($data1);
+        $datas=[];
+        // 获取用户id
+        if(!empty($data1)){
+            foreach($data1 as $key=>$value){
+                // dd($value['id']);
+                $result=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.name as gname','pic_url.p_url')->where('goods.id','=',$value['id'])->where('pic_url.main','=',1)->first();
+                $row['name']=$result->gname;
+                $row['p_url']=$result->p_url;
+                $datas[]=$row;
+            }
+        }
+        $view->with('datas', $datas);
     }
 
     public static function getCageByPid($id){

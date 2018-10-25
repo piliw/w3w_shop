@@ -26,7 +26,10 @@ class HomeGoodsController extends Controller
      */
     public function create()
     {
-        //
+        //测试
+        $info=getExpress('yd',3914230347665);
+        return view('Home.orders.express',['info'=>$info]);
+
     }
 
     /**
@@ -63,7 +66,11 @@ class HomeGoodsController extends Controller
         //其它相关分类数据
         //获取当前二级分类下的pid
          $pid=DB::table('cate')->select('id','pid')->where('id','=',$cate->pid)->where('display','=',1)->first();
-         $othercate=DB::table('cate')->select('id')->where('pid','=',$pid->pid)->where('id','!=',$pid->id)->where('display','=',1)->get();
+         if($pid!=null){
+                $othercate=DB::table('cate')->select('id')->where('pid','=',$pid->pid)->where('id','!=',$pid->id)->where('display','=',1)->get();
+         }else{
+                 $othercate=DB::table('cate')->select('id')->where('pid','=',0)->where('id','!=',$id)->where('display','=',1)->get();
+         }
          foreach($othercate as $other){
                 $oth=DB::table('cate')->select('id','name')->where('pid','=',$other->id)->where('display','=',1)->get();
                 foreach($oth as $v){
@@ -94,9 +101,12 @@ class HomeGoodsController extends Controller
             $per='00';
             $zper='00';
             $cper='00';
+            $hping=0;
+            $zhong=0;
+            $cha=0;
         }
 
-        return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods,'cates'=>$cates,'sales'=>$sales,'rows'=>$rows,'others'=>$others,'appraise'=>$appraise,'per'=>$per,'zper'=>$zper,'cper'=>$cper]);
+        return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods,'cates'=>$cates,'sales'=>$sales,'rows'=>$rows,'others'=>$others,'appraise'=>$appraise,'per'=>$per,'zper'=>$zper,'cper'=>$cper,'total'=>$total,'hping'=>$hping,'zhong'=>$zhong,'cha'=>$cha]);
     }
 
     /**

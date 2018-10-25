@@ -50,4 +50,26 @@
 		$html_text = $alipaySubmit->buildRequestForm($parameter,"get", "确认");
 		echo $html_text;
 	}
+
+	// 获取物流信息
+	function getExpress($com,$no){
+			require_once("exp.php");
+			header('Content-type:text/html;charset=utf-8');
+			$params = array(
+			  'key' => '814c563f8a392953e9d00617874edc81', //您申请的快递appkey
+			  'com' => $com, //快递公司编码，可以通过$exp->getComs()获取支持的公司列表
+			  'no'  => $no //快递编号
+			);
+			$exp = new exp($params['key']); //初始化类
+			 
+			$result = $exp->query($params['com'],$params['no']); //执行查询
+			 
+			if($result['error_code'] == 0){//查询成功
+			  $list = $result['result']['list'];
+			  return$list;
+			}else{
+			  echo "获取失败，原因：".$result['reason'];
+			}
+			 
+	}
  ?>
