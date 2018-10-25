@@ -60,10 +60,13 @@
     <div class="dy13">
     	<embed src="/home/img/honehone_clock_wh.swf" style=" height:45px; width:120px"></embed>
     </div>
+    <form action="/keywords" method="post">
     <div class="dy12">
-    	<input type="text" value="搜索商品/店铺" onfocus="if(value=='搜索商品/店铺') {value=''}" onblur="if (value=='') {value='搜索商品/店铺'}" style="width:500px; height:36px; text-indent:12px; font-size:12px; color:#666; float:left">
-        <input type="search" value="搜索" style=" cursor:pointer; width:70px; height:36px; float:right; text-align:center; background:#333;" class="shousuo">
+        <input type="text" value="" name="keywords" style="width:500px; height:36px; text-indent:12px; font-size:12px; color:#666; float:left">
+        <input type="submit" value="搜索" style=" cursor:pointer; width:70px; height:36px; float:right; text-align:center; background:#333;" class="shousuo">
     </div>
+    {{csrf_field()}}
+    </form>
 </div>
 <!--全部商品分类-->
 <div class="qbspfl">
@@ -71,9 +74,10 @@
     	全部商品分类
     </div>
     <div class="morelist">
+        <a href="/">首页</a>
     @foreach($homecate as $key=>$hom)
-    @if($key<8)
-    	<a href="#">{{$hom->name}}</a>
+    @if($key<7)
+    	<a href="/list?id={{$hom->id}}">{{$hom->name}}</a>
     @endif
     @endforeach
     </div>
@@ -97,14 +101,14 @@ $(function(){
 		<?php $cel=20;?>	
 		@foreach($homecate as $cates)
 		 <li class="active"img>
-			 <a>{{$cates->name}}</a>
-			 <a class="banner_menu_i">&gt;</a>
+			 <a href="/list?id={{$cates->id}}">{{$cates->name}}</a>
+			 <a class="banner_menu_i" href="/list?id={{$cates->id}}">&gt;</a>
 			 <div class="banner_menu_content" style="width: 600px; top: -{{$cel}}px;">
 			 	@foreach($cates->dev as $dev)
 				 <ul class="banner_menu_content_ul">
 				 	@foreach($dev->dev as $san)
 					 <li>
-						 <a><img src="{{$san->curl}}" height="40px"></a><a>{{$san->name}}</a><span>选购</span></li>
+						 <a href="/list?id={{$san->id}}"><img src="{{$san->curl}}" height="40px"></a><a href="/list?id={{$san->id}}">{{$san->name}}<span>选购</span></a></li>
 					@endforeach			 
 				 </ul>
 				 @endforeach

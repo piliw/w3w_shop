@@ -79,32 +79,30 @@
     </div>
     <div class="morelist">
     <a href="">首页</a>
-    <a href="/list">商品列表</a>
       @foreach($cate as $c)
       @foreach($c->dev as $d)
-      <a href="#">{{$d->name}}</a>
+      <a href="/list?id={{$d->id}}">{{$d->name}}</a>
       @endforeach
       @endforeach 
 
     </div>
 </div>
 
-<!--banner轮播引入lunbo.css和daohang.js-->
 <?php $n=20; ?>
  <div id="big_banner_wrap" style="display:block">
    <ul id="banner_menu_wrap">
    @foreach($cate as $c)
      <li class="active"img>
-       <a>{{$c->name}}</a>
+       <a href="/list?id={{$c->id}}">{{$c->name}}</a>
        <a class="banner_menu_i">&gt;</a>
        <div class="banner_menu_content"  
        style="width: 600px;  top:-<?php echo $n?>px;">
        <?php $n+=42; ?>
          @foreach($c->dev as $d)
-          <ul class="banner_menu_content_ul">
+            <ul class="banner_menu_content_ul">
          @foreach($d->dev as $dd)
            <li>
-             <a><img src="/home/img/headphone.jpg"></a><a>{{$dd->name}}</a><span>选购</span></li>
+             <a href="/list?id={{$dd->id}}"><img src="/home/img/headphone.jpg"></a><a href="/list?id={{$dd->id}}">{{$dd->name}}<span>选购</span></a></li>
           @endforeach
          </ul>
           @endforeach 
