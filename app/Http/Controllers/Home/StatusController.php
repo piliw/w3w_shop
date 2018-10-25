@@ -53,6 +53,17 @@ class StatusController extends Controller
         return view("Home.orders.affirm");
     }
 
+    // 查看物流信息
+    public function logistics($id){
+        // echo $id;
+        $sult=DB::table('order')->where('id','=',$id)->first();
+        $res=$sult->send_code;
+        $req=$sult->send_number;
+        $sarea=$sult->send_area;
+        // 传参到物流接口
+        $info=getExpress($res,$req);
+        return view('Home.orders.express',['info'=>$info,'sarea'=>$sarea,'req'=>$req]);
+    }
     /**
      * Show the form for creating a new resource.
      *

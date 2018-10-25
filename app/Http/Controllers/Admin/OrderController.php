@@ -51,20 +51,27 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $id=$request->input('id');
-        $result=$request->only('send_area','send_number');
-        if(!empty($result['send_number'])){
-            $result['send_time']=time();
-            $result['status']=2;
-            // dd($result);
-            if(DB::table('order')->where('id','=',$id)->update($result)){
-                return redirect('/order');
-            }
-        }else{
-            return redirect('/order');
-        }
+        $result=$request->only('send_area','send_number','send_code');
+        $result['send_time']=time();
+        $result['status']=2;
+        // dd($result);
+        DB::table('order')->where('id','=',$id)->update($result);
+        echo '发货成功';
     }
 
+    // 查看物流信息
+    public function logistics($id){
+        // echo $id;
+        $sult=DB::table('order')->where('id','=',$id)->first();
+        $res=$sult->send_code;
+        $req=$sult->send_number;
+        $sarea=$sult->send_area;
+        // 传参到物流接口
+        $info=getExpress($res,$req);
+        return view('Home.orders.express',['info'=>$info,'sarea'=>$sarea,'req'=>$req]);
+    }
     /**
      * Display the specified resource.
      *

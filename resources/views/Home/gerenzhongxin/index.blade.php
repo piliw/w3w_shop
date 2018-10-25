@@ -213,7 +213,7 @@
                             }else if(data[i].status==1){
                                 var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right" id="pright"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">待发货</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
                             }else if(data[i].status==2){
-                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p><p style="margin-top:15px"><a href="/affirm/'+data[i].id+'" id="readss" class="btn btn-danger" onclick="return confirm('+"'确认收货吗'"+')">确认收货</a></p></div><div class="right" id="pright"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">待收货</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
+                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p><p style="margin-top:15px"><a href="/affirm/'+data[i].id+'" id="readss" class="btn btn-danger" onclick="return confirm('+"'确认收货吗'"+')">确认收货</a></p></div><div class="right" id="pright"><p style="margin-top:20px">物流信息</p><p style="margin-top:20px;color:blue" class="wuliu" attr="'+data[i].id+'"><a style="cursor:pointer">查看物流</a></p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
                             }else if(data[i].status==3){
                                 var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right" id="pright"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">已收货</p></div><div class="right"><p style="margin-top:20px">评价商品</p><p style="margin-top:15px"><a href="/status/'+data[i].id+'" id="readss" class="btn btn-primary">去评价</a></p></div>');
                             }else if(data[i].status==4){
@@ -283,16 +283,22 @@
                             @endif
                         </div>
                         <div class="right" id="pright">
-                            <p style="margin-top:20px">交易状态</p>
                             @if($v->status==0)
+                            <p style="margin-top:20px">交易状态</p>
                             <p style="margin-top:20px;color:#ff6700">未付款</p>
                             @elseif($v->status==1)
+                            <p style="margin-top:20px">交易状态</p>
                             <p style="margin-top:20px;color:#ff6700">待发货</p>
                             @elseif($v->status==2)
-                            <p style="margin-top:20px;color:#ff6700">待收货</p>
+                            <p style="margin-top:20px">物流信息</p>
+                            <p style="margin-top:20px;color:blue" class="wuliu" attr="{{$v->id}}">
+                                <a style="cursor:pointer">查看物流</a>
+                            </p>
                             @elseif($v->status==3)
+                            <p style="margin-top:20px">交易状态</p>
                             <p style="margin-top:20px;color:#ff6700">已收货</p>
                             @elseif($v->status==4)
+                            <p style="margin-top:20px">交易状态</p>
                             <p style="margin-top:20px;color:#ff6700">完成交易</p>
                             @endif
                         </div>
@@ -554,6 +560,35 @@
     </div>
     <!--详细列表结束-->
 </div>
+<script src="/layuiadmin/layui/layui.js"></script>
+<script>
+layui.config({
+    base: '/layuiadmin/' //静态资源所在路径
+}).extend({
+    index: 'lib/index' //主入口模块
+}).use(['index'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element
+    ,layer = layui.layer;
+
+    element.render();
+    
+    /* 触发弹层 */
+   // 物流信息
+   $('body').on('click','.wuliu',function(){
+    var id=$(this).attr('attr');
+    // alert(id);
+    layer.open({
+          type: 2
+          ,content: '/logistics/'+id
+          ,shadeClose: true
+          , area: ['1000px', '500px']
+          ,maxmin: true
+        });
+    });
+});
+</script>
 <!--个人中心结束-->
 @endsection
 @section('title','个人中心')

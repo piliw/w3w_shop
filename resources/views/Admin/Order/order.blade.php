@@ -498,8 +498,12 @@ $(function(){
           type: 2
           ,content: '/order/create?id='+id
           ,shadeClose: true
-          , area: ['1000px', '500px']
+          , area: ['800px', '500px']
           ,maxmin: true
+       	  ,end: function(index, layero){ 
+ 		 	location.reload();
+  			// return false; 
+		}
         });
    });
 
@@ -509,7 +513,7 @@ $(function(){
   	// alert(id);
    	layer.open({
           type: 2
-          ,content: 'http://www.baidu.com'
+          ,content: '/logistics/'+id
           ,shadeClose: true
           , area: ['1000px', '500px']
           ,maxmin: true

@@ -22,6 +22,7 @@ Route::get("/welcome","Admin\IndexController@welcome");
 // 后台订单模块
 Route::group([],function(){
 	Route::resource("/order","Admin\OrderController");
+	Route::get("/logistics/{id}","Admin\OrderController@logistics");
 });
 Route::group([],function(){
 	//分类管理
@@ -166,6 +167,8 @@ Route::group(['middleware'=>'homelogin'],function(){
 	Route::resource("/status","Home\StatusController");
 	// 确认收货处理
 	Route::get("/affirm/{id}","Home\StatusController@affirm");
+	// 物流信息
+	Route::get("/logistics/{id}","Home\StatusController@logistics");
 	
 	// 收货地址删除
 	Route::get("/addressdel","Home\OrdersController@del");
