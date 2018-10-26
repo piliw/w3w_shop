@@ -108,7 +108,7 @@
         <em>{{$data->phone}}</em>
         @endif
         <em>欢迎来到会员中心</em>
-        <a href="#">地址管理</a>
+        <a href="/address">地址管理</a>
         <a href="/zhuce/{{Session::get('hid')}}/edit">修改资料</a>
         <h5>账户安全</h5>
         <strong>低</strong>

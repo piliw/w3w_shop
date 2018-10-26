@@ -82,6 +82,8 @@
 <!--商品列表-->
 <div class="shopliebiao">
 	<ul class="goodslist">
+        <!-- 判断是否为空 -->
+         @if(count($goods)!=0)
 				 @foreach($goods as $g)
     		<li>
            <a href="/homegoods/{{$g->gid}}" class="wocici">
@@ -98,7 +100,10 @@
             <a href="#" style=" border-right:hidden">联系卖家</a>
            </em>
         </li>
-        	@endforeach      
+        	@endforeach 
+          @else
+          <span style="color:blue;font-size:20px;">暂无商品,请查看其他商品...</span>
+          @endif     
     </ul>
 </div>
 <!--猜你喜欢-->
@@ -106,7 +111,8 @@
 <div class="tuijiansp">
     <div class="shopliebiao">
         <ul>
-        @foreach($goods as $key=>$g)
+        @foreach($goodss as $key=>$g)
+        <!-- 限制条数 -->
         @if($key<5)
             <li>
            <a href="/homegoods/{{$g->gid}}" class="wocici">
@@ -138,11 +144,18 @@
 		$.get('/list',{id:id},function(data){
 			// console.log(data);
 			var str = '';
-			// 遍历
+			// 遍历  将代码整个插入div里
 			for(var i=0;i<data.length;i++){
 				str += '<li><a href="/homegoods/'+data[i]['gid']+'" class="wocici"><b><img src="'+data[i]['pp']+'"></b><h2 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'+data[i]['gname']+'</h2><p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'+data[i]['summ']+'</p><span>'+data[i]['price']+'</span></a><em class="wocaca"><a href="#">唯尚衣族自营店</a><a href="#" style="border-right:hidden">联系卖家</a></em></li>';
 			}
-			$('.goodslist').html(str);
+      // 判断是否为空
+      if(str != ''){
+        // 不为空直接将字符串插入
+			 $('.goodslist').html(str);
+      }else{
+        // 为空插入下面的字符串
+        $('.goodslist').html('<span style="color:blue;font-size:20px;">暂无商品,请查看其他商品...</span>');
+      }
 		},'json');
 	});
 </script>

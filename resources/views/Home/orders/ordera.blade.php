@@ -63,7 +63,7 @@
             <div class="opcaty1">
                 <div class="opcaty2">
                     <em>收货人姓名：</em>
-                    <input style="float:left; border:1px solid #bbb; box-shadow:none; height:28px; font-size:12px; text-indent:6px" type="text" class="shuru adname"/>
+                    <input style="float:left; border:1px solid #bbb; box-shadow:none; height:28px; font-size:12px; text-indent:6px" type="text" class="shuru" id="adname"/>
                     
                 </div>
                 <div class="opcaty2">
@@ -120,7 +120,7 @@
         $('.save').click(function(){
             var sid={{$sid}};
             // alert(sid);
-            var name=$('.adname').val();
+            var name=$('#adname').val();
             var readd=$('.readd').val();
             var readdress=$('#readdress').val(); 
             var address=readd+'-'+readdress;
@@ -252,7 +252,6 @@
     </div>
     <!--发票信息结束-->
     <!--商品清单-->
-
     <div class="shouhurxl">
         <!--一条商品信息开始-->
         @foreach($result as $row)

@@ -1,20 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
-class GerenzhongxinController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // 后台地址管理
+    public function index(Request $request)
     {
-        //
+        // echo 1;
+        // 链表查询
+        $data = DB::table('address')->join('user','user.id','=','address.user_id')->select('address.id as aid','phone','u_name','u_phone','u_address','default')->get();
+        // dd($data);
+        // 加载模板,分配数据
+        return view('Admin.address.home-address',['data'=>$data]);
     }
 
     /**
