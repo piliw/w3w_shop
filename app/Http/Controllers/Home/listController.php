@@ -55,6 +55,13 @@ class listController extends Controller
         ->where('cate_id','=',$cid)->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
         // dd($goods);
         
+        // 猜你喜欢需要的商品数据
+         $goodss = DB::table('goods')
+        ->join('pic_url','pic_url.gid','=','goods.id')
+        ->join('cate','cate.id','=','goods.cate_id')
+        ->select('goods.id as gid','goods.name','price','summ','pic_url.p_url','cate.id as cid')
+        ->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
+        
         // 首页和列表的方法
         // 判断是否为post的数据
         if($request->isMethod('post')){
@@ -64,7 +71,7 @@ class listController extends Controller
             $goods = DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->where('name','like','%'.$data.'%')->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
             // dd($goods);
             // 加载模板分配数据
-            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate]);
+            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate,'goodss'=>$goodss]);
         }
 
         // 判断是否为ajax请求
@@ -72,7 +79,7 @@ class listController extends Controller
             // 获取商品
             // 获取无限分类
             // 加载模板
-            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate]);
+            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate,'goodss'=>$goodss]);
         }
         // 获取此类id
         $id = $request->get('id');

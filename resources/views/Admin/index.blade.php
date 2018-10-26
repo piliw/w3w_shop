@@ -124,6 +124,9 @@
                 <dd>
                   <a lay-href="/goodsinfo/create">添加商品</a>
                 </dd>
+                <dd>
+                  <a lay-href="/adminaddress">地址管理</a>
+                </dd>
               </dl>
             </li>
                <li data-name="user" class="layui-nav-item">

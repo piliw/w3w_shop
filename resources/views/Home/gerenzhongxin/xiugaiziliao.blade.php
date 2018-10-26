@@ -20,7 +20,7 @@
         </b>
         <em>czz1994612</em>
         <em>欢迎来到会员中心</em>
-        <a href="#">地址管理</a>
+        <a href="/address">地址管理</a>
         <a href="#">修改资料</a>
         <h5>账户安全</h5>
         <strong>低</strong>

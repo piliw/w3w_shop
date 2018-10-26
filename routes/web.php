@@ -121,6 +121,9 @@ Route::get('/homedel','Admin\HomeUsersController@homedel');
 Route::get('/homestatus','Admin\HomeUsersController@homestatus');
 // ajax改变用户等级
 Route::get('/vip','Admin\HomeUsersController@vip');
+// 后台地址管理
+Route::resource('/adminaddress','Admin\AddressController');
+
 });
 // ----------------前台控制器-------------------------
 // 前台登录操作
@@ -163,6 +166,15 @@ Route::get("/cartdel/{id}","Home\CartController@del");
 	Route::get("/goapp/{id}","Admin\AppraiseController@goapp");
 // 前台订单操作
 Route::group(['middleware'=>'homelogin'],function(){
+	// 前台个人中心地址管理
+	Route::resource('/address','Home\AddressController');
+	// 前台执行地址添加操作
+	Route::post('/addres','Home\AddressController@addres');
+	// 前台地址删除操作
+	Route::get('/addrdel','Home\AddressController@addrdel');
+	// 前台地址默认设置
+	Route::get('/moren/{id}','Home\AddressController@moren');
+
 	// 订单控制器
 	Route::resource("/orders","Home\OrdersController");
 	// 订单状态
