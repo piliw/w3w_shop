@@ -15,34 +15,38 @@ class CartController extends Controller
     
    
     // 购物车列表方法
-    public function index()
+    public function index(Request $request)
     {
         $uname=session('hname');
         //获取session数组数据 id和num
-        $cart=session('cart');
-        // dd($cart);
-        $data=[];
-        // 总计
-        $total='';
-        // 总条数
-        $tot='';
-        // 遍历$cart
-        foreach($cart as $key=>$value){
-            // 获取商品数据
-            $info=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.*','pic_url.p_url')->where('goods.id','=',$value['id'])->where('pic_url.main','=',1)->first();
-            // dd($info);
-            $row['name']=$info->name;
-            $row['price']=$info->price;
-            $row['p_url']=$info->p_url;
-            $row['size']=$value['size'];
-            $row['num']=$value['num'];
-            $total+=$row['price']*$row['num'];
-            $tot+=$row['num'];
-            $row['id']=$value['id'];
-            $data[]=$row;
+        if($request->session()->has('cart')){
+            $cart=session('cart');
+            // dd($cart);
+            $data=[];
+            // 总计
+            $total='';
+            // 总条数
+            $tot='';
+            // 遍历$cart
+            foreach($cart as $key=>$value){
+                // 获取商品数据
+                $info=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.*','pic_url.p_url')->where('goods.id','=',$value['id'])->where('pic_url.main','=',1)->first();
+                // dd($info);
+                $row['name']=$info->name;
+                $row['price']=$info->price;
+                $row['p_url']=$info->p_url;
+                $row['size']=$value['size'];
+                $row['num']=$value['num'];
+                $total+=$row['price']*$row['num'];
+                $tot+=$row['num'];
+                $row['id']=$value['id'];
+                $data[]=$row;
+            }
+            // dd($data);
+            return view('Home.Cart.index',['data'=>$data,'total'=>$total,'tot'=>$tot,'uname'=>$uname]);
+        }else{
+            return view('Home.Cart.nullcart');
         }
-        // dd($data);
-        return view('Home.Cart.index',['data'=>$data,'total'=>$total,'tot'=>$tot,'uname'=>$uname]);
     }
 
     // 购物车减

@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>支付成功</title>
+	<title>购物车为空</title>
 	<link rel="stylesheet" href="/home/css/mi.css">
 	<link rel="stylesheet" href="/home/css/cartempty.css">
 </head>
 <body>
 	<div class="cart-head">
 		<a href=""><div class="cart-mi-logo"></div></a>
-		<h2 class="my-cart">支付成功</h2>
+		<h2 class="my-cart">购物车为空</h2>
 		<div class="cart-login fr" >
 		
 			<!-- <span class="fr"><a href="">注册</a></span>
@@ -25,16 +25,15 @@
 	</div>
 
 	<!-- 购物车商品板块 -->
-	<div class="cart-body pay">
+	<div class="cart-body nullcart">
 		<div class="cart-nono" ></div>
 		<div class="cart-info">
-			<div class="cart-pay fl"></div>
+			<div class="cart-null fl"></div>
 			<div class="cart-right-info fl">
-				<h2>支付成功 ( ^_^ )</h2>
+				<h2>购物车为空 ( ^_^ )</h2>
 				<p>您的购物车现在是空的请去购物!</p>
 				<div class="dengli">
-					<a href="/" class="dengli-l fl">返回首页</a>
-					<a href="/zhuce/{{session('hid')}}" class="dengli-l fl">查看订单</a>	
+					<a href="/" class="dengli-l fl">去购物</a>
 			</div>
 		</div>
 	</div>
@@ -170,7 +169,7 @@
 						<span>|</span>
 						<a href="">路由器</a>
 						<span>|</span>
-						<a href="">唯尚依族vip卡</a>
+						<a href="">唯尚依族VIP卡</a>
 						<span>|</span>
 						<a href="">政企服务</a>
 						<span>|</span>
