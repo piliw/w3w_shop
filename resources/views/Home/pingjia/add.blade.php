@@ -122,25 +122,22 @@
           <span class="title">宝贝质量：</span> 
 
           <div class="test1"></div> 
-         <input type="text" name="gscore" value="4" size="1" /> 
+        
+              <input type="hidden"  class="gscore" name="gscore[{{$row->goods_id}}]" value="4" size="1" /> 
 
          <span class="result" id="stars1-tips"></span> 
          <em style="line-height: 26px;">(请点击小星星进行评分,默认4星哦)</em> 
         </div> 
        <!--对商品进行评价--> 
        <div class="dfdaspjtk"> 
-        <textarea name="content" style=" min-height:140px; display:block; min-width:666px; max-height:141px; max-width:667px; border:1px solid #cacace; margin:5px auto; font-size:15px; line-height:20px; color:#111; text-indent:10px; box-shadow:none" placeholder="评价信息最多填写250字，请您根据本次交易，给予真实、客观地评价； 您的评价将是其他会员的参考" oninvalid="setCustomValidity('请写下你的评价吧')"></textarea> 
+        <textarea name="contents[{{$row->goods_id}}]" style=" min-height:140px; display:block; min-width:666px; max-height:141px; max-width:667px; border:1px solid #cacace; margin:5px auto; font-size:15px; line-height:20px; color:#111; text-indent:10px; box-shadow:none" placeholder="评价信息最多填写250字，请您根据本次交易，给予真实、客观地评价； 您的评价将是其他会员的参考" oninvalid="setCustomValidity('请写下你的评价吧')"></textarea> 
         @endforeach
        </div> 
-        @foreach($goodsinfo as $k=>$v)
-        <!--订单号 -->
-        <input type="hidden" name="order_id" value="{{$v->order_id}}">
-        <!-- 商品id -->
-        <input type="hidden" name="goods_id" value="{{$v->goods_id}}">
-        <!-- 用户id -->
-        <input type="hidden" name="user_id" value="{{$v->user_id}}">
-       <!--评价结束--> 
-       @endforeach
+      
+      <!-- 订单号 -->
+      <input type="hidden" name="oid" value="{{$oid}}">
+      <!-- 用户id -->
+      <input type="hidden" name="hid" value="{{$hid}}">
         <!--一条综合评分结束--> 
        </div> 
        <!--对该店评价结束--> 
@@ -178,7 +175,7 @@
       ,text: true //开启文本
         ,choose: function(value){
          // if(value > 4) alert( '么么哒' )
-         console.log($(this));
+          $('.gscore').eq(index).val(value);
          }
 
     });

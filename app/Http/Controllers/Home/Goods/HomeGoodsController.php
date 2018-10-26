@@ -94,12 +94,12 @@ class HomeGoodsController extends Controller
             $hping=DB::table('appraise')->where('goods_id','=',$id)->where('gscore','>=',4)->count();
             //计算好评率
             $per=round($hping/$total,2)*100;
-            //中评条数
+            //中评
             $zhong=DB::table('appraise')->where('goods_id','=',$id)->where('gscore','=',3)->count();
             $zper=round($zhong/$total,2)*100;
-             //中评条数
+             //差评
             $cha=DB::table('appraise')->where('goods_id','=',$id)->where('gscore','<',3)->count();
-            $cper=round($zhong/$total,2)*100;   
+            $cper=round($cha/$total,2)*100;   
         }else{
             $per='00';
             $zper='00';

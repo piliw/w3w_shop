@@ -16,7 +16,7 @@
             <span class="fr">|</span>
             <span class="fr cart-reg"><a href="/homelogin">登陆</a></span>
             @else
-            <span class="fr"><a href="/zhuce/{{Session::get('hid')}}"">我的订单</a></span>
+            <span class="fr"><a href="/zhuce/{{Session::get('hid')}}">我的订单</a></span>
             <span class="fr">|</span>
             <span class="fr cart-reg"><a href="">{{$uname}}</a></span>
             @endif
@@ -32,7 +32,6 @@
                     <table width="1226" align="center" bgcolor="#FFFFFF">
                         <tr height="30">
                             <th>商品预览</th>
-                            <th width="250"></th>
                             <th width="200">商品名称</th>
                             <th>单价</th>
                             <th>数量</th>

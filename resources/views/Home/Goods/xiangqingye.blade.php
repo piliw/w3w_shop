@@ -495,7 +495,7 @@
                             	-34px
                             	@elseif($quanbu->gscore==2)
                             	-51px
-                            	@else if($quanbu->gscore==1)
+                            	@elseif($quanbu->gscore==1)
                             	-68px
                             	@endif
                             	 0"></div>
@@ -541,7 +541,7 @@
                             	0
                             	@elseif($haoping->gscore==4)
                             	-17px
-					@endif	
+			@endif	
                             	 0"></div>
                                 <div class="shdltpl">收货1天后评论</div>
                                 <div class="shdplsj">{{$haoping->addtime}}</div>

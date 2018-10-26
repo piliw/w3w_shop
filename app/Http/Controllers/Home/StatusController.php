@@ -75,7 +75,7 @@ class StatusController extends Controller
         $goodsinfo=DB::table('order')->join('order_info','order.id','=','order_info.order_id')->join('goods','order_info.goods_id','=','goods.id')->join('pic_url','goods.id','=','pic_url.gid')->select('order.user_id','order_info.*','goods.name','pic_url.p_url')->where('order.id','=',$id)->where('order.user_id','=',$hid)->where('pic_url.main','=',1)->get();
         // dd($goodsinfo);
         //加载用户评价模板
-        return view('Home.pingjia.add',['goodsinfo'=>$goodsinfo,'hname'=>$hname]);
+        return view('Home.pingjia.add',['goodsinfo'=>$goodsinfo,'hname'=>$hname,'hid'=>$hid,'oid'=>$id]);
       
     }
     /**
@@ -97,8 +97,22 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $oid = $request->input('order_id');
+        $gscore=$request->input('gscore');
+        $contents=$request->input('contents');
+        $hid=$request->input('hid');
+        $oid=$request->input('oid');
+        $time=time();
+        foreach($gscore as $key=>$val){
+                $data['gscore']=$val;
+                $data['content']=$contents[$key];
+                $data['goods_id']=$key;
+                $data['user_id']=$hid;
+                $data['order_id']=$oid;
+                $data['addtime']=$time;
+                DB::table('appraise')->insert($data);
+        }
+
+        
         DB::table('order')->where('id','=',$oid)->update(['status'=>4]);       
         return view("Home.orders.evaluate"); 
     }
@@ -150,4 +164,5 @@ class StatusController extends Controller
     {
         //
     }
+
 }

@@ -41,7 +41,7 @@ class listController extends Controller
         // dd($cid);
         // 获取子类信息
         $cate = DB::table('cate')->where('pid','=',$cid)->where('display','=',1)->get();
-        if(count($cate)==0){
+        if($cate==null){
             $ca = DB::table('cate')->where('id','=',$cid)->first();
             $cate = DB::table('cate')->where('pid','=',$ca->pid)->where('display','=',1)->get();
         }
@@ -75,18 +75,18 @@ class listController extends Controller
         }
 
         // 判断是否为ajax请求
-        if(!$request->ajax()){
+        if($request->ajax()){
             // 获取商品
             // 获取无限分类
             // 加载模板
-            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate,'goodss'=>$goodss]);
+            $id = $request->get('id');
+            // echo $id;
+            // 获取当前分类下的所有商品
+            $res = DB::table('goods')->join('cate','goods.cate_id','=','cate.id')->join('pic_url','pic_url.gid','=','goods.id')->select(DB::raw('*,cate.id as cid,cate.name as cname,goods.id as gid,goods.name as gname,pic_url.p_url as pp'))->where('goods.cate_id','=',$id)->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
+            echo json_encode($res);
         }
         // 获取此类id
-        $id = $request->get('id');
-        // echo $id;
-        // 获取当前分类下的所有商品
-        $res = DB::table('goods')->join('cate','goods.cate_id','=','cate.id')->join('pic_url','pic_url.gid','=','goods.id')->select(DB::raw('*,cate.id as cid,cate.name as cname,goods.id as gid,goods.name as gname,pic_url.p_url as pp'))->where('goods.cate_id','=',$id)->where('pic_url.main','=',1)->where('goods.status','=',1)->get();
-        echo json_encode($res);
+            return view('Home.list.index',['brand'=>$brand,'goods'=>$goods,'cate'=>$cate,'goodss'=>$goodss]);
         
     }
 
