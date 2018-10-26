@@ -25,7 +25,7 @@
 	</div>
 
 	<!-- 购物车商品板块 -->
-	<div class="cart-body">
+	<div class="cart-body evaluate">
 		<div class="cart-nono" ></div>
 		<div class="cart-info">
 			<div class="cart-evaluate fl"></div>
@@ -105,16 +105,16 @@
 				<div class="footer-link-first fl">
 					<dl>
 						<dt>线下门店</dt>
-						<dd><a href="">小米之家</a></dd>
+						<dd><a href="">唯尚依族</a></dd>
 						<dd><a href="">服务网点</a></dd>
 						<dd><a href="">授权门店</a></dd>
 					</dl>
 				</div>
 				<div class="footer-link-first fl">
 					<dl>
-						<dt>关于小米</dt>
-						<dd><a href="">了解小米</a></dd>
-						<dd><a href="">加入小米</a></dd>
+						<dt>关于唯尚依族</dt>
+						<dd><a href="">了解唯尚依族</a></dd>
+						<dd><a href="">加入唯尚依族</a></dd>
 						<dd><a href="">投资者关系</a></dd>
 					</dl>
 				</div>
@@ -154,13 +154,13 @@
 			<div class="side-container">
 				<div class="text-box">
 					<p class="box-one">
-						<a href="">小米商城</a>
+						<a href="">唯尚依族商城</a>
 						<span>|</span>
 						<a href="">MIUI</a>
 						<span>|</span>
-						<a href="">米家</a>
+						<a href="">唯尚依族之家</a>
 						<span>|</span>
-						<a href="">米聊</a>
+						<a href="">唯尚依族聊</a>
 						<span>|</span>
 						<a href="">多看</a>
 						<span>|</span>
@@ -168,11 +168,11 @@
 						<span>|</span>
 						<a href="">路由器</a>
 						<span>|</span>
-						<a href="">米粉卡</a>
+						<a href="">唯尚依族</a>
 						<span>|</span>
 						<a href="">政企服务</a>
 						<span>|</span>
-						<a href="">小米天猫店</a>
+						<a href="">唯尚依族天猫店</a>
 						<span>|</span>
 						<a href="">隐私政策</a>
 						<span>|</span>
