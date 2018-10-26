@@ -21,7 +21,7 @@
             <li><a href="/">唯尚衣族官网<br/>唯尚衣族官网</a></li>
             <li><a href="#" id="diyunapp">商城APP<br/>商城APP</a></li>
         </ul>
-        <a href="#" class="dy5">购物车</a>
+        <a href="/homecart" class="dy5">购物车</a>
         @if(session('hname'))
         <ul class="dy4">
             <li><a href="/zhuce/{{Session::get('hid')}}">{{session('hname')}}<br/>{{session('hname')}}</a></li>

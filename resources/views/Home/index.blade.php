@@ -28,7 +28,7 @@
           <li><a href="/homenotece" class="notece">官方公告<br/>官方公告</a></li>
          <li><a href="#">维尚衣族官网<br/>维尚衣族官网</a></li>
         </ul>
-        <a href="#" class="dy5">购物车</a>
+        <a href="/homecart" class="dy5">购物车</a>
         <ul class="dy4">
             @if(Session::has('hname'))
             <li><a href="#">欢迎您登录!<br/>欢迎您登录!</a></li>
