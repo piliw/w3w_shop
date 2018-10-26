@@ -2,17 +2,26 @@
 @section('main') 
   <link rel="stylesheet" type="text/css" href="/home/js/statics/grade.css" /> 
   <link rel="stylesheet" type="text/css" href="/home/css/appraise.css" /> 
+  <link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/layuiadmin/style/admin.css" media="all">
   <script src="/home/js/statics/jquery-latest.pack.js"></script> 
   <script src="/home/js/statics/grade.js"></script> 
+  <script src="/jquery-1.7.2.min.js"></script> 
+
   <!--个人中心首页 --> 
   <div class="thetoubu"> 
    <!--头部--> 
    <div class="thetoubu1"> 
+   @if(!empty($hname))
     <b> <img src="{{$hname->user_pic}}" /></b> 
-    <em>{{$hname->nickname}}</em> 
+    <em>{{$hname->nickname}}</em>
+    @else
+      <b> <img src="/home/img/touxiang.png"/></b>
+        <em>czz1994612</em>
+    @endif
     <em>欢迎来到会员中心</em> 
     <a href="#">地址管理</a> 
-    <a href="/zhuce/{{$hname->id}}/edit">修改资料</a> 
+    <a href="/zhuce/1/edit">修改资料</a> 
     <h5>账户安全</h5> 
     <strong>低</strong> 
     <span> <p style=" width:27%"></p> </span> 
@@ -111,21 +120,17 @@
        </div> 
         <div class="shop-rating" style="margin:0 100px;margin-bottom:50px"> 
           <span class="title">宝贝质量：</span> 
-         <ul class="rating-level" id="stars1"> 
-          <li><a class="one-star" star:value="1" style="padding-left:0px">1</a></li> 
-          <li><a class="two-stars" star:value="2" style="padding-left:25px">2</a></li> 
-          <li><a class="three-stars" star:value="3" >3</a></li> 
-          <li><a class="four-stars" star:value="4" >4</a></li> 
-          <li><a class="five-stars" star:value="5" >5</a></li> 
-         </ul> 
+
+          <div class="test1"></div> 
+
          <span class="result" id="stars1-tips"></span> 
          <input type="hidden" id="stars1-input" name="gscore" value="4" size="1" /> 
          <em style="line-height: 26px;">(请点击小星星进行评分,默认4星哦)</em> 
         </div> 
-        @endforeach
        <!--对商品进行评价--> 
        <div class="dfdaspjtk"> 
         <textarea name="content" style=" min-height:140px; display:block; min-width:666px; max-height:141px; max-width:667px; border:1px solid #cacace; margin:5px auto; font-size:15px; line-height:20px; color:#111; text-indent:10px; box-shadow:none" placeholder="评价信息最多填写250字，请您根据本次交易，给予真实、客观地评价； 您的评价将是其他会员的参考" oninvalid="setCustomValidity('请写下你的评价吧')"></textarea> 
+        @endforeach
        </div> 
         @foreach($goodsinfo as $k=>$v)
         <!--订单号 -->
@@ -160,68 +165,35 @@
    <!--个人中心结束-->   
   </s>
  </body>
- <script>
-  var Class = { create: function() { return function() { this.initialize.apply(this, arguments); } }}
-  var Extend = function(destination, source) { for (var property in source) { destination[property] = source[property]; }}
-  function stopDefault( e ) { if ( e && e.preventDefault ){ e.preventDefault(); }else{ window.event.returnValue = false; } return false;} /** * 星星打分组件 * * @author Yunsd * @date 2010-7-5 */
-  var Stars = Class.create();Stars.prototype = { initialize: function(star,options) { this.SetOptions(options); 
-  //默认属性 
-  var flag = 999; //定义全局指针 
-  var isIE = (document.all) ? true : false; //IE? 
-  var starlist = document.getElementById(star).getElementsByTagName('a'); //星星列表 
-  var input = document.getElementById(this.options.Input) || document.getElementById(star+"-input"); // 输出结果 
-  var tips = document.getElementById(this.options.Tips) || document.getElementById(star+"-tips"); // 打印提示 
-  var nowClass = " " + this.options.nowClass; // 定义选中星星样式名
-  var tipsTxt = this.options.tipsTxt; // 定义提示文案 
-  var len = starlist.length; //星星数量 
-  for(i=0;i<len;i++){ 
-  // 绑定事件 点击 鼠标滑过 
-  starlist[i].value = i; 
-  starlist[i].onclick = function(e){ 
-      stopDefault(e); 
-      this.className = this.className + nowClass; 
-      flag = this.value; 
-      input.value = this.getAttribute("star:value"); 
-      tips.innerHTML = tipsTxt[this.value] 
-      } 
-      starlist[i].onmouseover = function(){ 
-          if (flag< 999){
-              var reg = RegExp(nowClass,"g");
-              starlist[flag].className = starlist[flag].className.replace(reg,"") 
-              } 
-      } 
-      starlist[i].onmouseout = function(){ 
-          if (flag< 999){ 
-              starlist[flag].className = starlist[flag].className + nowClass; 
-              } 
-          } 
-      }; 
-      if (isIE){
-          //FIX IE下样式错误 
-          var li = document.getElementById(star).getElementsByTagName('li'); 
-          for (var i = 0, len = li.length; i < len; i++) { 
-              var c = li[i]; 
-              if (c) 
-              {
-                  c.className = c.getElementsByTagName('a')[0].className; 
-                  } 
-              } 
-          } 
-      }, 
-          //设置默认属性 
-          SetOptions: function(options) { this.options = {
-          //默认值
-          Input: "3",
-          //设置触保存分数的
-          Tips: "1",//设置提示文案容器 
-          nowClass: "current-rating",
-          //选中的样式名 
-          tipsTxt: ["1星-严重差评","2星-差评","3星-中评","4星-比较好","5星-好评"]
-          //提示文案 
-      };
-  Extend(this.options, options || {}); }}/* For TEST */
 
-      var Stars1 = new Stars("stars1",{nowClass:"current-rating",tipsTxt:["1星-严重差评","2星-差评","3星-中评","4星-比较好","5星-好评"]});
- </script>
+   <script src="/layuiadmin/layui/layui.js"></script>
+  <script>
+  layui.use('rate', function(){
+    var rate = layui.rate;
+    var $=layui.jquery;
+    layui.each($('.test1'),function(index,elem){
+      rate.render({
+      elem: elem
+      ,value: 3 //初始值
+      ,text: true //开启文本
+        ,choose: function(value){
+         if(value > 4) alert( '么么哒' )
+         }
+         ,setText: function(value){
+            var arrs = {
+              '1': '极差'
+              ,'2': '差'
+              ,'3': '中等'
+              ,'4': '好'
+              ,'4': '非常好'
+            };
+            this.span.text(arrs[value] || ( value + "星"));
+          }
+
+    });
+    }); 
+  });
+  </script>
+ 
 @endsection
 @section('title','我要评价')
