@@ -22,6 +22,12 @@
 <title>分类管理</title>
 </head>
 <body>
+	  @if(Session::has('error'))
+    	<script>
+    	alert("{{Session::get('error')}}")
+    	parent.location.reload();
+    	</script>
+   	 @endif
 	<div class="col-8 col-offset-2" id="xuanze">
 		<button class="btn btn-primary radius">&nbsp;&nbsp;添加分类&nbsp;&nbsp;</button>
 		<button class="btn radius">&nbsp;&nbsp;修改分类&nbsp;&nbsp;</button>

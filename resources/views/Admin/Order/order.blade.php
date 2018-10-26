@@ -51,13 +51,13 @@
 				<!-- 全部订单开始 -->
 				<div class="tabCon">
 					<div class="page-container">
-						<div class="text-c"> 日期范围：
+						<!-- <div class="text-c"> 日期范围：
 							<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
 							-
 							<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
 							<input type="text" class="input-text" style="width:250px" placeholder="" id="" name="">
 							<button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i>搜索订单</button>
-						</div>
+						</div> -->
 						<div class="mt-20">
 							<table class="table table-border table-bordered table-hover table-bg table-sort art">
 								<thead>

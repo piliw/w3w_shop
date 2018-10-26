@@ -122,9 +122,9 @@
           <span class="title">宝贝质量：</span> 
 
           <div class="test1"></div> 
+         <input type="text" name="gscore" value="4" size="1" /> 
 
          <span class="result" id="stars1-tips"></span> 
-         <input type="hidden" id="stars1-input" name="gscore" value="4" size="1" /> 
          <em style="line-height: 26px;">(请点击小星星进行评分,默认4星哦)</em> 
         </div> 
        <!--对商品进行评价--> 
@@ -174,21 +174,12 @@
     layui.each($('.test1'),function(index,elem){
       rate.render({
       elem: elem
-      ,value: 3 //初始值
+      ,value: 4 //初始值
       ,text: true //开启文本
         ,choose: function(value){
-         if(value > 4) alert( '么么哒' )
+         // if(value > 4) alert( '么么哒' )
+         console.log($(this));
          }
-         ,setText: function(value){
-            var arrs = {
-              '1': '极差'
-              ,'2': '差'
-              ,'3': '中等'
-              ,'4': '好'
-              ,'4': '非常好'
-            };
-            this.span.text(arrs[value] || ( value + "星"));
-          }
 
     });
     }); 

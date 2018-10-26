@@ -22,6 +22,9 @@
 <title>分类信息表</title>
 </head>
 <body>
+    @if(Session::has('error'))
+    <script>alert("{{Session::get('error')}}")</script>
+    @endif
 <div class="page-container">
 			<a href="/categoryadd">
 			<button type="button" class="btn btn-success" id="" name="" onClick="picture_colume_add(this);"><i class="Hui-iconfont">&#xe600;</i> 添加分类</button>

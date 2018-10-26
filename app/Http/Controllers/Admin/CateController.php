@@ -59,9 +59,9 @@ class CateController extends Controller
             if(DB::table('cate')->insert($data)){
                 // 存储图片
                 $request->file('pic')->move('.'.$dir,$name.'.'.$ext);
-                echo '添加成功,请手动刷新';
+                 return redirect('/categoryadd')->with('error','分类添加成功!');
             }else{
-                echo '添加失败,刷新后重新添加';
+                return redirect('/categoryadd')->with('error','分类添加失败,请重新添加!');
             }
         }else{
             //添加子分类
@@ -75,9 +75,9 @@ class CateController extends Controller
             if(DB::table('cate')->insert($data)){
                   // 存储图片
                 $request->file('pic')->move('.'.$dir,$name.'.'.$ext);
-                echo '添加成功,请手动刷新';
+                return redirect('/categoryadd')->with('error','分类添加成功!');
             }else{
-                echo '添加失败,刷新后重新添加';
+                return redirect('/categoryadd')->with('error','分类添加失败,请重新添加!');
             }
         }
     }
@@ -143,9 +143,9 @@ class CateController extends Controller
         //获取分类信息
         $cates=DB::table('cate')->select('id','pid','name','display')->get();
         foreach($cates as $key=>$val){
-               /* if($val->display==0){
+                if($val->display==0){
                      $cates[$key]->name .= '(已禁用)';
-                }*/
+                }
                 if($val->pid==0){
                     $cates[$key]->open=true;
                 }
@@ -230,14 +230,15 @@ class CateController extends Controller
         $id=$request->input('id');
         if(count(DB::table('cate')->where('pid','=',$id)->get())>0){
                 // echo '该分类下有子分类,请先删除子分类在执行操作';
-                echo '<script>alert("该分类下有子分类,请先删除子分类在执行操作")</script>';
-                return view('Admin.Cate.category-add');
+               return redirect('/category/'.$id)->with('error','该分类下有子分类,请先删除子分类在执行操作');
+        }elseif(count(DB::table('goods')->where('cate_id','=',$id)->get())>0){
+                    return redirect('/category/'.$id)->with('error','该分类下有商品,请先修改商品信息');
         }else{
             $info=DB::table('cate')->select('curl')->where('id','=',$id)->first();
             $old=$info->curl;
             if(DB::table('cate')->where('id','=',$id)->delete()){
                 unlink('.'.$old);
-                echo '删除成功,请刷新';
+                return redirect('/categoryadd')->with('error','分类删除成功');
             }
         }
     }

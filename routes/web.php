@@ -20,12 +20,12 @@ Route::resource('/','Home\IndexController');
 	Route::get("/welcome","Admin\IndexController@welcome");
 
 // 后台订单模块
-Route::group(['middleware'=>'login'],function(){
+Route::group([],function(){
 	Route::get("/console","Admin\IndexController@console");
 	Route::resource("/order","Admin\OrderController");
 	Route::get("/logistics/{id}","Admin\OrderController@logistics");
 });
-Route::group(['middleware'=>'login'],function(){
+Route::group([],function(){
 	//分类管理
 	Route::resource('/category','Admin\CateController');
 	//加载添加分类模板
