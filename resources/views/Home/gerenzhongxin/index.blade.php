@@ -215,7 +215,7 @@
                             }else if(data[i].status==2){
                                 var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p><p style="margin-top:15px"><a href="/affirm/'+data[i].id+'" id="readss" class="btn btn-danger" onclick="return confirm('+"'确认收货吗'"+')">确认收货</a></p></div><div class="right" id="pright"><p style="margin-top:20px">物流信息</p><p style="margin-top:20px;color:blue" class="wuliu" attr="'+data[i].id+'"><a style="cursor:pointer">查看物流</a></p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
                             }else if(data[i].status==3){
-                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right" id="pright"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">已收货</p></div><div class="right"><p style="margin-top:20px">评价商品</p><p style="margin-top:15px"><a href="/status/'+data[i].id+'" id="readss" class="btn btn-primary">去评价</a></p></div>');
+                                var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right" id="pright"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">已收货</p></div><div class="right"><p style="margin-top:20px">评价商品</p><p style="margin-top:15px"><a href="/evaluate/'+data[i].id+'" id="readss" class="btn btn-primary">去评价</a></p></div>');
                             }else if(data[i].status==4){
                                 var rights=$('<div class="right"><p style="margin-top:20px">￥'+data[i].total+'.00</p><p>(含运费：0.00)</p></div><div class="right" id="pright"><p style="margin-top:20px">交易状态</p><p style="margin-top:20px;color:#ff6700">完成交易</p></div><div class="right"><p style="margin-top:20px">评价商品</p></div>');
                             }
@@ -305,7 +305,7 @@
                         <div class="right">
                         <p style="margin-top:20px">评价商品</p>
                         @if($v->status==3)
-                        <p style="margin-top:15px"><a href="/status/{{$v->id}}" id="readss" class="btn btn-primary">去评价</a></p>
+                        <p style="margin-top:15px"><a href="/evaluate/{{$v->id}}" id="readss" class="btn btn-primary">去评价</a></p>
                         @endif
                         </div>
                     </div>
