@@ -12,13 +12,13 @@
 		<h2 class="my-cart">支付成功</h2>
 		<div class="cart-login fr" >
 		
-			<span class="fr"><a href="">注册</a></span>
+			<!-- <span class="fr"><a href="">注册</a></span>
 			<span class="fr">|</span>
 			<span class="fr cart-reg"><a href="">登陆</a></span>
 		
 			<span class="fr"><a href="">我的订单</a></span>
 			<span class="fr">|</span>
-			<span class="fr cart-reg"><a href=""></a></span>
+			<span class="fr cart-reg"><a href=""></a></span> -->
 	
 		</div>
 
@@ -154,7 +154,6 @@
 		<!-- 底部 -->
 		<div class="side-info">
 			<div class="side-container">
-				<div class="side-logo"></div>
 				<div class="text-box">
 					<p class="box-one">
 						<a href="">小米商城</a>

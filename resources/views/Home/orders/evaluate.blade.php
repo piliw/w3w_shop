@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>确认收货</title>
+	<title>评价成功</title>
 	<link rel="stylesheet" href="/home/css/mi.css">
 	<link rel="stylesheet" href="/home/css/cartempty.css">
 </head>
 <body>
 	<div class="cart-head">
 		<a href=""><div class="cart-mi-logo"></div></a>
-		<h2 class="my-cart">收货成功</h2>
+		<h2 class="my-cart">评价成功</h2>
 		<div class="cart-login fr" >
 		
 			<!-- <span class="fr"><a href="">注册</a></span>
@@ -28,13 +28,12 @@
 	<div class="cart-body">
 		<div class="cart-nono" ></div>
 		<div class="cart-info">
-			<div class="cart-affirm fl"></div>
+			<div class="cart-evaluate fl"></div>
 			<div class="cart-right-info fl">
-				<h2>收货成功 ( ^_^ )</h2>
-				<p>如果您喜欢我们的商品,请给个好评!</p>
+				<h2>评价成功 ( ^_^ )</h2>
+				<p>感谢你对我们的支持,祝你购物愉快!</p>
 				<div class="dengli">
-					<a href="/" class="dengli-l fl">继续购物</a>
-					<a href="/evaluate/{{$pid}}" class="dengli-l fl">去评价商品</a>	
+					<a href="/" class="dengli-l fl">返回首页</a>
 			</div>
 		</div>
 	</div>

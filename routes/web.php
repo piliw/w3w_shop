@@ -171,6 +171,8 @@ Route::group(['middleware'=>'homelogin'],function(){
 	Route::get("/affirm/{id}","Home\StatusController@affirm");
 	// 物流信息
 	Route::get("/logistics/{id}","Home\StatusController@logistics");
+	// 评价信息
+	Route::get("/evaluate/{id}","Home\StatusController@evaluate");
 	
 	// 收货地址删除
 	Route::get("/addressdel","Home\OrdersController@del");
