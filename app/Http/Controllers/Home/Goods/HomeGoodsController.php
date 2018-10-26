@@ -78,11 +78,14 @@ class HomeGoodsController extends Controller
                 }
          }
         //瞧 了又瞧数据
+         if(!isset($others)){
+            $others=[];
+         }
           $sales=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(5)->get();
         //达人推荐数据
            $rows=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(10)->get();
         //商品评价
-           $appraise=DB::table('appraise')->where('goods_id','=',$id)->get();
+           $appraise=DB::table('appraise')->join('user','user.id','=','appraise.user_id')->join('goods','goods.id','=','appraise.goods_id')->select('appraise.*','user.phone','goods.name as gname','goods.price')->where('goods_id','=',$id)->get();
         //好评率
         //获取商品评价条数   
         $total=count($appraise);

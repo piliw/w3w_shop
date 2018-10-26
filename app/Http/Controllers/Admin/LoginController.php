@@ -103,6 +103,7 @@ class LoginController extends Controller
                     // IndexController  后台首页控制器
                     // index  后台首页控制器的方法
                     $nodelist['IndexController'][] = 'index';
+                    $nodelist['IndexController'][] = 'console';
                     foreach($list as $key=>$value){
                         $nodelist[$value->mname][]=$value->aname;
                         //如果有create 添加store方法

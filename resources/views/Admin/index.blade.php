@@ -67,11 +67,11 @@
           </li>
           <li class="layui-nav-item" lay-unselect>
             <a href="javascript:;">
-              <cite>贤心</cite>
+              <cite>{{session('username')}}</cite>
             </a>
             <dl class="layui-nav-child">
-              <dd><a lay-href="set/user/info.html">基本资料</a></dd>
-              <dd><a lay-href="set/user/password.html">修改密码</a></dd>
+              <!-- <dd><a lay-href="set/user/info.html">基本资料</a></dd> -->
+              <!-- <dd><a lay-href="set/user/password.html">修改密码</a></dd> -->
               <hr>
               <dd style="text-align: center;"><a href="/login">退出</a></dd>
             </dl>
@@ -94,20 +94,20 @@
           </div>
           
           <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
-            <li data-name="home" class="layui-nav-item layui-nav-itemed">
-              <a href="javascript:;" lay-tips="主页" lay-direction="2">
-                <i class="layui-icon layui-icon-home"></i>
-                <cite>主页</cite>
-              </a>
-              <dl class="layui-nav-child">
-                <dd data-name="console" class="layui-this">
-                  <a lay-href="home/console.html">控制台</a>
-                </dd>
-                <dd data-name="console">
-                  <a lay-href="/ahome">主页一</a>
-                </dd>
-              </dl>
-            </li>
+           <!--  <li data-name="home" class="layui-nav-item layui-nav-itemed">
+             <a href="javascript:;" lay-tips="主页" lay-direction="2">
+               <i class="layui-icon layui-icon-home"></i>
+               <cite>主页</cite>
+             </a>
+             <dl class="layui-nav-child">
+               <dd data-name="console" class="layui-this">
+                 <a lay-href="home/console.html">控制台</a>
+               </dd>
+               <dd data-name="console">
+                 <a lay-href="/ahome">主页一</a>
+               </dd>
+             </dl>
+           </li> -->
               
               <li data-name="user" class="layui-nav-item">
               <a href="javascript:;" lay-tips="产品管理" lay-direction="2">
@@ -133,7 +133,7 @@
               </a>
               <dl class="layui-nav-child">
                 <dd>
-                  <a lay-href="/order">订单详情</a>
+                  <a lay-href="/order">订单中心</a>
                 </dd>
               </dl>
             </li>
@@ -212,28 +212,28 @@
               </dl>
             </li>
 
-            <li data-name="set" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="设置" lay-direction="2">
-                <i class="layui-icon layui-icon-set"></i>
-                <cite>设置</cite>
-              </a>
-              <dl class="layui-nav-child">
-                <dd class="layui-nav-itemed">
-                  <a href="javascript:;">系统设置</a>
-                  <dl class="layui-nav-child">
-                    <dd><a lay-href="set/system/website.html">网站设置</a></dd>
-                    <dd><a lay-href="set/system/email.html">邮件服务</a></dd>
-                  </dl>
-                </dd>
-                <dd class="layui-nav-itemed">
-                  <a href="javascript:;">我的设置</a>
-                  <dl class="layui-nav-child">
-                    <dd><a lay-href="set/user/info.html">基本资料</a></dd>
-                    <dd><a lay-href="set/user/password.html">修改密码</a></dd>
-                  </dl>
-                </dd>
-              </dl>
-            </li>
+           <!--  <li data-name="set" class="layui-nav-item">
+             <a href="javascript:;" lay-tips="设置" lay-direction="2">
+               <i class="layui-icon layui-icon-set"></i>
+               <cite>设置</cite>
+             </a>
+             <dl class="layui-nav-child">
+               <dd class="layui-nav-itemed">
+                 <a href="javascript:;">系统设置</a>
+                 <dl class="layui-nav-child">
+                   <dd><a lay-href="set/system/website.html">网站设置</a></dd>
+                   <dd><a lay-href="set/system/email.html">邮件服务</a></dd>
+                 </dl>
+               </dd>
+               <dd class="layui-nav-itemed">
+                 <a href="javascript:;">我的设置</a>
+                 <dl class="layui-nav-child">
+                   <dd><a lay-href="set/user/info.html">基本资料</a></dd>
+                   <dd><a lay-href="set/user/password.html">修改密码</a></dd>
+                 </dl>
+               </dd>
+             </dl>
+           </li> -->
           
           </ul>
         </div>
@@ -264,7 +264,7 @@
       <!-- 主体内容 -->
       <div class="layui-body" id="LAY_app_body">
         <div class="layadmin-tabsbody-item layui-show">
-          <iframe src="home/console.html" frameborder="0" class="layadmin-iframe"></iframe>
+          <iframe src="/console" frameborder="0" class="layadmin-iframe"></iframe>
         </div>
       </div>
       

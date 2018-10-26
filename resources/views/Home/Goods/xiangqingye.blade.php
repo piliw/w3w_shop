@@ -511,14 +511,14 @@
                                 	<b>
                                     	<img src="/home/img/touxiang.png"/>
                                     </b>
-                                    <em>小******明</em>
+                                    <em>{{mb_substr($quanbu->phone,0,2,'utf-8')}}******{{mb_substr($quanbu->phone,-2,2,'utf-8')}}</em>
                                 </div>
                                 <div class="zgrsndra">山东</div>
                             </div>
                             <!--购买的商品信息-->
                             <div class="gmdspxinxisz">
-                                <a href="#">商品的名字什么商品</a>
-                                <em>9999元</em>
+                                <a href="/homegoods/{{$quanbu->goods_id}}">{{mb_substr($quanbu->gname,0,30,'utf-8')}}...</a>
+                                <em>{{$quanbu->price}}元</em>
                             </div>
                         </div>
                  @endforeach
@@ -555,14 +555,14 @@
                                 	<b>
                                     	<img src="/home/img/touxiang.png"/>
                                     </b>
-                                    <em>小******明</em>
+                                    <em>{{mb_substr($haoping->phone,0,2,'utf-8')}}******{{mb_substr($haoping->phone,-2,2,'utf-8')}}</em>
                                 </div>
                                 <div class="zgrsndra">山东</div>
                             </div>
                             <!--购买的商品信息-->
                             <div class="gmdspxinxisz">
-                                <a href="#">商品的名字什么商品</a>
-                                <em>9999元</em>
+                                <a href="/homegoods/{{$haoping->goods_id}}">{{mb_substr($haoping->gname,0,30,'utf-8')}}...</a>
+                                <em>{{$haoping->price}}元</em>
                             </div>
                         </div>
                     @endif   
@@ -593,14 +593,14 @@
                                 	<b>
                                     	<img src="/home/img/touxiang.png"/>
                                     </b>
-                                    <em>小******明</em>
+                                    <em>{{mb_substr($zhongping->phone,0,2,'utf-8')}}******{{mb_substr($zhongping->phone,-2,2,'utf-8')}}</em>
                                 </div>
                                 <div class="zgrsndra">山东</div>
                             </div>
                             <!--购买的商品信息-->
                             <div class="gmdspxinxisz">
-                                <a href="#">商品的名字什么商品</a>
-                                <em>9999元</em>
+                                <a href="/homegoods/{{$zhongping->goods_id}}">{{mb_substr($zhongping->gname,0,30,'utf-8')}}...</a>
+                                <em>{{$zhongping->price}}元</em>
                             </div>
                         </div>
                    @endif    
@@ -637,14 +637,14 @@
                                 	<b>
                                     	<img src="/home/img/touxiang.png"/>
                                     </b>
-                                    <em>小******明</em>
+                                    <em>{{mb_substr($chaping->phone,0,2,'utf-8')}}******{{mb_substr($chaping->phone,-2,2,'utf-8')}}</em>
                                 </div>
                                 <div class="zgrsndra">山东</div>
                             </div>
                             <!--购买的商品信息-->
                             <div class="gmdspxinxisz">
-                                <a href="#">商品的名字什么商品</a>
-                                <em>9999元</em>
+                                <a href="/homegoods/{{$chaping->goods_id}}">{{mb_substr($chaping->gname,0,30,'utf-8')}}...</a>
+                                <em>{{$chaping->price}}元</em>
                             </div>
                         </div>
                       @endif

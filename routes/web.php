@@ -17,14 +17,15 @@ Route::resource('/','Home\IndexController');
 // });
 
 // 后台 我的桌面
-Route::get("/welcome","Admin\IndexController@welcome");
+	Route::get("/welcome","Admin\IndexController@welcome");
 
 // 后台订单模块
-Route::group([],function(){
+Route::group(['middleware'=>'login'],function(){
+	Route::get("/console","Admin\IndexController@console");
 	Route::resource("/order","Admin\OrderController");
 	Route::get("/logistics/{id}","Admin\OrderController@logistics");
 });
-Route::group([],function(){
+Route::group(['middleware'=>'login'],function(){
 	//分类管理
 	Route::resource('/category','Admin\CateController');
 	//加载添加分类模板

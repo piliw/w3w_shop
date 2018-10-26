@@ -98,8 +98,8 @@
 											待评价
 											@endif
 										</td>
-										<td>{{$row->addtime}}</td>
-										<td>{{$row->paytime}}</td>
+										<td>{{date("Y/m/d H:i",$row->addtime)}}</td>
+										<td>{{date("Y/m/d H:i",$row->paytime)}}</td>
 										<td class="f-14"><a class="btn btn-success test" attr="{{$row->id}}">详情</a></td>
 									</tr>
 									@endforeach

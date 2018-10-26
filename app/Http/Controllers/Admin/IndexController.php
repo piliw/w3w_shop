@@ -89,4 +89,9 @@ class IndexController extends Controller
     {
         //
     }
+
+    public function console(){
+            //后台首页
+            return view('Admin.console');
+    }
 }

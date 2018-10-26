@@ -19,34 +19,33 @@
     <div class="shouhurxl clastyo">
         <div class="shouhurxl1">
             <em>收货人信息</em>
-            <a href="#" class="chgeb">修改</a>
+            <a href="#" class="chgeb">添加收货地址</a>
         </div>
+            <div class="shouhurxl2" id="ss">
         @if(count($data1)!=0)
         @foreach($data1 as $row)
             @if($row->default==1)
-            <div class="shouhurxl2" id="ss">
                 <span>{{$row->u_name}}</span>
                 <span>{{$row->u_address}}</span>
                 <span><em>电话：</em><em>{{$row->u_phone}}</em></span>
-            </div>
             @endif
         @endforeach
-        @else
-            <div class="shouhurxl2" id="ss">
-            </div>
         @endif
+         </div>
     </div>
 
     <!--点击修改会出现这个选择框-->
     <div class="changepc" id="adnew">
         <!--以前的旧地址-->
-        @if(!empty($data1))
+        @if(count($data1)!=0)
         @foreach($data1 as $rows)
         <div class="tongyongdizhi">
+            <label>
             <input type="radio" name="adressa" style=" float:left; display:block; width:13px; height:13px; margin-top:9px">
             <span>{{$rows->u_name}}</span>
             <span>{{$rows->u_address}}</span>
             <span><em>电话：</em><em>{{$rows->u_phone}}</em></span>
+            </label>
             <a href="javascript:void(0)" class="del" style=" margin-left:1130px;width:100px">删除</a>
             <div style="display:none">{{$rows->id}}</div>
         </div>
@@ -59,6 +58,22 @@
             <span>使用新地址</span>
             </label>
         </div>   
+        <script>
+            $('body').on('change','.tongyongdizhi input',function(){
+                var name= $(this).next().html();
+                var address= $(this).next().next().html();
+                var phone= $(this).next().next().next().find('em').eq(1).html(); 
+                
+                var put='<input type="hidden" name="name" value="'+name+'"><input type="hidden" name="address" value="'+address+'"><input type="hidden" name="phone" value="'+phone+'">';
+                var ss='<span>'+name+'</span><span>'+address+'</span><span><em>电话：</em><em>'+phone+'</em></span>';
+                 $('#inp').empty().append($(put));
+                 $('#ss').empty().append($(ss));
+                 $(".changepc").css({display:"none"});
+                $(".clastyo").css({display:"block"});
+                $(".opcaty1").css({display:"none"});
+            });
+
+        </script>  
         <!--添加新地址-->
             <div class="opcaty1">
                 <div class="opcaty2">
@@ -129,12 +144,18 @@
             var ss='<span>'+name+'</span><span>'+address+'</span><span><em>电话：</em><em>'+phone+'</em></span>';
             // alert(address);
             var put='<input type="hidden" name="name" value="'+name+'"><input type="hidden" name="address" value="'+address+'"><input type="hidden" name="phone" value="'+phone+'">';
-            var adnew='<div class="tongyongdizhi"><input type="radio" name="adressa" style=" float:left; display:block; width:13px; height:13px; margin-top:9px"><span>'+name+'</span><span>'+address+'</span><span><em>电话：</em><em>'+phone+'</em></span><a href="javascript:void(0)" class="del">删除</a>';
+            var adnew='<div class="tongyongdizhi"><label><input type="radio" name="adressa" style=" float:left; display:block; width:13px; height:13px; margin-top:9px"><span>'+name+'</span><span>'+address+'</span><span><em>电话：</em><em>'+phone+'</em></span></label><a href="javascript:void(0)" class="del" style=" margin-left:1130px;width:100px">删除</a>';
             $.post("/orders",{'user_id':sid,'u_name':name,'u_phone':phone,'u_address':address},function(data){
                 if(data==1){
                     $('#ss').empty().append($(ss));
                     $('#inp').empty().append($(put));
                     $('#adnew').prepend($(adnew));
+
+                    // 请空
+                    $('#adname').val('');
+                    $('.readd').val('');
+                    $('#readdress').val('');
+                    $('#sphone').val(''); 
                 }
             });
         });
@@ -152,6 +173,13 @@
             }
           })
         });
+    </script>
+    <script>
+                    // 初始化地址添加
+                    $('#adname').val('');
+                    $('.readd').val('');
+                    $('#readdress').val('');
+                    $('#sphone').val(''); 
     </script>
     <!--这个选择框结束-->
     <!--收货人信息结束-->
