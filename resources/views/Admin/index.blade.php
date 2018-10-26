@@ -124,9 +124,6 @@
                 <dd>
                   <a lay-href="/goodsinfo/create">添加商品</a>
                 </dd>
-                <dd>
-                  <a lay-href="/adminaddress">地址管理</a>
-                </dd>
               </dl>
             </li>
                <li data-name="user" class="layui-nav-item">
@@ -199,6 +196,9 @@
               <dl class="layui-nav-child">
                 <dd>
                   <a lay-href="/homeuser">前台网站用户</a>
+                </dd>
+                 <dd>
+                  <a lay-href="/adminaddress">用户地址查看</a>
                 </dd>
                 <dd>
                   <a lay-href="/adminuser">后台管理员</a>
