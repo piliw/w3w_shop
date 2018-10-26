@@ -20,7 +20,7 @@
 <div class="nowweizhi">
 	<span>你当前的位置</span>
     <b>></b>
-    <a href="#">{{$data->cate_id}}</a>
+    <a href="/list?id={{$data->cate_id}}">{{$data->summ}}</a>
     <b>></b>
     <a href="/homegoods/{{$data->id}}">{{mb_substr($data->name,0,15,'utf-8').'...'}}</a>
 </div>
@@ -111,11 +111,11 @@
             <div class="shoujigm">
             	<span>APP独享打折</span>
                 <div class="sjapp">用手机购买
-                	<b><img src="/home/img/唯尚衣族官网二维码.jpg"/></b>
+                	<b><img src="/home/img/20181026085209.jpg"/></b>
                 </div>
             </div>
             <div class="peisongzhi">
-            	<span>配送至</span>
+            	<span>配送</span>
                 <script src="/home/js/city.js/cityJson.js"></script>
                 <script src="/home/js/city.js/citySet.js"></script>
                 <script src="/home/js/city.js/Popt.js"></script>
@@ -127,10 +127,11 @@
 						});
 					</script>
                 </div>
-                <span style=" font-weight:bold; color:#333">有货</span>
-                <a href="#">支持货到付款</a>
+               
+                
             </div>
             <div class="xuanzcolor">
+             <span style=" font-weight:bold; color:#333">有货</span><a href="#" style="font-size: 14px;line-height: 30px;margin-left:10px;">支持货到付款</a>
             <!-- 	<span>选择颜色</span>
                             <div class="morecolor">
                             	<ul>
@@ -154,7 +155,7 @@
                                 </script>
                             </div> -->
                 <div class="choosecm">
-                	<span>选择尺码</span>
+                	<span>尺码</span>
                     <div class="morecm">
                     	<ul>
                             <li><a href="#">{{$data->size}}</a></li>
@@ -171,10 +172,10 @@
                 <input type="hidden" name="price" value="{{$data->price}}">
 
                 <div class="goumaijiajian">
-                    <span>购买数量</span>
-                    <input id="min" name="" type="button" value="减" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">  
-    <input id="text_box" name="num" type="text" value="1" style="width:60px;height:30px; font-size:12px; text-align:center; float:left"/>  
-    <input id="add" name="" type="button" value="加" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">
+                    <span>数量</span>
+                    <input id="min" name="" type="button" value="-" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">  
+    <input id="text_box" name="num" type="text" value="1" style="width:60px;height:30px; font-size:12px; text-align:center; float:left;border:1px solid #cacace;"/>  
+    <input id="add" name="" type="button" value="+" / style=" width:30px; height:30px; font-size:12px; line-height:30px; color:#333; float:left; cursor:pointer">
                 </div>
                 <script>
                     $(document).ready(function(){
@@ -201,24 +202,24 @@
                        
                     });
                     </script>
+                      <!--商品编号-->
+                <div class="shopbh">
+                    <span style="width:60px">商品编号</span>
+                    <em>{{$data->number}}</em>
+                </div>   
                 <!--加入购物车与收藏商品-->
                 <input type="hidden" name="id" value="{{$data->id}}">
                  <div class="joinspadsp">
                     @if(session('hid'))
                     <a href="javascript:void(0)" style=" margin-left:67px"><input type="submit" style="background-color:#DF3033;color:white" value="立即购买"></a>
                     @else
-                    <a href="/homelogin" style=" margin-left:67px" onclick="return confirm('你还没登录,请登录')">立即购买</a>
+                    <a href="/homelogin" style=" margin-left:3px" onclick="return confirm('你还没登录,请登录')">立即购买</a>
                     @endif
                     <a href="javascript:void(0)" style=" margin-left:6px" id="shops">加入购物车</a>
                     <a href="javascript:void(0)" style=" margin-left:6px">收藏该商品</a>
                  </div>
                  {{csrf_field()}}
-                </form>
-                 <!--商品编号-->
-                 <div class="shopbh">
-                 	<span style="width:60px">商品编号</span>
-                    <em>{{$data->number}}</em>
-                 </div>    
+                </form>  
             </div>
         </div>
         <!-- 加入购物车 -->

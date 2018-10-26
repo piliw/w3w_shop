@@ -54,7 +54,7 @@
 <!--logo加时间加搜索框-->
 <div class="dy10">
 	<div class="dy11">
-    	<img src="/home/img/logo.png"/>
+    	<a href="/"><img src="/home/img/logo.png"/></a>
     </div>
     <div class="dy13">
     </div>
@@ -94,19 +94,19 @@ $(function(){
 	
 </script>
 <!--banner轮播引入lunbo.css和daohang.js-->
-<div id="big_banner_wrap" style=" position:absolute; top:177px; left:50%; margin-left:-613px">
+<div id="big_banner_wrap" style=" position:absolute; top:177px; left:50%; margin-left:-613px;">
 	 <ul id="banner_menu_wrap">
 		<?php $cel=20;?>	
 		@foreach($homecate as $cates)
-		 <li class="active"img>
+		 <li class="active">
 			 <a href="/list?id={{$cates->id}}">{{$cates->name}}</a>
 			 <a class="banner_menu_i" href="/list?id={{$cates->id}}">&gt;</a>
 			 <div class="banner_menu_content" style="width: 600px; top: -{{$cel}}px;">
 			 	@foreach($cates->dev as $dev)
 				 <ul class="banner_menu_content_ul">
 				 	@foreach($dev->dev as $san)
-					 <li>
-						 <a href="/list?id={{$san->id}}"><img src="{{$san->curl}}" height="40px"></a><a href="/list?id={{$san->id}}">{{$san->name}}<span>选购</span></a></li>
+					 <li style="width: 250px;height:60px;padding: 12px;float: left;">
+						 <a href="/list?id={{$san->id}}"><img src="{{$san->curl}}" width="40px" height="40px"></a><a href="/list?id={{$san->id}}">{{$san->name}}<span>选购</span></a></li>
 					@endforeach			 
 				 </ul>
 				 @endforeach

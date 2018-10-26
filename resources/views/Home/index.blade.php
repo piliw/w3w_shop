@@ -14,8 +14,10 @@
 </style>
 </head>
 <body>
-  <div style="width:100%;text-align:center;font-size:0;" id="abs">
+  <div style="width:100%;text-align:center;" id="abs">
 @foreach($abs as $f)
+<div style="width:30px;height:20px;position:absolute;right:0px;">
+<a href="javascript:" class="close" style="color:#fff;font-size:12px">关闭</a></div>
 <a href=""><img src="{{$f->file}}" alt="" style="width:100%;"></a>
 @endforeach
 </div>
@@ -26,7 +28,7 @@
           <li><a href="/homenotece" class="notece">官方公告<br/>官方公告</a></li>
          <li><a href="#">维尚衣族官网<br/>维尚衣族官网</a></li>
         </ul>
-        <a href="#" class="dy5">购物车</a>
+        <a href="/homecart" class="dy5">购物车</a>
         <ul class="dy4">
             @if(Session::has('hname'))
             <li><a href="#">欢迎您登录!<br/>欢迎您登录!</a></li>
@@ -59,7 +61,9 @@
 <!--logo加时间加搜索框-->
 <div class="dy10">
   <div class="dy11">
+      <a href="/">
       <img src="/home/img/logo.png"/>
+      </a>
     </div>
     <div class="dy13">
     </div>
@@ -101,7 +105,7 @@
             <ul class="banner_menu_content_ul">
          @foreach($d->dev as $dd)
            <li>
-             <a href="/list?id={{$dd->id}}"><img src="/home/img/headphone.jpg"></a><a href="/list?id={{$dd->id}}">{{$dd->name}}<span>选购</span></a></li>
+             <a href="/list?id={{$dd->id}}"><img src="{{$dd->curl}}" width="40px" height="40px"></a><a href="/list?id={{$dd->id}}">{{$dd->name}}<span>选购</span></a></li>
           @endforeach
          </ul>
           @endforeach 
@@ -166,7 +170,7 @@
         </li>
         <li>
           @foreach($res as $key=>$row)
-          @if($key>=5)
+          @if($key>=13)
           <a href="/homegoods/{{$row->gid}}">
               <b><img src="{{$row->p_url}}"/></b>
                     <h5 class="pp">{{$row->name}}</h5>
@@ -187,7 +191,7 @@
   <?php $o=1; ?>
   @foreach($cate as $c)
   @foreach($c->dev as $cc)  
-  <!--服装鞋包-->
+  <!--遍历列表-->
   <div class="dy18" id="f{{$cc->id}}">
       <div class="dy20">
           <h3>{{$cc->name}}</h3>
@@ -203,7 +207,7 @@
         </div>
         <div class="dy21">
           <div class="dy22">
-              <div class="dy24"><a href="#"><img src="{{$cc->curl}}"/></a></div> 
+              <div class="dy24"><a href="/list?id={{$cc->id}}"><img src="{{$cc->curl}}"/></a></div> 
             </div>
             <div class="bigrongqi">
                 <div class="pinpai b-<?php echo $o-1?>-dy23">
@@ -240,7 +244,7 @@
                                 <p class="pp">{{$row->summ}}</p>
                                 <span>{{$row->price}}元</span>
                             </a>    
-                            <a href="#" style=" width:100%; height:20px; line-height:20px; font-size:12px; color:#666; text-align:left; text-indent:10px" class="dianpud">乐乐旗舰店</a>
+                            <a href="#" style=" width:100%; height:20px; line-height:20px; font-size:12px; color:#666; text-align:left; text-indent:10px" class="dianpud">维尚旗舰店</a>
                         </li>
                         @endif
                         @endforeach
@@ -331,4 +335,12 @@ $(".dy19").css({top: top });
 </div>
 
 </body>
+<script>
+  // 点击关闭广告
+  $(function(){
+    $('.close').click(function(){
+      $('#abs').hide();
+    })
+  });
+</script>
 </html>  
