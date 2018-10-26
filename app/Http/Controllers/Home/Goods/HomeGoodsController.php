@@ -56,8 +56,8 @@ class HomeGoodsController extends Controller
         $cate=DB::table('cate')->where('id','=',$data->cate_id)->select('id','name','pid')->first();
         //获取当前分类下的商品 取6条
         $categoods=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('cate_id','=',$cate->id)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(6)->get();
-        //$data->cate_id重新赋值
-        $data->cate_id=$cate->name;
+        //$data->summ重新赋值
+        $data->summ=$cate->name;
         //获取同等相关分类
         $cates=DB::table('cate')->select('id','name')->where('pid','=',$cate->pid)->where('display','=',1)->get();
         //其它相关分类数据
@@ -71,6 +71,9 @@ class HomeGoodsController extends Controller
                 }
          }
         //瞧 了又瞧数据
+        if(!isset($others)){
+            $others=[];
+        }
           $sales=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(5)->get();
         //达人推荐数据
            $rows=DB::table('goods')->join('pic_url','pic_url.gid','=','goods.id')->select('goods.id','goods.name','summ','price','pic_url.p_url')->where('pic_url.main','=',1)->where('goods.status','=',1)->where('goods.store','>',0)->orderBy('sales','desc')->limit(10)->get();
@@ -95,7 +98,7 @@ class HomeGoodsController extends Controller
             $zper='00';
             $cper='00';
         }
-
+        // dd($sdata);
         return view('Home.Goods.xiangqingye',['data'=>$data,'photo'=>$photo,'categoods'=>$categoods,'cates'=>$cates,'sales'=>$sales,'rows'=>$rows,'others'=>$others,'appraise'=>$appraise,'per'=>$per,'zper'=>$zper,'cper'=>$cper]);
     }
 

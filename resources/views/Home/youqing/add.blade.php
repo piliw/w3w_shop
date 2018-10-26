@@ -78,7 +78,7 @@
 							网&nbsp;&nbsp;&nbsp;&nbsp;址：
 						</td>
 						<td height="29">
-							<input id="url" name="url" class="w247 required" value="http://" type="text"> <span id="err_url" style="font-size:14px"></span>
+							<input id="url" name="url" class="w247 required" value="http://www." type="text"> <span id="err_url" style="font-size:14px"></span>
 						</td>
 					</tr>
 					<tr>
@@ -90,11 +90,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="61" valign="top" height="29">
+						<td width="81" valign="top" height="29">
 							网站介绍：
 						</td>
 						<td width="348" valign="top">
-							<textarea id="intro" name="decr" cols="" rows="" class="w247h60" style="width: 319px; height: 150px;" required oninvalid="setCustomValidity('写上网站的介绍吧')" oninput="setCustomValidity('')"></textarea>
+							<textarea id="intro" name="decr" cols="" rows="" class="w247h60" style="width: 319px; height: 150px;"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -115,84 +115,65 @@
 	</div>
 </body>
 <script>
-	// alert(n);
-	$("#name").blur(function(){
-		name=$(this).val();
-		// alert(name);
-		var nReg=/^.{1,20}$/;
-		if(name==''){
-			$('#err_name').css('color','#666').html('请填写网站名称，长度在1-20位字符之间');
-		bool=false;
-	}else if(!nReg.test(name)){
-		$('#err_name').css('color','#666').html('请填写网站名称，长度在1-20位字符之间');
-		bool=false;
-	}else{
-			$('#err_name').html('');
-			$("#url").blur(function(){
-				url = $(this).val();
-				// alert(url);
-				var urlReg = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?$/;
-				if(url==''){
-					$('#err_url').css('color','#666').html('网址不能为空');
-					bool=false;
-				}else if(!urlReg.test(url)){
-					$('#err_url').css('color','#666').html('请写正确的网址');
-					bool=false;
-				}else{
-					$('#err_url').html('');
-					$('#email').blur(function(){
-						email = $(this).val();
-						// alert(email);
-						var emailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
-						if(email==''){
-							$('#err_email').css('color','#666').html('邮箱不能为空');
-							bool=false;
-						}else if(!emailReg.test(email)){
-							$('#err_email').css('color','#666').html('邮箱格式不正确');
-							bool=false;
-						}else{
-							$('#err_email').html('');
-							bool=true;
-						}
-					});
-				}
-			});
-	}
-	});
-
-	$('#btnSubmit').click(function(){
+	function name_check(){
 		n=$("input[name='name']").val();
 		// alert(n);
 		if(n==''){
-			$('#err_name').css('color','#666').html('请填写网站名称，长度在1-20位字符之间');
-		bool=false;
+			$('#err_name').css('color','#f00').html('请填写网站名称，长度在1-20位字符之间');
+		return false;
+		}else{
+			$('#err_name').html('');
+			return true;
 		}
-		url=$("input[name='url']").val();
-		var urlReg = /^((ht|f)tps?):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:\/~\+#]*[\w\-\@?^=%&\/~\+#])?$/;
-	 if(url==''){
-	 	$('#err_url').css('color','#666').html('网址格式不正确');
-	 	 bool=false;
-	 }else if(!urlReg.test(url)){
-	 	$('#err_url').css('color','#666').html('网址格式不正确');
-	 	bool=false;
+		return true;
+	}
+	function url_check(){
+		url=$("#url").val();
+		var urlReg = /^http:\/\/www\..+?(\.\w+){1,2}$/g;
+ if(url.search(urlReg)==-1){
+ 		$('#err_url').css('color','#f00').html('网址格式不正确');
+	 	return false;
 	 }else{
-	 	$('#err_url').html('');
+	 	$('#err_url').css('color','#666').html('网址可用');
+	 	return true;
 	 }
-	 email=$("input[name='email']").val();
+	 	return true;
+	}
+
+	function email_check(){
+	 	email=$("#email").val();
 		var emailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
-	 if(email==''){
-	 	$('#err_email').css('color','#666').html('邮箱不能为空');
-	 	 bool=false;
-	 }else if(!emailReg.test(email)){
-	 	$('#err_email').css('color','#666').html('邮箱格式不正确');
-	 	bool=false;
+	if(email.search(emailReg)==-1){
+	 	$('#err_email').css('color','#f00').html('邮箱格式不正确');
+	 	return false;
 	 }else{
-	 	$('#err_email').html('');
+	 	$('#err_email').css('color','#666').html('邮箱可用');
+	 	 return true
 	 }
-	 bool=true;
-	});
+	 	 return true
+	}
+	$("#name").blur(name_check);
+ 	$("#url").blur(url_check);
+ 	$("#email").blur(email_check);
+ 	function tijiao(){
+ 		if($('#name').val()=='' || $("#url").val()==''|| $("#email").val()=='' || $("#intro").val()==''){
+ 			alert('信息不能为空');
+ 			return false;
+ 		}
+
+ 		if(!url_check()){
+ 			$('#url_email').css('color','#f00').html('url格式不正确');
+ 			return false;
+ 		}else if(!email_check()){
+			$('#err_email').css('color','#f00').html('邮箱格式不正确');
+ 			return false;
+ 		}else{
+ 			return true;
+ 		}
+ 		 return true;
+ 	}
   $('#frm_submit').submit(function(){
-  	return bool;
+  	return tijiao();
   });
  //  
  //  
